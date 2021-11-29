@@ -34,6 +34,8 @@
           </select>
           <br><br>
           <button type="submit" class="btn btn-success" name="cetakbrg"><i class="fa fa-print"></i> Cetak Daftar Barang</button>
+          &nbsp;&nbsp;&nbsp;
+          <button type="button" class="btn btn-primary" id="updatehrg"><i class="fa fa-money"></i> Update Harga Barang</button>
           <br><br>
      </form>
 
@@ -42,15 +44,10 @@
      <div class="modal fade" id="modaledit">
           <div class="modal-dialog">
                <div class="modal-content">
-
-                    <!-- Modal Header -->
                     <div class="modal-header">
                          <h4 class="modal-title">Konfirmasi</h4>
                     </div>
-
                     <form id="editbarang" method="post" action="do_pusatmodaledit.php">
-
-                         <!-- Modal body -->
                          <div class="modal-body">
                               <table class="table table-borderless">
                                    <tr>
@@ -85,16 +82,16 @@
                                    </tr>
                               </table>
                          </div>
-
                          <!-- Modal footer -->
                          <div class="modal-footer">
                               <button class="btn btn-success" type="submit"><i class="fa fa-edit"></i> Ubah</button>
                     </form>
                     <button class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i>Close</button>
                </div>
-
           </div>
      </div>
+</div>
+</div>
 </div>
 
 <div class="modal fade" id="modalhapus">
@@ -106,7 +103,7 @@
                     <h4 class="modal-title">Konfirmasi</h4>
                </div>
 
-               <form action="do_pusathpsbrg.php" id="hapusbrg" method="post">
+               <form action="do_pusatupdatehrg.php" id="hapusbrg" method="post">
                     <!-- Modal body -->
                     <div class="modal-body">
                          Apakah Anda yakin mau menghapus?
@@ -126,11 +123,50 @@
      </div>
 </div>
 </div>
+</div>
+
+<!-- modal edit harga massal -->
+<div class="modal fade" id="modal_edithrg">
+     <div class="modal-dialog">
+          <div class="modal-content">
+
+               <!-- Modal Header -->
+               <div class="modal-header">
+                    <h4 class="modal-title">Update Harga Barang Massal</h4>
+               </div>
+
+               <form action="do_pusatupdatehrg.php" id="edit_hrg" method="post">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                         <table class="table table-borderless">
+                              <tr>
+                                   <td>Password Akun</td>
+                                   <td><input type="password" id="khusus3" name="khusus3" required></td>
+                                   <div class="error" id="khususErr3"></div>
+                              </tr>
+                              <tr>
+                                   <td>Persentase Penambahan Harga Jual</td>
+                                   <td><input type="number" name="tambahan" id="tambahan" min="0" placeholder="masukkan angka saja (15)" required></td>
+                              </tr>
+                         </table>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                         <button class="btn btn-success" type="submit"><i class="fa fa-check"></i> Ya</button>
+               </form>
+               <button class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Tidak</button>
+          </div>
+     </div>
+</div>
+</div>
+</div>
 
 <script>
      $(document).ready(function() {
           var error_khusus = false;
           var error_khusus2 = false;
+          let error_khusus3 = false;
 
           $("#khusus").focusin(function() {
                check_khusus();
@@ -145,7 +181,7 @@
                          $("#khusus").css("outline-color", "red");
                          $("#khususErr").css("color", "red");
                          error_khusus = true;
-                    } else if (khusus != "danieltan") {
+                    } else if (khusus != "pusattiara") {
                          $("#khususErr").html("Password Salah!");
                          $("#khusus").css("outline-color", "red");
                          $("#khususErr").css("color", "red");
@@ -171,7 +207,7 @@
                          $("#khusus2").css("outline-color", "red");
                          $("#khususErr").css("color", "red");
                          error_khusus2 = true;
-                    } else if (khusus2 != "danieltan") {
+                    } else if (khusus2 != "pusattiara") {
                          $("#khususErr2").html("Password Salah!");
                          $("#khusus2").css("outline-color", "red");
                          $("#khususErr2").css("color", "red");
@@ -334,6 +370,41 @@
                     alert("isi data dengan benar!");
                     return false;
                }
+          });
+
+          $("#updatehrg").on("click", function() {
+               $("#modal_edithrg").modal('toggle');
+          });
+
+          $("#khusus3").keyup(function() {
+               var khusus3 = $("#khusus3").val();
+               if (khusus3 != "pusattiara") {
+                    $("#khususErr3").html("isi data dengan benar!");
+                    $("#khususErr3").css("color", "red");
+                    error_khusus3 = true;
+               } else {
+                    $("#khususErr3").html("");
+                    error_khusus3 = false;
+               }
+          });
+
+          $("#edit_hrg").submit(function(a) {
+               a.preventDefault();
+               $.ajax({
+                    type: "post",
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function(data) {
+                         if (data == "berhasil!") {
+                              alert("data berhasil di ubah!");
+                              $("#hasil").load("do_pusatcekbrg.php");
+                              $('#modal_edithrg').modal('toggle');
+                         } else if (data == "gagal!") {
+                              alert("data gagal di ubah!");
+                              // $('#modal_edithrg').modal('toggle');
+                         }
+                    }
+               });
           });
      });
 </script>
