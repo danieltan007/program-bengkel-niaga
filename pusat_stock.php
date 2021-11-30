@@ -162,8 +162,16 @@
 </div>
 </div>
 
+<?php
+include 'koneksi.php';
+$sql = mysqli_query($conn, "select * from login where level = 'pusat'");
+$data = mysqli_fetch_array($sql);
+$pass = $data['pass'];
+?>
+
 <script>
      $(document).ready(function() {
+          let password = "<?php echo $pass; ?>";
           var error_khusus = false;
           var error_khusus2 = false;
           let error_khusus3 = false;
@@ -181,7 +189,7 @@
                          $("#khusus").css("outline-color", "red");
                          $("#khususErr").css("color", "red");
                          error_khusus = true;
-                    } else if (khusus != "pusattiara") {
+                    } else if (khusus != password) {
                          $("#khususErr").html("Password Salah!");
                          $("#khusus").css("outline-color", "red");
                          $("#khususErr").css("color", "red");
@@ -207,7 +215,7 @@
                          $("#khusus2").css("outline-color", "red");
                          $("#khususErr").css("color", "red");
                          error_khusus2 = true;
-                    } else if (khusus2 != "pusattiara") {
+                    } else if (khusus2 != password) {
                          $("#khususErr2").html("Password Salah!");
                          $("#khusus2").css("outline-color", "red");
                          $("#khususErr2").css("color", "red");
@@ -378,7 +386,7 @@
 
           $("#khusus3").keyup(function() {
                var khusus3 = $("#khusus3").val();
-               if (khusus3 != "pusattiara") {
+               if (khusus3 != password) {
                     $("#khususErr3").html("isi data dengan benar!");
                     $("#khususErr3").css("color", "red");
                     error_khusus3 = true;
