@@ -12,7 +12,7 @@
 
           //hitung tambahan stok
           $tambahan = (int)$data2['sto_brg'] + (int)$data['sto_toko'];
-		  $kurang = (int)$data['sto_brg'] - (int)$data2['sto_brg'];
+     $kurang = (int)$data['sto_brg'] - (int)$data2['sto_brg'];
 
           $sql3 = "update `tabel barang` set sto_toko = '$tambahan', sto_brg = '$kurang' where kd_brg = '$data[kd_brg]'";
           mysqli_query($conn, $sql3);
