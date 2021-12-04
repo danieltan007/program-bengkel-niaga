@@ -3,10 +3,6 @@
 
      $tgl = date('Y-m-d');
 
-     $sql = "insert into `tabel barang` (kd_brg, nm_brg, hrg_brg, mrk_brg, sto_brg, supp_brg) select * from `tabel barang temp`";
-     mysqli_query($conn,$sql);
-     echo mysqli_error($conn);
-
      $sql1 = "select * from `tabel barang temp`";
      $cari1 = mysqli_query($conn, $sql1);
      
@@ -17,8 +13,8 @@
           echo mysqli_error($conn);
 
           $sql4 = "insert into `tabel barang pusat` 
-          (kd_brg, nm_brg, mrk_brg, stock, supplier, hrg_modal, hrg_jual) values 
-          ('$data1[kd_brg]', '$data1[nm_brg]', '$data1[mrk_brg]', '$data1[sto_brg]' ,'$data1[supp_brg]', '0', '$data1[hrg_brg]')";
+          (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `stock_gudang`, `supplier`, `hrg_modal`, `hrg_jual`) values 
+          ('$data1[kd_brg]', '$data1[nm_brg]', '$data1[mrk_brg]', 0,'$data1[sto_brg]' ,'$data1[supp_brg]', '0', '0')";
           mysqli_query($conn, $sql4);
           echo mysqli_error($conn);
           

@@ -105,11 +105,6 @@
                                    </select>
                               </td>
                          </tr>
-                         <tr>
-                              <td>Harga</td>
-                              <td><input type="number" name="hrg_brg" id="hrg_brg" min="0" max="99999999"></td>
-                              <div class="error" id="hargaErr"></div>
-                         </tr>
                     </table>
                     <div align="center">
                          <button class="btn btn-success" name="tambah"><i class="fa fa-plus-circle"></i> Tambah</button>
@@ -538,7 +533,7 @@ $pass = $data['pass'];
           $("#supp_brg").load("do_gudangtampilsupp.php");
 
           $("#tambahbrg").submit(function(e) {
-               if (error_harga === false && error_stock === false && error_nama === false) {
+               if (error_stock === false && error_nama === false) {
                     e.preventDefault();
                     $.ajax({
                          url: $(this).attr('action'),
@@ -566,7 +561,7 @@ $pass = $data['pass'];
                });
           });
 
-          update();
+          // update();
 
           function update() {
                $("#tempbrg").load("do_gudangtampiltemp.php");

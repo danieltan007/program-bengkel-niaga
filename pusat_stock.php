@@ -344,6 +344,7 @@ $pass = $data['pass'];
                               $("#" + id).children("td[data-target=hrg_modal]").text(modal);
                               $("#" + id).children("td[data-target=hrg_jual]").text(jual);
                               $("#" + id).children("td[data-target=profit]").text(profit);
+                              $("#khusus").text("");
                               $('#modaledit').modal('toggle');
                          },
                     });
