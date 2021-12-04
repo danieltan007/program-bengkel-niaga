@@ -43,7 +43,7 @@ Tanggal Cetak: <?php echo $date; ?>
                <tr>
                     <td><?php echo $data["nm_brg"]; ?></td>
                     <td><?php echo $data["mrk_brg"]; ?></td>
-                    <td><?php echo $data["stock"]; ?></td>
+                    <td><?php echo $data["stock_gudang"]; ?></td>
                     <td><?php echo $data["supplier"]; ?></td>
                     <td><?php echo number_format($data["hrg_modal"]); ?></td>
                     <td><?php echo number_format($data["hrg_jual"]); ?></td>

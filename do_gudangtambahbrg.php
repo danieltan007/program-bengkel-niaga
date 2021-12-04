@@ -7,7 +7,7 @@ $sto_brg         		= $_POST['sto_brg'];
 $supp_brg         		= $_POST['supp_brg'];
 $hrg_brg				= $_POST['hrg_brg'];
 
-$query = "select max(kd_brg) as maxkode from `tabel barang`";
+$query = "select max(kd_brg) as maxkode from `tabel barang pusat`";
 $hasil = mysqli_query($conn,$query);
 $data = mysqli_fetch_array($hasil);
 $kode = $data['maxkode'];
