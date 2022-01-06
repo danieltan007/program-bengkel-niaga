@@ -6,7 +6,7 @@ $merek = $_POST['merek'];
 $sup = $_POST['sup'];
 
 if ($merek == "" && $sup == "") {
-     $sql = "select * from `tabel barang pusat` where nm_brg like '%$cari% ";
+     $sql = "select * from `tabel barang pusat` where nm_brg like '%$cari%' ";
      $search = mysqli_query($conn, $sql);
 } else if ($merek != "" && $sup == "") {
      $sql = "select * from `tabel barang pusat` where nm_brg like '%$cari%' and mrk_brg = '$merek' ";

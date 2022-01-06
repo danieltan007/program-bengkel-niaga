@@ -94,6 +94,62 @@
 </div>
 </div>
 
+<!--Input Barang Baru-->
+<div class="jumbotron">
+     <div class="row">
+          <div class="col-6">
+               <h2 align="center">Input Barang Baru</h2>
+               <br>
+               <form action="do_pusattambahbrg.php" method="post" id="tambahbrg">
+                    <table class="table table-borderless">
+                         <tr>
+                              <td>Nama Barang</td>
+                              <td><input type="text" name="nm_brg" id="nm_brg" maxlength="50" autocomplete="off"></td>
+                              <div class="error" id="nameErr"></div>
+                         </tr>
+                         <tr>
+                              <td>Merek</td>
+                              <td>
+                                   <select name="mrk_brg" id="merek">
+                                   </select>
+                              </td>
+                         </tr>
+                         <tr>
+                              <td>Stock Gudang</td>
+                              <td><input type="number" name="sto_brg" id="sto_brg" autocomplete="off" min="0" max="999"></td>
+                              <div class="error" id="stokErr"></div>
+                         </tr>
+                         <tr>
+                              <td>Supplier</td>
+                              <td>
+                                   <select name="supp_brg" id="supp_brg">
+                                   </select>
+                              </td>
+                         </tr>
+                         <tr>
+                              <td>Harga Modal</td>
+                              <td><input type="number" name="input_modal" id="input_modal" autocomplete="off" min="0"></td>
+                              <div class="error" id="modalErr"></div>
+                         </tr>
+                         <tr>
+                              <td>Harga Jual</td>
+                              <td><input type="number" name="input_jual" id="input_jual" autocomplete="off" min="0"></td>
+                              <div class="error" id="jualErr"></div>
+                         </tr>
+                    </table>
+                    <div align="center">
+                         <button class="btn btn-success" name="tambah"><i class="fa fa-plus-circle"></i> Tambah</button>
+                    </div>
+               </form>
+          </div>
+          <div class="col-6">
+               <h2 align="center">Daftar Item</h2>
+               <br>
+               <div id="tempbrg"></div>
+          </div>
+     </div>
+</div>
+
 <div class="modal fade" id="modalhapus">
      <div class="modal-dialog">
           <div class="modal-content">
@@ -175,6 +231,13 @@ $pass = $data['pass'];
           var error_khusus = false;
           var error_khusus2 = false;
           let error_khusus3 = false;
+          var error_harga = false;
+          var error_nama = false;
+          var error_khusus = false;
+          var error_stock = false;
+          var error_jual = false;
+          var error_modal = false;
+
 
           $("#khusus").focusin(function() {
                check_khusus();
@@ -414,6 +477,94 @@ $pass = $data['pass'];
                          }
                     }
                });
+          });
+
+          // form tambah barang
+          $("#nm_brg").keyup(function() {
+               var nama = $("#nm_brg").val();
+               var pattern = /^[a-zA-Z0-9., ]*$/;
+
+               if (nama == 0) {
+                    $("#nameErr").html("Masukkan nama barang");
+                    $("#nm_brg").css("outline-color", "red");
+                    error_nama = true;
+               } else if (!pattern.test(nama)) {
+                    $("#nameErr").html("Masukkan nama barang dengan benar!");
+                    $("#nm_brg").css("outline-color", "red");
+                    error_nama = true;
+               } else if (nama.length < 6) {
+                    $("#nameErr").html("Nama barang harus lebih dari 6 karakter!");
+                    $("#nm_brg").css("outline-color", "red");
+                    error_nama = true;
+               } else {
+                    $.ajax({
+                         url: "do_gudangceknama.php",
+                         type: "post",
+                         data: "nama=" + nama,
+                         success: function(data) {
+                              if (data == 0) {
+                                   $("#nameErr").html("nama tersedia");
+                                   $("#nm_brg").css("outline-color", "green");
+                                   error_nama = false;
+                              } else {
+                                   $("#nameErr").html("nama tidak tersedia");
+                                   $("#nm_brg").css("outline-color", "red");
+                                   error_nama = true;
+                              }
+                         },
+                    });
+               }
+          });
+
+          $("#merek").load("do_gudangtampilmerek.php");
+          $("#supp_brg").load("do_gudangtampilsupp.php");
+
+          $("#sto_brg").keyup(function() {
+               var stock = $("#sto_brg").val();
+
+               if (stock == 0) {
+                    $("#stokErr").html("Masukkan stock anda");
+                    $("#sto_brg").css("outline-color", "red");
+                    error_stock = true;
+               }
+               // else if (stock < 10) {
+               //      $("#stokErr").html("stock minimal 10 barang!");
+               //      $("#sto_brg").css("outline-color", "red");
+               //      error_stock = true;
+               // } 
+               else {
+                    $("#stokErr").html("");
+                    $("#sto_brg").css("outline-color", "green");
+                    error_stock = false;
+               }
+          });
+
+          $("#input_modal").keyup(function() {
+               var modal = $("#input_modal").val();
+
+               if (modal == 0) {
+                    $("#modalErr").html("Masukkan harga modal anda");
+                    $("#input_modal").css("outline-color", "red");
+                    error_modal = true;
+               } else {
+                    $("#modalErr").html("");
+                    $("#input_modal").css("outline-color", "green");
+                    error_modal = false;
+               }
+          });
+
+          $("#input_jual").keyup(function() {
+               var modal = $("#input_jual").val();
+
+               if (modal == 0) {
+                    $("#jualErr").html("Masukkan harga jual anda");
+                    $("#input_jual").css("outline-color", "red");
+                    error_jual = true;
+               } else {
+                    $("#jualErr").html("");
+                    $("#input_jual").css("outline-color", "green");
+                    error_jual = false;
+               }
           });
      });
 </script>

@@ -94,7 +94,7 @@
                               </td>
                          </tr>
                          <tr>
-                              <td>Stock</td>
+                              <td>Stock Gudang</td>
                               <td><input type="number" name="sto_brg" id="sto_brg" autocomplete="off" min="0" max="999"></td>
                               <div class="error" id="stokErr"></div>
                          </tr>
@@ -251,11 +251,13 @@ $pass = $data['pass'];
                          $("#stokErr").html("Masukkan stock anda");
                          $("#sto_brg").css("outline-color", "red");
                          error_stock = true;
-                    } else if (stock < 10) {
-                         $("#stokErr").html("stock minimal 10 barang!");
-                         $("#sto_brg").css("outline-color", "red");
-                         error_stock = true;
-                    } else {
+                    }
+                    // else if (stock < 10) {
+                    //      $("#stokErr").html("stock minimal 10 barang!");
+                    //      $("#sto_brg").css("outline-color", "red");
+                    //      error_stock = true;
+                    // } 
+                    else {
                          $("#stokErr").html("");
                          $("#sto_brg").css("outline-color", "green");
                          error_stock = false;
