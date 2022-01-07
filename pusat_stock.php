@@ -18,6 +18,10 @@
      #cari:focus {
           width: 70%;
      }
+
+     .error {
+          color: red;
+     }
 </style>
 
 <div class="jumbotron">
@@ -116,7 +120,7 @@
                          </tr>
                          <tr>
                               <td>Stock Gudang</td>
-                              <td><input type="number" name="sto_brg" id="sto_brg" autocomplete="off" min="0" max="999"></td>
+                              <td><input type="number" name="sto_brg" id="sto_brg" autocomplete="off" min="0" max="9999"></td>
                               <div class="error" id="stokErr"></div>
                          </tr>
                          <tr>
@@ -479,7 +483,7 @@ $pass = $data['pass'];
                });
           });
 
-          // form tambah barang
+          //! form tambah barang
           $("#nm_brg").keyup(function() {
                var nama = $("#nm_brg").val();
                var pattern = /^[a-zA-Z0-9., ]*$/;
@@ -526,13 +530,7 @@ $pass = $data['pass'];
                     $("#stokErr").html("Masukkan stock anda");
                     $("#sto_brg").css("outline-color", "red");
                     error_stock = true;
-               }
-               // else if (stock < 10) {
-               //      $("#stokErr").html("stock minimal 10 barang!");
-               //      $("#sto_brg").css("outline-color", "red");
-               //      error_stock = true;
-               // } 
-               else {
+               } else {
                     $("#stokErr").html("");
                     $("#sto_brg").css("outline-color", "green");
                     error_stock = false;
@@ -565,6 +563,53 @@ $pass = $data['pass'];
                     $("#input_jual").css("outline-color", "green");
                     error_jual = false;
                }
+          });
+
+          $("#tempbrg").load("do_pusattampiltemp.php");
+
+          $(document).on("click", "#hapustemp", function(e) {
+               e.preventDefault();
+               $.ajax({
+                    url: $(this).attr('href'),
+                    type: 'get',
+                    success: function() {
+                         $("#tempbrg").load("do_pusattampiltemp.php");
+                    }
+               });
+          });
+
+          $("#tambahbrg").submit(function(e) {
+               if (error_stock === false && error_nama === false && error_modal === false && error_jual === false) {
+                    e.preventDefault();
+                    $.ajax({
+                         url: $(this).attr('action'),
+                         data: $(this).serialize(),
+                         type: 'post',
+                         success: function(data) {
+                              if (data == "berhasil") {
+                                   $("#tempbrg").load("do_pusattampiltemp.php");
+                              } else {
+                                   alert("Data gagal di tambahkan! Silahkan coba lagi!");
+                              }
+                         },
+                    });
+                    return true;
+               } else {
+                    alert("Masukkan data dengan benar!");
+                    return false;
+               }
+          });
+
+          $(document).on("click", "#inputbrg", function(e) {
+               e.preventDefault();
+               $.ajax({
+                    url: $(this).attr('href'),
+                    success: function() {
+                         alert("data berhasil di input!");
+                         $("#tempbrg").load("do_pusattampiltemp.php");
+                         $("#tambahbrg").val('');
+                    }
+               });
           });
      });
 </script>
