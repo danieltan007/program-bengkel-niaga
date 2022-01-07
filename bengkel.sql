@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2021 at 01:55 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.1
+-- Generation Time: Jan 07, 2022 at 03:20 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -241,7 +241,10 @@ INSERT INTO `laporan barang masuk` (`tgl_dtg`, `kd_brg`, `nm_brg`, `mrk_brg`, `j
 ('2020-09-19', 'BRG-026', 'ban909018', 'swallow', 500),
 ('2020-09-19', 'BRG-027', 'ban27517spr', 'evo', 500),
 ('2020-09-22', 'BRG-028', 'Ban Racing 125', 'Hrd', 30),
-('2020-09-22', 'BRG-028', 'Ban Racing 125', 'Hrd', 30);
+('2020-09-22', 'BRG-028', 'Ban Racing 125', 'Hrd', 30),
+('2022-01-07', 'BRG-029', 'obat covid', 'irc', 20),
+('2022-01-07', 'BRG-030', 'obat covid 2', 'irc', 20),
+('2022-01-07', 'BRG-031', 'vitamin b12', 'irc', 20);
 
 -- --------------------------------------------------------
 
@@ -419,7 +422,10 @@ INSERT INTO `tabel barang pusat` (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `
 ('BRG-025', 'ban27517', 'irc', 500, 20, 'Taufan', 20000, 26000),
 ('BRG-026', 'ban909018', 'swallow', 500, 20, 'Taufan', 20000, 26000),
 ('BRG-027', 'ban27517spr', 'evo', 500, 20, 'Taufan', 20000, 26000),
-('BRG-028', 'Ban Racing 125', 'Hrd', 28, 20, 'Jafarudin', 20000, 26000);
+('BRG-028', 'Ban Racing 125', 'Hrd', 28, 20, 'Jafarudin', 20000, 26000),
+('BRG-029', 'obat covid', 'irc', 0, 20, 'Taufan', 20000, 300000),
+('BRG-030', 'obat covid 2', 'irc', 0, 20, 'Taufan', 20000, 300000),
+('BRG-031', 'vitamin b12', 'irc', 0, 20, 'Taufan', 10000, 50000);
 
 -- --------------------------------------------------------
 
@@ -670,6 +676,22 @@ INSERT INTO `table merek` (`kd_merk`, `mrk_brg`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `table pusat temp`
+--
+
+CREATE TABLE `table pusat temp` (
+  `kd_brg` varchar(9) NOT NULL,
+  `nm_brg` varchar(50) NOT NULL,
+  `hrg_beli` int(12) NOT NULL,
+  `hrg_jual` int(12) NOT NULL,
+  `mrk_brg` varchar(20) NOT NULL,
+  `sto_brg` int(5) NOT NULL,
+  `supp_brg` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `update barang temp`
 --
 
@@ -798,6 +820,12 @@ ALTER TABLE `table mekanik`
 --
 ALTER TABLE `table merek`
   ADD PRIMARY KEY (`kd_merk`);
+
+--
+-- Indexes for table `table pusat temp`
+--
+ALTER TABLE `table pusat temp`
+  ADD PRIMARY KEY (`kd_brg`) USING BTREE;
 
 --
 -- Indexes for table `update barang temp`
