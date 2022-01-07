@@ -11,7 +11,7 @@
      <?php
      include "koneksi.php";
 
-     $sql = "select * from `table pusat temp`";
+     $sql = "select * from `tabel pusat temp`";
      $search = mysqli_query($conn, $sql);
 
      if (mysqli_affected_rows($conn) > 0) {
@@ -21,7 +21,7 @@
                     <td><?php echo $data['mrk_brg']; ?></td>
                     <td><?php echo $data['supp_brg']; ?></td>
                     <td><?php echo $data['sto_brg']; ?></td>
-                    <td><?php echo $data['hrg_beli']; ?></td>
+                    <td><?php echo $data['hrg_modal']; ?></td>
                     <td><?= $data['hrg_jual']; ?></td>
                     <td><a class="btn btn-danger" id="hapustemp" href="do_pusathapustemp.php?kode=<?php echo $data['kd_brg']; ?>"><i class="fa fa-close"></i> Hapus</a></td>
                </tr>

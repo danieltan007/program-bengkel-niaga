@@ -14,13 +14,13 @@ $data = mysqli_fetch_array($hasil);
 $kode = $data['maxkode'];
 $ubah = (int) substr($kode, 4, 3);
 
-$query2 = "select max(kd_brg) as maxkode from `table pusat temp`";
+$query2 = "select max(kd_brg) as maxkode from `tabel pusat temp`";
 $hasil2 = mysqli_query($conn, $query2);
 $data2 = mysqli_fetch_array($hasil2);
 $kode2 = $data2['maxkode'];
 $ubah2 = (int) substr($kode2, 4, 3);
 
-
+print_r(mysqli_error($conn));
 if ($ubah2 < $ubah) {
      $ubah++;
      $kd_brg = "BRG-" . sprintf("%03s", $ubah);
@@ -29,7 +29,7 @@ if ($ubah2 < $ubah) {
      $kd_brg = "BRG-" . sprintf("%03s", $ubah2);
 }
 
-$query2 = "INSERT INTO `table pusat temp` (kd_brg, nm_brg, mrk_brg, sto_brg, supp_brg, hrg_beli, hrg_jual) VALUES ('$kd_brg','$nm_brg','$mrk_brg','$sto_brg','$supp_brg','$hrg_beli' ,'$hrg_jual')";
+$query2 = "INSERT INTO `tabel pusat temp` (kd_brg, nm_brg, mrk_brg, sto_brg, supp_brg, hrg_modal, hrg_jual) VALUES ('$kd_brg','$nm_brg','$mrk_brg','$sto_brg','$supp_brg','$hrg_beli' ,'$hrg_jual')";
 mysqli_query($conn, $query2);
 if (mysqli_affected_rows($conn) > 0) {
      echo "berhasil";

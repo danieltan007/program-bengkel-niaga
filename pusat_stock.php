@@ -484,86 +484,9 @@ $pass = $data['pass'];
           });
 
           //! form tambah barang
-          $("#nm_brg").keyup(function() {
-               var nama = $("#nm_brg").val();
-               var pattern = /^[a-zA-Z0-9., ]*$/;
-
-               if (nama == 0) {
-                    $("#nameErr").html("Masukkan nama barang");
-                    $("#nm_brg").css("outline-color", "red");
-                    error_nama = true;
-               } else if (!pattern.test(nama)) {
-                    $("#nameErr").html("Masukkan nama barang dengan benar!");
-                    $("#nm_brg").css("outline-color", "red");
-                    error_nama = true;
-               } else if (nama.length < 6) {
-                    $("#nameErr").html("Nama barang harus lebih dari 6 karakter!");
-                    $("#nm_brg").css("outline-color", "red");
-                    error_nama = true;
-               } else {
-                    $.ajax({
-                         url: "do_gudangceknama.php",
-                         type: "post",
-                         data: "nama=" + nama,
-                         success: function(data) {
-                              if (data == 0) {
-                                   $("#nameErr").html("nama tersedia");
-                                   $("#nm_brg").css("outline-color", "green");
-                                   error_nama = false;
-                              } else {
-                                   $("#nameErr").html("nama tidak tersedia");
-                                   $("#nm_brg").css("outline-color", "red");
-                                   error_nama = true;
-                              }
-                         },
-                    });
-               }
-          });
-
+          
           $("#merek").load("do_gudangtampilmerek.php");
           $("#supp_brg").load("do_gudangtampilsupp.php");
-
-          $("#sto_brg").keyup(function() {
-               var stock = $("#sto_brg").val();
-
-               if (stock == 0) {
-                    $("#stokErr").html("Masukkan stock anda");
-                    $("#sto_brg").css("outline-color", "red");
-                    error_stock = true;
-               } else {
-                    $("#stokErr").html("");
-                    $("#sto_brg").css("outline-color", "green");
-                    error_stock = false;
-               }
-          });
-
-          $("#input_modal").keyup(function() {
-               var modal = $("#input_modal").val();
-
-               if (modal == 0) {
-                    $("#modalErr").html("Masukkan harga modal anda");
-                    $("#input_modal").css("outline-color", "red");
-                    error_modal = true;
-               } else {
-                    $("#modalErr").html("");
-                    $("#input_modal").css("outline-color", "green");
-                    error_modal = false;
-               }
-          });
-
-          $("#input_jual").keyup(function() {
-               var modal = $("#input_jual").val();
-
-               if (modal == 0) {
-                    $("#jualErr").html("Masukkan harga jual anda");
-                    $("#input_jual").css("outline-color", "red");
-                    error_jual = true;
-               } else {
-                    $("#jualErr").html("");
-                    $("#input_jual").css("outline-color", "green");
-                    error_jual = false;
-               }
-          });
 
           $("#tempbrg").load("do_pusattampiltemp.php");
 
@@ -579,25 +502,19 @@ $pass = $data['pass'];
           });
 
           $("#tambahbrg").submit(function(e) {
-               if (error_stock === false && error_nama === false && error_modal === false && error_jual === false) {
-                    e.preventDefault();
-                    $.ajax({
-                         url: $(this).attr('action'),
-                         data: $(this).serialize(),
-                         type: 'post',
-                         success: function(data) {
-                              if (data == "berhasil") {
-                                   $("#tempbrg").load("do_pusattampiltemp.php");
-                              } else {
-                                   alert("Data gagal di tambahkan! Silahkan coba lagi!");
-                              }
-                         },
-                    });
-                    return true;
-               } else {
-                    alert("Masukkan data dengan benar!");
-                    return false;
-               }
+               e.preventDefault();
+               $.ajax({
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    type: 'post',
+                    success: function(data) {
+                         if (data == "berhasil") {
+                              $("#tempbrg").load("do_pusattampiltemp.php");
+                         } else {
+                              alert("Data gagal di tambahkan! Silahkan coba lagi!");
+                         }
+                    },
+               });
           });
 
           $(document).on("click", "#inputbrg", function(e) {
