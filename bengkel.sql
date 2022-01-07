@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
@@ -7,6 +8,16 @@
 -- Generation Time: Jan 07, 2022 at 03:20 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
+=======
+-- phpMyAdmin SQL Dump
+-- version 5.0.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jan 07, 2022 at 12:31 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.1
+>>>>>>> master
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -243,9 +254,16 @@ INSERT INTO `laporan barang masuk` (`tgl_dtg`, `kd_brg`, `nm_brg`, `mrk_brg`, `j
 ('2020-09-19', 'BRG-027', 'ban27517spr', 'evo', 500),
 ('2020-09-22', 'BRG-028', 'Ban Racing 125', 'Hrd', 30),
 ('2020-09-22', 'BRG-028', 'Ban Racing 125', 'Hrd', 30),
+<<<<<<< HEAD
 ('2022-01-07', 'BRG-029', 'obat covid', 'irc', 20),
 ('2022-01-07', 'BRG-030', 'obat covid 2', 'irc', 20),
 ('2022-01-07', 'BRG-031', 'vitamin b12', 'irc', 20);
+=======
+('2021-12-04', 'BRG-029', 'test12345', 'irc', 20),
+('2021-12-04', 'BRG-030', 'huawei ', 'swallow', 20),
+('2021-12-04', 'BRG-031', 'huawei ', 'swallow', 20),
+('2021-12-04', 'BRG-032', 'xiaomi', 'swallow', 12);
+>>>>>>> master
 
 -- --------------------------------------------------------
 
@@ -405,6 +423,7 @@ CREATE TABLE `tabel barang pusat` (
 --
 
 INSERT INTO `tabel barang pusat` (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `stock_gudang`, `supplier`, `hrg_modal`, `hrg_jual`) VALUES
+<<<<<<< HEAD
 ('BRG-001', 'test5', 'astrea', 20, 20, 'pontianak', 20000, 26000),
 ('BRG-002', 'test', 'top two', 1, 20, 'ketapang', 20000, 26000),
 ('BRG-010', 'test123', 'swallow', 20, 20, '', 20000, 26000),
@@ -427,6 +446,31 @@ INSERT INTO `tabel barang pusat` (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `
 ('BRG-029', 'obat covid', 'irc', 0, 20, 'Taufan', 20000, 300000),
 ('BRG-030', 'obat covid 2', 'irc', 0, 20, 'Taufan', 20000, 300000),
 ('BRG-031', 'vitamin b12', 'irc', 0, 20, 'Taufan', 10000, 50000);
+=======
+('BRG-001', 'test5', 'astrea', 20, 20, 'pontianak', 20000, 22000),
+('BRG-002', 'test', 'top two', 1, 20, 'ketapang', 20000, 22000),
+('BRG-010', 'test123', 'swallow', 20, 20, '', 20000, 22000),
+('BRG-011', 'test1234', 'swallow', 30, 20, '', 20000, 22000),
+('BRG-013', 'test1231', 'swallow', 20, 20, 'Taufan', 20000, 22000),
+('BRG-014', 'test12312', 'swallow', 20, 20, 'Taufan', 20000, 22000),
+('BRG-015', 'test12312', 'swallow', 20, 20, 'Taufan', 20000, 22000),
+('BRG-016', 'Data sembarang', 'evo', 125, 20, 'Taufan', 20000, 22000),
+('BRG-017', 'Pil Estasy', 'swallow', 250, 20, 'Jafarudin', 20000, 22000),
+('BRG-018', 'Barang Baru 01', 'evo', 43, 20, 'Taufan', 20000, 22000),
+('BRG-019', 'Pil Harapan', 'evo', 100, 20, 'Jafarudin', 20000, 22000),
+('BRG-021', 'Pil geleng geleng', 'swallow', 1275, 20, 'Taufan', 20000, 22000),
+('BRG-022', 'Ban luarr swalloww', 'swallow', 5, 20, 'Jafarudin', 20000, 22000),
+('BRG-023', 'Irc 275-17', 'swallow', 5, 20, 'Taufan', 20000, 22000),
+('BRG-024', 'ban 250', 'irc', 900, 20, 'Taufan', 20000, 22000),
+('BRG-025', 'ban27517', 'irc', 500, 20, 'Taufan', 20000, 22000),
+('BRG-026', 'ban909018', 'swallow', 500, 20, 'Taufan', 20000, 22000),
+('BRG-027', 'ban27517spr', 'evo', 500, 20, 'Taufan', 20000, 22000),
+('BRG-028', 'Ban Racing 125', 'Hrd', 28, 20, 'Jafarudin', 20000, 22000),
+('BRG-029', 'test12345', 'irc', 0, 20, 'Taufan', 0, 0),
+('BRG-030', 'huawei ', 'swallow', 0, 20, 'Taufan', 20000, 22000),
+('BRG-031', 'huawei123', 'swallow', 0, 20, 'Taufan', 15000, 16500),
+('BRG-032', 'xiaomi', 'swallow', 0, 12, 'Taufan', 0, 0);
+>>>>>>> master
 
 -- --------------------------------------------------------
 
@@ -443,6 +487,16 @@ CREATE TABLE `tabel barang temp` (
   `supp_brg` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
+=======
+--
+-- Dumping data for table `tabel barang temp`
+--
+
+INSERT INTO `tabel barang temp` (`kd_brg`, `nm_brg`, `hrg_brg`, `mrk_brg`, `sto_brg`, `supp_brg`) VALUES
+('BRG-033', 'ganja123', 0, 'swallow', 20, 'Taufan');
+
+>>>>>>> master
 -- --------------------------------------------------------
 
 --
@@ -547,6 +601,25 @@ INSERT INTO `tabel piutang` (`id_trns`, `noktp`, `nama`, `alamat`, `no hp`, `tgl
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
+=======
+-- Table structure for table `tabel pusat temp`
+--
+
+CREATE TABLE `tabel pusat temp` (
+  `kd_brg` varchar(8) NOT NULL,
+  `nm_brg` varchar(50) NOT NULL,
+  `hrg_modal` int(12) NOT NULL,
+  `hrg_jual` varchar(20) NOT NULL,
+  `stock_toko` int(12) NOT NULL,
+  `mrk_brg` varchar(20) NOT NULL,
+  `supp_brg` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+>>>>>>> master
 -- Table structure for table `tabel supplier`
 --
 
@@ -677,6 +750,7 @@ INSERT INTO `table merek` (`kd_merk`, `mrk_brg`) VALUES
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `table pusat temp`
 --
 
@@ -693,6 +767,8 @@ CREATE TABLE `table pusat temp` (
 -- --------------------------------------------------------
 
 --
+=======
+>>>>>>> master
 -- Table structure for table `update barang temp`
 --
 
@@ -799,6 +875,7 @@ ALTER TABLE `tabel piutang`
   ADD PRIMARY KEY (`noktp`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `tabel supplier`
 --
 ALTER TABLE `tabel supplier`
@@ -1623,6 +1700,14 @@ ALTER TABLE `tabel piutang`
   ADD PRIMARY KEY (`noktp`);
 
 --
+=======
+-- Indexes for table `tabel pusat temp`
+--
+ALTER TABLE `tabel pusat temp`
+  ADD PRIMARY KEY (`kd_brg`);
+
+--
+>>>>>>> master
 -- Indexes for table `tabel supplier`
 --
 ALTER TABLE `tabel supplier`
@@ -1662,4 +1747,7 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+<<<<<<< HEAD
 >>>>>>> 38b538c35b2943bb521438f96a8596c0c56c2b15
+=======
+>>>>>>> master
