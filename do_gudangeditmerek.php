@@ -15,9 +15,6 @@ if(isset($mrk_brg))
      $sql = "update `table merek` set mrk_brg = '$mrk_brg' where kd_merk = '$kode' ";
      $cari = mysqli_query($conn,$sql);
 
-     $sql2 = "update `tabel barang` set mrk_brg = '$mrk_brg' where mrk_brg = '$mrkbefore'";
-     mysqli_query($conn, $sql2);
-
      $sql5 = "update `tabel barang pusat` set mrk_brg = '$mrk_brg' where mrk_brg = '$mrkbefore'";
      mysqli_query($conn, $sql5);
 }
@@ -25,5 +22,3 @@ else
 {
      exit("data gagal di ubah!");
 }
-
-?>

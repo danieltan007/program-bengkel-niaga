@@ -48,8 +48,7 @@
           <div class="hasil"></div>
      </div>
 </div>
-
-<div class="modal fade" id="modaledit">
+<!-- <div class="modal fade" id="modaledit">
      <div class="modal-dialog">
           <div class="modal-content">
 
@@ -99,7 +98,7 @@
 
      </div>
 </div>
-</div>
+</div> -->
 
 <div class="modal fade" id="modalhapus">
      <div class="modal-dialog">
@@ -266,38 +265,38 @@ $pass = $data['pass'];
                });
           });
 
-          $("#editbarang").on("submit", function(e) {
-               var id = $("#kode").val();
-               var nama = $("#editnama").val();
-               var merek = $("#ubahmerek").val();
-               var supp = $("#editsupp").val();
-               var stok = $("#editstok").val();
-               var hrg = $("#edithrg").val();
+          // $("#editbarang").on("submit", function(e) {
+          //      var id = $("#kode").val();
+          //      var nama = $("#editnama").val();
+          //      var merek = $("#ubahmerek").val();
+          //      var supp = $("#editsupp").val();
+          //      var stok = $("#editstok").val();
+          //      var hrg = $("#edithrg").val();
 
-               e.preventDefault();
+          //      e.preventDefault();
 
-               if (error_khusus === false) {
-                    $.ajax({
-                         url: "do_kasireditbrg.php",
-                         data: $(this).serialize(),
-                         type: 'post',
-                         success: function(data) {
-                              alert(data);
-                              reset();
-                              $("#" + id).children("td[data-target=nama]").text(nama);
-                              $("#" + id).children("td[data-target=merek]").text(merek);
-                              $("#" + id).children("td[data-target=supp]").text(supp);
-                              $("#" + id).children("td[data-target=stok]").text(stok);
-                              $("#" + id).children("td[data-target=hrg]").text(hrg);
-                              $('#modaledit').modal('toggle');
-                         },
-                    });
-                    return true;
-               } else {
-                    alert("isi data dengan benar!");
-                    return false;
-               }
-          });
+          //      if (error_khusus === false) {
+          //           $.ajax({
+          //                url: "do_kasireditbrg.php",
+          //                data: $(this).serialize(),
+          //                type: 'post',
+          //                success: function(data) {
+          //                     alert(data);
+          //                     reset();
+          //                     $("#" + id).children("td[data-target=nama]").text(nama);
+          //                     $("#" + id).children("td[data-target=merek]").text(merek);
+          //                     $("#" + id).children("td[data-target=supp]").text(supp);
+          //                     $("#" + id).children("td[data-target=stok]").text(stok);
+          //                     $("#" + id).children("td[data-target=hrg]").text(hrg);
+          //                     $('#modaledit').modal('toggle');
+          //                },
+          //           });
+          //           return true;
+          //      } else {
+          //           alert("isi data dengan benar!");
+          //           return false;
+          //      }
+          // });
 
           function check_khusus() {
                $("#khusus").on("keyup", function() {
@@ -332,9 +331,9 @@ $pass = $data['pass'];
                });
           });
 
-          $('#modaledit').on('shown.bs.modal', function() {
-               $('#khusus').focus();
-          });
+          // $('#modaledit').on('shown.bs.modal', function() {
+          //      $('#khusus').focus();
+          // });
 
           $('#modalhapus').on('shown.bs.modal', function() {
                $('#khusus').focus();
