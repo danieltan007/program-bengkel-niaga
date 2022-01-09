@@ -10,10 +10,7 @@ $data = mysqli_fetch_array($cari0);
 $edit = $data['mrk_brg'];
 
 $sql = "delete from `table merek` where kd_merk = '$kode'";
-$cari = mysqli_query($conn,$sql);
-
-$sql1 = "update `tabel barang` set mrk_brg = '' where mrk_brg = '$edit'";
-mysqli_query($conn, $sql1);
+$cari = mysqli_query($conn, $sql);
 
 $sql3 = "update `tabel barang pusat` set mrk_brg = '' where mrk_brg = '$edit'";
 mysqli_query($conn, $sql3);
