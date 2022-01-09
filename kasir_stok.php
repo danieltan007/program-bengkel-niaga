@@ -48,57 +48,7 @@
           <div class="hasil"></div>
      </div>
 </div>
-<!-- <div class="modal fade" id="modaledit">
-     <div class="modal-dialog">
-          <div class="modal-content">
 
-               <!-- Modal Header -->
-               <div class="modal-header">
-                    <h4 class="modal-title">Konfirmasi</h4>
-               </div>
-               <form id="editbarang" method="post">
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                         <table class="table table-borderless">
-                              <tr>
-                                   <td>Password Akun</td>
-                                   <td><input type="password" id="khusus" name="khusus" required></td>
-                                   <div class="error" id="khususErr"></div>
-                              </tr>
-                              <tr>
-                                   <td>Nama Barang </td>
-                                   <td><input type="text" name="editnama" id="editnama" maxlength="50"></td>
-                              </tr>
-                              <tr>
-                                   <td>Merek</td>
-                                   <td><select name="ubahmerek" id="ubahmerek"></select></td>
-                              </tr>
-                              <tr>
-                                   <td>Supplier</td>
-                                   <td><select name="editsupp" id="editsupp"></select></td>
-                              </tr>
-                              <tr>
-                                   <td>Stock</td>
-                                   <td><input type="number" name="editstok" id="editstok" min="0"></td>
-                              </tr>
-                              <tr>
-                                   <td>Harga</td>
-                                   <td><input type="number" name="edithrg" id="edithrg" min="0"></td>
-                                   <input type="hidden" name="kode" id="kode">
-                              </tr>
-                         </table>
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                         <button class="btn btn-success" type="submit" id="ubah"><i class="fa fa-edit"></i> Ubah</button>
-               </form>
-               <button class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i>Close</button>
-          </div>
-
-     </div>
-</div>
-</div> -->
 
 <div class="modal fade" id="modalhapus">
      <div class="modal-dialog">
