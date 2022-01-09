@@ -18,6 +18,10 @@
      #cari:focus {
           width: 70%;
      }
+
+     .error {
+          color: red;
+     }
 </style>
 
 <div class="jumbotron">
@@ -93,6 +97,93 @@
 </div>
 </div>
 </div>
+
+<!--Input Barang Baru-->
+<div class="jumbotron">
+     <div class="row">
+          <div class="col-6">
+               <h2 align="center">Input Barang Baru</h2>
+               <br>
+               <form action="do_pusattambahbrg.php" method="post" id="tambahbrg">
+                    <table class="table table-borderless">
+                         <tr>
+                              <td>Nama Barang</td>
+                              <td><input type="text" name="nm_brg" id="nm_brg" maxlength="50" autocomplete="off"></td>
+                              <div class="error" id="nameErr"></div>
+                         </tr>
+                         <tr>
+                              <td>Merek</td>
+                              <td>
+                                   <select name="mrk_brg" id="merek">
+                                   </select>
+                              </td>
+                         </tr>
+                         <tr>
+                              <td>Stock Gudang</td>
+                              <td><input type="number" name="sto_brg" id="sto_brg" autocomplete="off" min="0" max="9999"></td>
+                              <div class="error" id="stokErr"></div>
+                         </tr>
+                         <tr>
+                              <td>Supplier</td>
+                              <td>
+                                   <select name="supp_brg" id="supp_brg">
+                                   </select>
+                              </td>
+                         </tr>
+                         <tr>
+                              <td>Harga Modal</td>
+                              <td><input type="number" name="input_modal" id="input_modal" autocomplete="off" min="0"></td>
+                              <div class="error" id="modalErr"></div>
+                         </tr>
+                         <tr>
+                              <td>Harga Jual</td>
+                              <td><input type="number" name="input_jual" id="input_jual" autocomplete="off" min="0"></td>
+                              <div class="error" id="jualErr"></div>
+                         </tr>
+                    </table>
+                    <div align="center">
+                         <button class="btn btn-success" name="tambah"><i class="fa fa-plus-circle"></i> Tambah</button>
+                    </div>
+               </form>
+          </div>
+          <div class="col-6">
+               <h2 align="center">Daftar Item</h2>
+               <br>
+               <div id="tempbrg"></div>
+          </div>
+     </div>
+</div>
+
+<!-- input merek -->
+<div class="jumbotron">
+     <div class="row">
+          <div class="col">
+               <h2 align="center">Tambah Merek</h2>
+               <form method="post" id="tambahmerek">
+                    <br>
+                    <table class="table table-borderless">
+                         <tr>
+                              <td>Nama Merek</td>
+                              <td><input type="text" name="nmerek" id="nmerek"></td>
+                         </tr>
+                    </table>
+                    <button class="btn btn-success" type="submit" name="tambah"><i class="fa fa-plus-circle"></i> Tambah</button>
+               </form>
+          </div>
+
+          <div class="col">
+               <h2 align="center">Edit/Hapus Merek</h2>
+               <br>
+               Cari Merek: &nbsp; <input type="text" placeholder="masukkan nama merek" name="carimerek" id='carimerek' autocomplete="off">
+               <br><br>
+
+               <div id="c-merek"></div>
+
+               <div id="alert"></div>
+          </div>
+     </div>
+</div>
+
 
 <div class="modal fade" id="modalhapus">
      <div class="modal-dialog">
@@ -175,6 +266,13 @@ $pass = $data['pass'];
           var error_khusus = false;
           var error_khusus2 = false;
           let error_khusus3 = false;
+          var error_harga = false;
+          var error_nama = false;
+          var error_khusus = false;
+          var error_stock = false;
+          var error_jual = false;
+          var error_modal = false;
+
 
           $("#khusus").focusin(function() {
                check_khusus();
@@ -344,6 +442,7 @@ $pass = $data['pass'];
                               $("#" + id).children("td[data-target=hrg_modal]").text(modal);
                               $("#" + id).children("td[data-target=hrg_jual]").text(jual);
                               $("#" + id).children("td[data-target=profit]").text(profit);
+                              $("#khusus").text("");
                               $('#modaledit').modal('toggle');
                          },
                     });
@@ -412,6 +511,119 @@ $pass = $data['pass'];
                               // $('#modal_edithrg').modal('toggle');
                          }
                     }
+               });
+          });
+
+          //! form tambah barang
+
+          $("#merek").load("do_gudangtampilmerek.php");
+          $("#supp_brg").load("do_gudangtampilsupp.php");
+
+          $("#tempbrg").load("do_pusattampiltemp.php");
+
+          $(document).on("click", "#hapustemp", function(e) {
+               e.preventDefault();
+               $.ajax({
+                    url: $(this).attr('href'),
+                    type: 'get',
+                    success: function() {
+                         $("#tempbrg").load("do_pusattampiltemp.php");
+                    }
+               });
+          });
+
+          $("#tambahbrg").submit(function(e) {
+               e.preventDefault();
+               $.ajax({
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    type: 'post',
+                    success: function(data) {
+                         if (data == "berhasil") {
+                              $("#tempbrg").load("do_pusattampiltemp.php");
+                         } else {
+                              alert("Data gagal di tambahkan! Silahkan coba lagi!");
+                         }
+                    },
+               });
+          });
+
+          $(document).on("click", "#inputbrg", function(e) {
+               e.preventDefault();
+               $.ajax({
+                    url: $(this).attr('href'),
+                    success: function() {
+                         alert("data berhasil di input!");
+                         $("#tempbrg").load("do_pusattampiltemp.php");
+                         $("#tambahbrg").val('');
+                    }
+               });
+          });
+
+          // tambah merek
+          $("#tambahmerek").submit(function(e) {
+               var merek = $("#nmerek").val();
+               e.preventDefault();
+               $.ajax({
+                    url: "do_gudangtambahmerek.php",
+                    data: {
+                         merek: merek
+                    },
+                    type: 'post',
+                    success: function(data) {
+                         alert(data);
+                         $("#c-merek").load("do_gudangcarimerek.php");
+                    },
+               });
+          });
+
+          let edit = "";
+          $("#carimerek").keyup(function() {
+               var nmerek = $("#carimerek").val();
+               $.ajax({
+                    url: "do_gudangcarimerek.php",
+                    data: {
+                         nmerek: nmerek
+                    },
+                    type: 'post',
+                    success: function(data) {
+                         $("#c-merek").html(data);
+                    },
+               });
+          });
+
+          $(document).on("keyup", "input[id^='dmerek-']", function() {
+               $("#alert").html("");
+
+               $(document).on("blur", "input[id^='dmerek-']", function() {
+                    edit = $(this).val();
+
+                    $(document).on("click", "a[data-id^='edit-']", function(e) {
+                         e.preventDefault();
+                         $.ajax({
+                              url: $(this).attr('href'),
+                              type: 'get',
+                              data: {
+                                   edit: edit
+                              },
+                              success: function() {
+                                   $("#alert").html("data berhasil di update!");
+                                   $("#c-merek").load("do_gudangcarimerek.php");
+                              },
+                         });
+                    });
+               });
+          });
+
+          $(document).on("click", "a[data-id^='hapus-']", function(e) {
+               e.preventDefault();
+               $.ajax({
+                    url: $(this).attr('href'),
+                    type: 'get',
+                    success: function() {
+                         $("#c-merek").load("do_gudangcarimerek.php");
+                         $("#alert").html("data berhasil di delete!");
+                    },
                });
           });
      });

@@ -9,11 +9,8 @@
      $hrgjual = $_POST['hrgjual'];
      $kode = $_POST['kode'];
 
-     $sql = "update `tabel barang pusat` set nm_brg = '$namabrg', mrk_brg = '$merek', hrg_jual = '$hrgjual', stock = '$stock', supplier = '$supp', hrg_modal = '$modal' where kd_brg = '$kode'";
+$sql = "update `tabel barang pusat` set nm_brg = '$namabrg', mrk_brg = '$merek', hrg_jual = '$hrgjual', stock_gudang = '$stock', supplier = '$supp', hrg_modal = '$modal' where kd_brg = '$kode'";
      mysqli_query($conn, $sql);
-
-     $sql1 = "update `tabel barang` set nm_brg = '$namabrg', mrk_brg = '$merek', hrg_brg = '$hrgjual', sto_brg = '$stock', supp_brg = '$supp' where kd_brg = '$kode'";
-     mysqli_query($conn, $sql1);
 
      echo "data berhasil di ubah!";
 ?>

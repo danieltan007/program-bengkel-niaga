@@ -8,7 +8,7 @@
      $harga = $_POST['edithrg'];
      $kode = $_POST['kode'];
 
-     $sql = "update `tabel barang` set nm_brg = '$namabrg', mrk_brg = '$merek', hrg_brg = '$harga', sto_toko = '$stock', supp_brg = '$supp' where kd_brg = '$kode'";
+     $sql = "update `tabel barang pusat` set nm_brg = '$namabrg', mrk_brg = '$merek', hrg_jual = '$harga', stock_toko = '$stock', supp_brg = '$supp' where kd_brg = '$kode'";
      mysqli_query($conn, $sql);
 
      if(mysqli_affected_rows($conn) < 1)

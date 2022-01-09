@@ -266,7 +266,7 @@ session_start();
           };
 
           $(document).on("change", "input[id^='jml_brg-']", function() {
-               var kode = $(this).attr("id").substr(8, 15);
+               var kode = $(this).attr("id").substr(8, $(this).attr("id").length);
                var jml = $(this).val();
                $.ajax({
                     type: 'post',
@@ -283,7 +283,7 @@ session_start();
           });
 
           $(document).on("change", "input[id^='diskon-']", function() {
-               var kode2 = $(this).attr("id").substr(7, 14);
+               var kode2 = $(this).attr("id").substr(7, $(this).attr("id").length);
                var diskon = $(this).val();
                $.ajax({
                     type: 'post',
@@ -301,7 +301,7 @@ session_start();
 
           //korting-brg-001
           $(document).on("change", "input[id^='korting-']", function() {
-               var kode3 = $(this).attr("id").substr(8, 15);
+               var kode3 = $(this).attr("id").substr(8, $(this).attr("id").length);
                var korting = $(this).val();
                $.ajax({
                     type: 'post',
@@ -311,6 +311,7 @@ session_start();
                          korting: korting
                     },
                     success: function() {
+                         console.log(kode3);
                          totalharga();
                          update();
                     }
@@ -395,8 +396,8 @@ session_start();
                          $("#namaErr").html("hanya boleh nama dan spasi!");
                          $("#nama").css("outline-color", "red");
                          error_nama = true;
-                    } else if (nama.length < 6) {
-                         $("#namaErr").html("nama harus lebih dari 6 karakter!");
+                    } else if (nama.length < 4) {
+                         $("#namaErr").html("nama harus lebih dari 4 karakter!");
                          $("#nama").css("outline-color", "red");
                          error_nama = true;
                     } else {
