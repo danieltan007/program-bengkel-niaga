@@ -154,6 +154,37 @@
      </div>
 </div>
 
+<!-- input merek -->
+<div class="jumbotron">
+     <div class="row">
+          <div class="col">
+               <h2 align="center">Tambah Merek</h2>
+               <form method="post" id="tambahmerek">
+                    <br>
+                    <table class="table table-borderless">
+                         <tr>
+                              <td>Nama Merek</td>
+                              <td><input type="text" name="nmerek" id="nmerek"></td>
+                         </tr>
+                    </table>
+                    <button class="btn btn-success" type="submit" name="tambah"><i class="fa fa-plus-circle"></i> Tambah</button>
+               </form>
+          </div>
+
+          <div class="col">
+               <h2 align="center">Edit/Hapus Merek</h2>
+               <br>
+               Cari Merek: &nbsp; <input type="text" placeholder="masukkan nama merek" name="carimerek" id='carimerek' autocomplete="off">
+               <br><br>
+
+               <div id="c-merek"></div>
+
+               <div id="alert"></div>
+          </div>
+     </div>
+</div>
+
+
 <div class="modal fade" id="modalhapus">
      <div class="modal-dialog">
           <div class="modal-content">
@@ -484,7 +515,7 @@ $pass = $data['pass'];
           });
 
           //! form tambah barang
-          
+
           $("#merek").load("do_gudangtampilmerek.php");
           $("#supp_brg").load("do_gudangtampilsupp.php");
 
@@ -526,6 +557,73 @@ $pass = $data['pass'];
                          $("#tempbrg").load("do_pusattampiltemp.php");
                          $("#tambahbrg").val('');
                     }
+               });
+          });
+
+          // tambah merek
+          $("#tambahmerek").submit(function(e) {
+               var merek = $("#nmerek").val();
+               e.preventDefault();
+               $.ajax({
+                    url: "do_gudangtambahmerek.php",
+                    data: {
+                         merek: merek
+                    },
+                    type: 'post',
+                    success: function(data) {
+                         alert(data);
+                         $("#c-merek").load("do_gudangcarimerek.php");
+                    },
+               });
+          });
+
+          let edit = "";
+          $("#carimerek").keyup(function() {
+               var nmerek = $("#carimerek").val();
+               $.ajax({
+                    url: "do_gudangcarimerek.php",
+                    data: {
+                         nmerek: nmerek
+                    },
+                    type: 'post',
+                    success: function(data) {
+                         $("#c-merek").html(data);
+                    },
+               });
+          });
+
+          $(document).on("keyup", "input[id^='dmerek-']", function() {
+               $("#alert").html("");
+
+               $(document).on("blur", "input[id^='dmerek-']", function() {
+                    edit = $(this).val();
+
+                    $(document).on("click", "a[data-id^='edit-']", function(e) {
+                         e.preventDefault();
+                         $.ajax({
+                              url: $(this).attr('href'),
+                              type: 'get',
+                              data: {
+                                   edit: edit
+                              },
+                              success: function() {
+                                   $("#alert").html("data berhasil di update!");
+                                   $("#c-merek").load("do_gudangcarimerek.php");
+                              },
+                         });
+                    });
+               });
+          });
+
+          $(document).on("click", "a[data-id^='hapus-']", function(e) {
+               e.preventDefault();
+               $.ajax({
+                    url: $(this).attr('href'),
+                    type: 'get',
+                    success: function() {
+                         $("#c-merek").load("do_gudangcarimerek.php");
+                         $("#alert").html("data berhasil di delete!");
+                    },
                });
           });
      });

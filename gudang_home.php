@@ -365,7 +365,6 @@ $pass = $data['pass'];
                });
           });
 
-
           $("#cari").keyup(function() {
                cari = $("#cari").val();
                $.ajax({

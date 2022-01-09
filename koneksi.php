@@ -1,6 +1,6 @@
 <?php
 
-$conn = mysqli_connect("localhost", "u371956714_tiara", "7]7EH3:#E?rT", "u371956714_tiaramotor");
+$conn = mysqli_connect("localhost", "root", "", "bengkel");
 if (!$conn) {
  die ("Connection Failed: ". mysqli_connect_error());
 }
