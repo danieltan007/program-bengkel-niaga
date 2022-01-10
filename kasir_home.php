@@ -61,7 +61,7 @@ session_start();
                <br>
                <form method="post" action="" id="kasirbayar">
                     <table class="table table-borderless" style="left:50px; position:inherit;">
-                         <tr>
+                         <!-- <tr>
                               <td>Jenis Pembelian</td>
                               <td>
                                    <select name="jbeli" id="jbeli">
@@ -71,7 +71,7 @@ session_start();
                                    </select>
                               </td>
                               <div class="error" id="jbeliErr"></div>
-                         </tr>
+                         </tr> -->
                          <tr>
                               <td>Metode Pembayaran</td>
                               <td>
@@ -153,7 +153,7 @@ session_start();
           });
 
           function cek() {
-               if (pilihan == "cicil" && jbayar == "grosir") {
+               if (pilihan == "cicil") {
                     $(".belumlunas").css("display", "");
                     $(".belumlunas2").css("display", "");
                     $(".belumlunas3").css("display", "");
@@ -162,25 +162,7 @@ session_start();
                     check_nohp();
                     check_noktp();
                     check_bayar();
-               } else if (pilihan == "cicil" && jbayar == "ecer") {
-                    $(".belumlunas").css("display", "");
-                    $(".belumlunas2").css("display", "");
-                    $(".belumlunas3").css("display", "");
-                    $(".belumlunas4").css("display", "");
-                    check_nama();
-                    check_nohp();
-                    check_noktp();
-                    check_bayar();
-               } else if (pilihan == "lunas" && jbayar == "grosir") {
-                    $(".belumlunas").css("display", "none");
-                    $(".belumlunas2").css("display", "");
-                    $(".belumlunas3").css("display", "");
-                    $(".belumlunas4").css("display", "");
-                    check_nohp();
-                    check_noktp();
-                    check_bayar();
-                    check_kembalian();
-               } else if (pilihan == "lunas" && jbayar == "ecer") {
+               } else if (pilihan == "lunas") {
                     $(".belumlunas").css("display", "none");
                     $(".belumlunas2").css("display", "none");
                     $(".belumlunas3").css("display", "none");
@@ -352,7 +334,7 @@ session_start();
           var error_bayar = false;
           var error_alamat = false;
           var error_mbayar = false;
-          var error_jbeli = false;
+          // var error_jbeli = false;
 
           function check_mbayar() {
                $("#mbayar").on("change", function() {
@@ -368,19 +350,19 @@ session_start();
                });
           };
 
-          function check_jbeli() {
-               $("#mbayar").on("change", function() {
-                    if (pilihan == "") {
-                         $("#jbeliErr").html("pilih jenis pembelian!");
-                         $("#jbeli").css("outline-color", "red");
-                         error_jbeli = true;
-                    } else {
-                         $("#jbeliErr").html("");
-                         $("#jbeli").css("outline-color", "green");
-                         error_jbeli = false;
-                    }
-               });
-          };
+          // function check_jbeli() {
+          //      $("#mbayar").on("change", function() {
+          //           if (pilihan == "") {
+          //                $("#jbeliErr").html("pilih jenis pembelian!");
+          //                $("#jbeli").css("outline-color", "red");
+          //                error_jbeli = true;
+          //           } else {
+          //                $("#jbeliErr").html("");
+          //                $("#jbeli").css("outline-color", "green");
+          //                error_jbeli = false;
+          //           }
+          //      });
+          // };
 
           function check_nama() {
                $("#nama").keyup(function() {
@@ -533,33 +515,17 @@ session_start();
           }
 
           $("#kasirbayar").submit(function(e) {
-               if (pilihan == "cicil" && jbayar == "grosir") {
-                    if (error_nama === false && error_noktp === false && error_nohp === false && error_bayar === false && error_alamat === false && error_jbeli === false && error_mbayar === false) {
-                         $("#kasirbayar").attr("action", "do_kasirgrosircicil.php");
-                         return true;
-                    } else {
-                         alert("Masukkan form dengan lengkap dan benar!");
-                         return false;
-                    }
-               } else if (pilihan == "cicil" && jbayar == "ecer") {
-                    if (error_nama === false && error_noktp === false && error_nohp === false && error_bayar === false && error_alamat === false && error_jbeli === false && error_mbayar === false) {
+               if (pilihan == "cicil") {
+                    if (error_nama === false && error_noktp === false && error_nohp === false && error_bayar === false && error_alamat === false && error_mbayar === false) {
                          $("#kasirbayar").attr("action", "do_kasircicil.php");
                          return true;
                     } else {
                          alert("Masukkan form dengan lengkap dan benar!");
                          return false;
                     }
-               } else if (pilihan == "lunas" && jbayar == "ecer") {
-                    if (error_bayar === false && error_kembali === false && error_jbeli === false && error_mbayar === false) {
+               } else if (pilihan == "lunas") {
+                    if (error_bayar === false && error_kembali === false && error_mbayar === false) {
                          $("#kasirbayar").attr("action", "do_kasirlunas.php");
-                         return true;
-                    } else {
-                         alert("Masukkan form dengan lengkap dan benar!");
-                         return false;
-                    }
-               } else if (pilihan == "lunas" && jbayar == "grosir") {
-                    if (error_nama === false && error_nohp === false && error_bayar === false && error_alamat === false && error_jbeli === false && error_mbayar === false && error_kembali === false) {
-                         $("#kasirbayar").attr("action", "do_kasirgrosir.php");
                          return true;
                     } else {
                          alert("Masukkan form dengan lengkap dan benar!");
@@ -579,8 +545,6 @@ session_start();
                     }
                });
           });
-
-
      });
 
      $('input[id$=awal]').datepicker({
