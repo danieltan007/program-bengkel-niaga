@@ -299,7 +299,6 @@ session_start();
                });
           });
 
-          //korting-brg-001
           $(document).on("change", "input[id^='korting-']", function() {
                var kode3 = $(this).attr("id").substr(8, $(this).attr("id").length);
                var korting = $(this).val();
