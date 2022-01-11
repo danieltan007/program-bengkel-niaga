@@ -4,7 +4,6 @@ session_start();
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
 <style>
      .error {
           color: red;
@@ -338,20 +337,6 @@ session_start();
                     }
                });
           };
-
-          // function check_jbeli() {
-          //      $("#mbayar").on("change", function() {
-          //           if (pilihan == "") {
-          //                $("#jbeliErr").html("pilih jenis pembelian!");
-          //                $("#jbeli").css("outline-color", "red");
-          //                error_jbeli = true;
-          //           } else {
-          //                $("#jbeliErr").html("");
-          //                $("#jbeli").css("outline-color", "green");
-          //                error_jbeli = false;
-          //           }
-          //      });
-          // };
 
           function check_nama() {
                $("#nama").keyup(function() {

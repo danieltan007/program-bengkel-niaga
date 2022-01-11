@@ -77,6 +77,9 @@ if ($_SESSION['login mekanik'] != "login") {
                     <a class="nav-link klik" id="cicil"><i class="fa fa-credit-card"></i> Belum Lunas</a>
                </li>
                <li class="nav-item">
+                    <a class="nav-link klik" id="tambah"><i class="fa fa-users"></i> Tambah Mekanik</a>
+               </li>
+               <li class="nav-item">
                     <a class="nav-link" style="color:black;" href="logout_mekanik.php"><i class="fa fa-sign-out"></i> Logout</a>
                </li>
           </ul>
