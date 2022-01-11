@@ -48,35 +48,46 @@
      <div class="container">
           <div class="row" align="center">
                <div class="col-6">
-                    <img src="pusat.png" style="width:25%">
+                    <img src="assets/pusat.png" style="width:25%">
                     <div class="container">
                          <h4>PUSAT</h4>
                          <br>
-                         <a href="login_pusat.php" class="btn btn-success">Masuk</a>
+                         <a href="pusat/login_pusat.php" class="btn btn-success">Masuk</a>
                     </div>
                </div>
                <div class="col-6">
-                    <img src="gudang.png" style="width:25%; height:131px;">
+                    <img src="assets/gudang.png" style="width:25%; height:131px;">
                     <div class="container">
                          <h4>GUDANG</h4>
                          <br>
-                         <a href="login_gudang.php" class="btn btn-success">Masuk</a>
+                         <a href="gudang/login_gudang.php" class="btn btn-success">Masuk</a>
                     </div>
                </div>
+          </div>
+          <br><br>
+          <div class="row" align="center">
                <div class="col">
-                    <img src="kasir.png" style="width:25%">
+                    <img src="assets/kasir.png" style="width:33%">
                     <div class="container">
-                         <h4>KASIR</h4>
+                         <h4>KASIR ECERAN</h4>
                          <br>
-                         <a href="login_kasir.php" class="btn btn-success">Masuk</a>
+                         <a href="eceran/login_kasir.php" class="btn btn-success">Masuk</a>
                     </div>
                </div>
                <div class="col">
-                    <img src="mekanik.png" style="width:25%; height:119px;">
+                    <img src="assets/mekanik.png" style="width:33%; height:119px;">
                     <div class="container">
                          <h4>KASIR MEKANIK</h4>
                          <br>
-                         <a href="login_mekanik.php" class="btn btn-success">Masuk</a>
+                         <a href="mekanik/login_mekanik.php" class="btn btn-success">Masuk</a>
+                    </div>
+               </div>
+               <div class="col">
+                    <img src="assets/kasir.png" style="width:33%; height:119px;">
+                    <div class="container">
+                         <h4>KASIR GROSIR</h4>
+                         <br>
+                         <a href="grosir/login_grosir.php" class="btn btn-success">Masuk</a>
                     </div>
                </div>
           </div>
