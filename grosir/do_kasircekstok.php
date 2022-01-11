@@ -12,22 +12,22 @@ $search = mysqli_query($conn, $sql);
           <th>Merek</th>
           <th>Supplier</th>
           <th>Stock Toko</th>
-          <th>Harga Barang</th>
+          <th>Harga Lv 2</th>
+          <th>Harga Lv 3</th>
      </tr>
      <?php
      if (mysqli_num_rows($search) > 0) {
           while ($data = mysqli_fetch_array($search)) {
-               // $edit = '<a class="btn btn-success" style="color:white" data-role="edit" data-id="' . $data['kd_brg'] . '"><i class="fa fa-edit"></i> Edit</a>';
-               // $hapus = '<a class="btn btn-danger" style="color:white" data-role="hapus" data-id="' . $data['kd_brg'] . '"><i class="fa fa-close"></i> Hapus</a>';
+               $harga_lv2 = $data['hrg_jual'] * 0.9;
+               $harga_lv3 = $data['hrg_jual'] * 0.8;
      ?>
-               <tr id="<?php echo $data['kd_brg']; ?>">
-                    <td data-target="nama"><?php echo $data['nm_brg']; ?></td>
-                    <td data-target="merek"><?php echo $data['mrk_brg']; ?></td>
-                    <td data-target="supp"><?php echo $data['supplier']; ?></td>
-                    <td data-target="stok"><?php echo $data['stock_toko']; ?></td>
-                    <td data-target="hrg"><?php echo $data['hrg_jual']; ?></td>
-                    <!-- <td><?php echo $edit; ?></td> -->
-                    <!-- <td><?php echo $hapus; ?></td> -->
+               <tr>
+                    <td><?php echo $data['nm_brg']; ?></td>
+                    <td><?php echo $data['mrk_brg']; ?></td>
+                    <td><?php echo $data['supplier']; ?></td>
+                    <td><?php echo $data['stock_toko']; ?></td>
+                    <td><?php echo $harga_lv2; ?></td>
+                    <td><?php echo $harga_lv3; ?></td>
                </tr>
           <?php } ?>
 </table>

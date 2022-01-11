@@ -24,7 +24,8 @@ if ($merek == "" && $sup == "") {
      <thead class="thead-dark">
           <tr>
                <th>Nama</th>
-               <th>Harga</th>
+               <th>Harga Lv 2</th>
+               <th>Harga Lv 3</th>
                <th>Merek</th>
                <th>Stock Toko</th>
                <th>Stock Gudang</th>
@@ -36,10 +37,14 @@ if ($merek == "" && $sup == "") {
           if (mysqli_num_rows($search) > 0) {
                while ($data = mysqli_fetch_array($search)) {
                     $tambah = "<a id='tambahbrg' class='btn btn-success' href='do_kasirtambah.php?kode=" . $data['kd_brg'] . "'><i class='fa fa-plus-circle'></i> Tambah</a>";
+                    // kurangin harga jual 10% di lv2, 20% di lv3
+                    $harga_lv2 = $data['hrg_jual'] * 0.9;
+                    $harga_lv3 = $data['hrg_jual'] * 0.8;
           ?>
                     <tr>
                          <td><?php echo $data["nm_brg"]; ?></td>
-                         <td><?php echo $data["hrg_jual"]; ?></td>
+                         <td><?php echo $harga_lv2; ?></td>
+                         <td><?php echo $harga_lv3; ?></td>
                          <td><?php echo $data["mrk_brg"]; ?></td>
                          <td><?php echo $data["stock_toko"]; ?></td>
                          <td><?php echo $data["stock_gudang"]; ?></td>

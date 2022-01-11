@@ -4,7 +4,6 @@ session_start();
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
 <style>
      .error {
           color: red;
@@ -17,7 +16,7 @@ session_start();
           border-radius: 4px;
           font-size: 16px;
           background-color: white;
-          background-image: url('cari.png');
+          background-image: url('../assets/cari.png');
           background-position: 10px 10px;
           background-size: 28px, 28px, auto;
           background-repeat: no-repeat;
@@ -253,41 +252,6 @@ session_start();
                });
           });
 
-          $(document).on("change", "input[id^='diskon-']", function() {
-               var kode2 = $(this).attr("id").substr(7, $(this).attr("id").length);
-               var diskon = $(this).val();
-               $.ajax({
-                    type: 'post',
-                    url: "do_kasirupdatediskon.php",
-                    data: {
-                         kode2: kode2,
-                         diskon: diskon
-                    },
-                    success: function() {
-                         totalharga();
-                         update();
-                    }
-               });
-          });
-
-          $(document).on("change", "input[id^='korting-']", function() {
-               var kode3 = $(this).attr("id").substr(8, $(this).attr("id").length);
-               var korting = $(this).val();
-               $.ajax({
-                    type: 'post',
-                    url: "do_kasirupdatekorting.php",
-                    data: {
-                         kode3: kode3,
-                         korting: korting
-                    },
-                    success: function() {
-                         console.log(kode3);
-                         totalharga();
-                         update();
-                    }
-               });
-          });
-
           $(document).on("click", "#delbrg", function(e) {
                e.preventDefault();
                $.ajax({
@@ -323,7 +287,6 @@ session_start();
           var error_bayar = false;
           var error_alamat = false;
           var error_mbayar = false;
-          // var error_jbeli = false;
 
           function check_mbayar() {
                $("#mbayar").on("change", function() {
@@ -338,20 +301,6 @@ session_start();
                     }
                });
           };
-
-          // function check_jbeli() {
-          //      $("#mbayar").on("change", function() {
-          //           if (pilihan == "") {
-          //                $("#jbeliErr").html("pilih jenis pembelian!");
-          //                $("#jbeli").css("outline-color", "red");
-          //                error_jbeli = true;
-          //           } else {
-          //                $("#jbeliErr").html("");
-          //                $("#jbeli").css("outline-color", "green");
-          //                error_jbeli = false;
-          //           }
-          //      });
-          // };
 
           function check_nama() {
                $("#nama").keyup(function() {

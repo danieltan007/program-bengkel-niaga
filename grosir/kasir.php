@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SESSION['login kasir'] != "login") {
+if ($_SESSION['login grosir'] != "login") {
      header("location: login_kasir.php");
 }
 ?>
@@ -22,6 +22,7 @@ if ($_SESSION['login kasir'] != "login") {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
      body {
           overflow-x: hidden;

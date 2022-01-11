@@ -13,7 +13,7 @@ $bayar = $_POST['bayar'];
 $sisa = $_POST['kembalian'];
 $tgl = date('Y-m-d');
 
-$sql1 = "select * from `daftar belanja temp`";
+$sql1 = "select * from `daftar grosir temp`";
 $dapat = mysqli_query($conn, $sql1);
 
 if (mysqli_num_rows($dapat) < 1) { ?>
