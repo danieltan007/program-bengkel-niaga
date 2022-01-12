@@ -17,7 +17,7 @@ $alamat = $_POST['alamat'];
 $bayar = $_POST['bayar'];
 $tgl = date('Y-m-d');
 
-$sql1 = "select * from `daftar belanja temp`";
+$sql1 = "select * from `daftar grosir temp`";
 $dapat = mysqli_query($conn, $sql1);
 
 if (mysqli_num_rows($dapat) < 1) { ?>
@@ -110,8 +110,6 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      <!-- deepcode ignore XSS: for commenting -->
      <H4 align="center">Terima Kasih atas Belanjaan Anda</H4>
 <?php
-     $sql2 = "delete from `tabel belanja temp` ";
-     mysqli_query($conn, $sql2);
 
      //buat id trans
      $query = "select max(id_trns) as maxkode from `tabel transaksi`";
@@ -125,7 +123,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      $sql4 = "insert into `tabel transaksi` (id_trns, tgl_trns, total_harga, status) values ('$kodetrans', '$tgl', '$total', '$mbayar')";
      mysqli_query($conn, $sql4);
 
-     $sql8 = "delete from `daftar belanja temp`";
+     $sql8 = "delete from `daftar grosir temp`";
      mysqli_query($conn, $sql8);
 }
 ?>

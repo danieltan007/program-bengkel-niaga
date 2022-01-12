@@ -125,7 +125,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      mysqli_query($conn, $sql4);
 }
 
-$sql8 = "delete from `daftar belanja temp`";
+$sql8 = "delete from `daftar grosir temp`";
 mysqli_query($conn, $sql8);
      ?>
      </body>

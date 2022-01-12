@@ -11,5 +11,5 @@ $data = mysqli_fetch_array($find);
 $harga = $data['st_hrg'];
 $tharga = $jml * $harga;
 
-$sql = "update `daftar belanja temp` set jml_brg = '$jml', t_hrg = '$tharga' where kd_brg = '$kode'";
+$sql = "update `daftar grosir temp` set jml_brg = '$jml', t_hrg = '$tharga' where kd_brg = '$kode'";
 $cari = mysqli_query($conn, $sql);

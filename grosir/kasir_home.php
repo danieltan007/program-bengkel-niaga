@@ -252,6 +252,24 @@ session_start();
                });
           });
 
+          $(document).on("change", "select[id^='level_harga-']", function() {
+               let hrg = $(this).val();
+               console.log("hrg = " + hrg);
+               let kode = $(this).attr("id").substr(12, $(this).attr("id").length);
+               $.ajax({
+                    type: "post",
+                    url: "do_kasirpilihlevel.php",
+                    data: {
+                         kode: kode,
+                         hrg: hrg
+                    },
+                    success: function() {
+                         update();
+                         totalharga();
+                    }
+               });
+          });
+
           $(document).on("click", "#delbrg", function(e) {
                e.preventDefault();
                $.ajax({
@@ -484,6 +502,7 @@ session_start();
                });
           });
      });
+
 
      $('input[id$=awal]').datepicker({
           dateFormat: 'yy-mm-dd'
