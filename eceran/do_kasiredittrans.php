@@ -11,7 +11,7 @@
      $id_trans = $data['id_trns'];
 
      //cari barang
-     $sql1 = "select * from `tabel barang` where kd_brg = '$data[kd_brg]' ";
+     $sql1 = "select * from `tabel barang pusat` where kd_brg = '$data[kd_brg]' ";
      $cari1 = mysqli_query($conn, $sql1);
      $data1 = mysqli_fetch_array($conn, $cari1);
 

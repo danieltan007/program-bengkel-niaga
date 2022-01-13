@@ -14,7 +14,7 @@ $bayar = $_POST['bayar'];
 $sisa = $_POST['kembalian'];
 $tgl = date('Y-m-d');
 
-$sql1 = "select * from `daftar belanja temp`";
+$sql1 = "select * from `daftar grosir temp`";
 $dapat = mysqli_query($conn, $sql1);
 ?>
 
@@ -45,16 +45,16 @@ $dapat = mysqli_query($conn, $sql1);
                $ubah1++;
                $kodetrans2 = "DET-" . sprintf("%03s", $ubah1);
 
-               $sql5 = "insert into `detail transaksi` 
-               (tgl_trns, id_trans, kd_brg,  nm_brg, mrk_brg, jml_beli, hrg_brg, diskon, total_harga, status, korting) values 
-               ('$tgl', '$kodetrans2', '$data[kd_brg]', '$data[nm_brg]', '$data[merek]', '$data[jml_brg]', '$data[st_hrg]', '$data[diskon]', '$data[t_hrg]', 'Lunas', '$data[korting]')";
-               mysqli_query($conn, $sql5);
-
                //hitung jumlah keuntungan per barang
                $modal = (int)$data2['hrg_modal'];
-               $kort = (int)$data['korting'] / (int)$data['jml_brg'];
-               $jual = (int)$data['st_hrg'] - $kort;
+               $jual = (int)$data['st_hrg'];
                $profit = $jual - $modal;
+               $diskon = $profit / $modal * 100;
+
+               $sql5 = "insert into `detail transaksi` 
+               (tgl_trns, id_trans, kd_brg,  nm_brg, mrk_brg, jml_beli, hrg_brg, diskon, total_harga, status, korting) values 
+               ('$tgl', '$kodetrans2', '$data[kd_brg]', '$data2[nm_brg]', '$data2[mrk_brg]', '$data[jml_brg]', '$data[st_hrg]', '$diskon', '$data[t_hrg]', 'Lunas', '0')";
+               mysqli_query($conn, $sql5);
 
                //kode LAP-001 laporan penjualan
                $query2 = "select max(id_lap_jual) as maxkode from `laporan penjualan`";
@@ -67,25 +67,24 @@ $dapat = mysqli_query($conn, $sql1);
 
                $sql6 = "INSERT INTO `laporan penjualan` 
                (`id_lap_jual`, `id_trns`, `tgl_jual`, `user`, `nm_brg`, `jasa`, `jumlah`, `harga_jual`, `modal_brg`, `profit_brg`) VALUES 
-               ('$kodetrans3', '$kodetrans2', '$tgl', 'kasir 1', '$data[nm_brg]', 'jual barang', '$data[jml_brg]', '$jual', '$modal', '$profit')";
+               ('$kodetrans3', '$kodetrans2', '$tgl', 'grosir', '$data2[nm_brg]', 'jual barang', '$data[jml_brg]', '$jual', '$modal', '$profit')";
                mysqli_query($conn, $sql6);
 
                $brgbeli = (int)$data['jml_brg'];
-               $brgstok = (int)$data2['stock_toko'];
+               $brgstok = (int)$data2['stock_gudang'];
                $sisastok = $brgstok - $brgbeli;
 
-               $sql4 = "update `tabel barang pusat` set stock_toko = '$sisastok' where kd_brg = '$data[kd_brg]'";
+               $sql4 = "update `tabel barang pusat` set stock_gudang = '$sisastok' where kd_brg = '$data[kd_brg]'";
                mysqli_query($conn, $sql4);
 
                // echo print_r(mysqli_error_list($conn));
           ?>
                <tr>
-                    <td colspan="4"><?php echo $data['nm_brg']; ?></td>
+                    <td colspan="4"><?php echo $data2['nm_brg']; ?></td>
                </tr>
                <tr>
                     <td><?php echo number_format($data['st_hrg']); ?></td>
                     <td>x <?php echo $data['jml_brg']; ?></td>
-                    <td>-<?php echo $data['diskon']; ?>%</td>
                     <td><?php echo number_format($data['t_hrg']); ?></td>
                </tr>
           <?php    }

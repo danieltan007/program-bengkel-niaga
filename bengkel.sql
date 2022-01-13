@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jan 08, 2022 at 12:48 AM
--- Server version: 10.5.12-MariaDB-cll-lve
--- PHP Version: 7.2.34
+-- Host: 127.0.0.1
+-- Generation Time: Jan 13, 2022 at 10:56 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u371956714_tiaramotor`
+-- Database: `bengkel`
 --
 
 -- --------------------------------------------------------
@@ -62,6 +61,19 @@ CREATE TABLE `daftar belanja temp` (
 
 INSERT INTO `daftar belanja temp` (`kd_brg`, `nm_brg`, `merek`, `jml_brg`, `diskon`, `korting`, `st_hrg`, `t_hrg`) VALUES
 ('1DY-E740', 'AS GEAR DEPAN JUPITE', 'DENSHIN', 1, 0, 0, 15000, 15000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daftar grosir temp`
+--
+
+CREATE TABLE `daftar grosir temp` (
+  `kd_brg` varchar(25) NOT NULL,
+  `jml_brg` int(4) NOT NULL,
+  `st_hrg` int(10) NOT NULL,
+  `t_hrg` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -390,6 +402,7 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`nama`, `id`, `pass`, `level`) VALUES
+('grosir', 'grosir', 'grosirtiara', 'grosir'),
 ('gudang\r\n', 'gudang', 'gudangtiara', 'Gudang'),
 ('kasir\r\n', 'kasir', 'kasirtiara', 'kasir'),
 ('mekanik', 'mekanik', 'mekaniktiara', 'mekanik'),
@@ -654,6 +667,12 @@ ALTER TABLE `barang mekanik temp`
 -- Indexes for table `daftar belanja temp`
 --
 ALTER TABLE `daftar belanja temp`
+  ADD PRIMARY KEY (`kd_brg`);
+
+--
+-- Indexes for table `daftar grosir temp`
+--
+ALTER TABLE `daftar grosir temp`
   ADD PRIMARY KEY (`kd_brg`);
 
 --

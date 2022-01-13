@@ -481,7 +481,7 @@ session_start();
                     }
                } else if (pilihan == "lunas") {
                     if (error_bayar === false && error_kembali === false && error_mbayar === false) {
-                         $("#kasirbayar").attr("action", "do_kasirlunas.php");
+                         $("#kasirbayar").attr("action", "do_kasirgrosir.php");
                          return true;
                     } else {
                          alert("Masukkan form dengan lengkap dan benar!");

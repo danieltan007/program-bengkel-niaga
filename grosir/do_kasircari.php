@@ -27,7 +27,6 @@ if ($merek == "" && $sup == "") {
                <th>Harga Lv 2</th>
                <th>Harga Lv 3</th>
                <th>Merek</th>
-               <th>Stock Toko</th>
                <th>Stock Gudang</th>
                <th>Supplier</th>
           </tr>
@@ -46,7 +45,6 @@ if ($merek == "" && $sup == "") {
                          <td><?php echo $harga_lv2; ?></td>
                          <td><?php echo $harga_lv3; ?></td>
                          <td><?php echo $data["mrk_brg"]; ?></td>
-                         <td><?php echo $data["stock_toko"]; ?></td>
                          <td><?php echo $data["stock_gudang"]; ?></td>
                          <td><?php echo $data['supplier']; ?></td>
                          <td><?php echo $tambah; ?></td>
