@@ -486,8 +486,8 @@ $pass = $data['pass'];
           $("#khusus3").keyup(function() {
                var khusus3 = $("#khusus3").val();
                if (khusus3 != password) {
-                    $("#khususErr3").html("isi data dengan benar!");
-                    $("#khususErr3").css("color", "red");
+                    // $("#khususErr3").html("isi data dengan benar!");
+                    // $("#khususErr3").css("color", "red");
                     error_khusus3 = true;
                } else {
                     $("#khususErr3").html("");
@@ -506,6 +506,8 @@ $pass = $data['pass'];
                               alert("data berhasil di ubah!");
                               $("#hasil").load("do_pusatcekbrg.php");
                               $('#modal_edithrg').modal('toggle');
+                              $("#khusus3").val("");
+                              $("#tambahan").val("");
                          } else if (data == "gagal!") {
                               alert("data gagal di ubah!");
                               // $('#modal_edithrg').modal('toggle');

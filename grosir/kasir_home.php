@@ -304,21 +304,19 @@ session_start();
           var error_kembali = false;
           var error_bayar = false;
           var error_alamat = false;
-          var error_mbayar = false;
+          var error_mbayar = true;
 
-          function check_mbayar() {
-               $("#mbayar").on("change", function() {
-                    if (pilihan == "") {
-                         $("#mbayarErr").html("pilih metode bayar!");
-                         $("#mbayar").css("outline-color", "red");
-                         error_mbayar = true;
-                    } else {
-                         $("#mbayarErr").html("");
-                         $("#mbayar").css("outline-color", "green");
-                         error_mbayar = false;
-                    }
-               });
-          };
+          $("#mbayar").on("change", function() {
+               if (pilihan == "") {
+                    $("#mbayarErr").html("pilih metode bayar!");
+                    $("#mbayar").css("outline-color", "red");
+                    error_mbayar = true;
+               } else {
+                    $("#mbayarErr").html("");
+                    $("#mbayar").css("outline-color", "green");
+                    error_mbayar = false;
+               }
+          });
 
           function check_nama() {
                $("#nama").keyup(function() {

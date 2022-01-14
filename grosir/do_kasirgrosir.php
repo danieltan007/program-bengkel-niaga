@@ -5,7 +5,7 @@
 </style>
 
 <?php
-include "koneksi.php";
+include "../koneksi.php";
 
 // ! nnti mau di perbaiki lagi
 
@@ -36,6 +36,7 @@ $dapat = mysqli_query($conn, $sql1);
                $cek2 = mysqli_query($conn, $sql3);
                $data2 = mysqli_fetch_array($cek2);
 
+               $diskon = 0;
                //kode DET-001 detail transaksi
                $query1 = "select max(id_trans) as maxkode from `detail transaksi`";
                $hasil2 = mysqli_query($conn, $query1);
@@ -49,7 +50,7 @@ $dapat = mysqli_query($conn, $sql1);
                $modal = (int)$data2['hrg_modal'];
                $jual = (int)$data['st_hrg'];
                $profit = $jual - $modal;
-               $diskon = $profit / $modal * 100;
+               $diskon = ($data2['hrg_jual'] - $jual) / $data2['hrg_jual'] * 100;
 
                $sql5 = "insert into `detail transaksi` 
                (tgl_trns, id_trans, kd_brg,  nm_brg, mrk_brg, jml_beli, hrg_brg, diskon, total_harga, status, korting) values 
@@ -105,7 +106,7 @@ $dapat = mysqli_query($conn, $sql1);
      <hr>
      <H4 align="center">Terima Kasih atas Belanjaan Anda</H4>
      <?php
-     $sql2 = "delete from `daftar belanja temp` ";
+     $sql2 = "delete from `daftar grosir temp` ";
      mysqli_query($conn, $sql2);
 
      //buat id trans TRN-001

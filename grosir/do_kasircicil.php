@@ -54,7 +54,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                $modal = (int)$data2['hrg_modal'];
                $jual = (int)$data['st_hrg'];
                $profit = $jual - $modal;
-               $diskon = $profit / $modal * 100;
+               $diskon = ($data2['hrg_jual'] - $jual) / $data2['hrg_jual'] * 100;
 
                $sql5 = "insert into `detail transaksi` 
                (tgl_trns, id_trans, nm_brg, mrk_brg, jml_beli, hrg_brg, diskon, total_harga, status, kd_brg, korting) values 
