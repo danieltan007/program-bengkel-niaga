@@ -30,12 +30,6 @@ Tanggal cetak: <?php echo $tgl1 ?>
           $cari2 = mysqli_query($conn, $sql2);
           $data2 = mysqli_fetch_array($cari2);
 
-          //hitung total harga
-          $hrgbrg = (int)$data2['hrg_jual'];
-          $jml = (int)$data['sto_brg'];
-          $subtotal = $hrgbrg * $jml;
-          $total = $total + $subtotal;
-
           //hitung pengurangan stok
           $stoklama  = (int)$data2['stock_gudang'];
           $keluar = (int)$data['sto_brg'];
@@ -49,8 +43,8 @@ Tanggal cetak: <?php echo $tgl1 ?>
                <td><?php echo $data['nm_brg']; ?></td>
                <td><?php echo $data['mrk_brg']; ?></td>
                <td><?php echo $data['sto_brg']; ?></td>
-               <td><?php echo number_format($data['hrg_brg']); ?></td>
-               <td><?php echo number_format($subtotal); ?></td>
+               <!-- <td><?php echo number_format($data['hrg_brg']); ?></td>
+               <td><?php echo number_format($subtotal); ?></td> -->
           </tr>
      <?php
      }

@@ -23,8 +23,8 @@
                     <td><?php echo $data['nm_brg']; ?></td>
                     <td>
                          <select name="level_harga" id="level_harga-<?= $data['kd_brg'] ?>">
-                              <option value="<?php echo $harga_lv2; ?>" <?php echo $data['st_hrg'] == $harga_lv2 ? "selected" : "" ?>><?= $harga_lv2 ?></option>
-                              <option value="<?php echo $harga_lv3; ?>" <?php echo $data['st_hrg'] == $harga_lv3 ? "selected" : "" ?>><?= $harga_lv3 ?></option>
+                              <option value="<?php echo $harga_lv2; ?>" <?php echo $data['st_hrg'] == $harga_lv2 ? "selected" : "" ?>><?= "Level 2 - " . $harga_lv2 ?></option>
+                              <option value="<?php echo $harga_lv3; ?>" <?php echo $data['st_hrg'] == $harga_lv3 ? "selected" : "" ?>><?= "Level 3 - " . $harga_lv3 ?></option>
                          </select>
                     </td>
                     <td><?php echo $jumlah; ?></td>

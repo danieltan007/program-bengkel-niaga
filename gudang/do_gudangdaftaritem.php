@@ -5,7 +5,7 @@
                <th>Merek</th>
                <th>Supplier</th>
                <th>Stock</th>
-               <th>Harga</th>
+               <!-- <th>Harga</th> -->
           </tr>
           <?php
           include "../koneksi.php";
@@ -18,7 +18,7 @@
                     <td><?php echo $data['mrk_brg']; ?></td>
                     <td><?php echo $data['supp_brg']; ?></td>
                     <td><input type="number" id="stockbrg-<?php echo $data['kd_brg']; ?>" value="<?php echo $data['sto_brg']; ?>"></td>
-                    <td><?php echo $data['hrg_brg']; ?></td>
+                    <!-- <td><?php echo $data['hrg_brg']; ?></td> -->
 
                     <td><a class="btn btn-danger" href="do_gudanghpsupdate.php?kode=<?php echo $data['kd_brg']; ?>" id="hapus-<?php echo $data['kd_brg']; ?>"><i class="fa fa-close"></i> Hapus</a></td>
                </tr>

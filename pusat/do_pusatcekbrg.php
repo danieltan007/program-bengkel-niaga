@@ -28,12 +28,14 @@ if ($merek == "" && $sup == "") {
           <th>Supplier</th>
           <th>Harga Modal</th>
           <th>Harga Jual</th>
-          <th>Profit</th>
+          <th>Harga Jual Lv 2</th>
+          <th>Harga Jual Lv 3</th>
+          <!-- <th>Profit</th> -->
      </tr>
      <?php
      if (mysqli_num_rows($search) > 0) {
           while ($data = mysqli_fetch_array($search)) {
-               $profit = (int)$data['hrg_jual'] - (int)$data['hrg_modal'];
+               // $profit = (int)$data['hrg_jual'] - (int)$data['hrg_modal'];
                $edit = "<a class='btn btn-success' style='color:white' data-role='editmodal' data-id='" . $data['kd_brg'] . "' ><i class='fa fa-edit'></i> Edit Barang</a>";
                $delete = "<a class='btn btn-danger' style='color:white' data-role='hapusmodal' data-id='" . $data['kd_brg'] . "' ><i class='fa fa-times'></i> Hapus Barang</a>"
      ?>
@@ -44,7 +46,9 @@ if ($merek == "" && $sup == "") {
                     <td data-target="supplier"><?php echo $data["supplier"]; ?></td>
                     <td data-target="hrg_modal"><?php echo $data["hrg_modal"]; ?></td>
                     <td data-target="hrg_jual"><?php echo $data["hrg_jual"]; ?></td>
-                    <td data-target="profit"><?php echo $profit; ?></td>
+                    <td data-target="hrg_jual2"><?php echo $data["hrg_jual2"]; ?></td>
+                    <td data-target="hrg_jual3"><?php echo $data["hrg_jual3"]; ?></td>
+                    <!-- <td data-target="profit"><?php echo $profit; ?></td> -->
                     <td><?php echo $edit; ?></td>
                     <td><?php echo $delete; ?></td>
                </tr>

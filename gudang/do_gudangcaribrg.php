@@ -12,7 +12,7 @@ $cari = mysqli_query($conn, $sql);
 		<th>Merek</th>
 		<th>Supplier</th>
 		<th>Stock</th>
-		<th>Harga</th>
+		<!-- <th>Harga</th> -->
 	</tr>
 
 	<?php
@@ -24,7 +24,7 @@ $cari = mysqli_query($conn, $sql);
 			<td data-target="merek"><?php echo $data['mrk_brg']; ?></td>
 			<td data-target="supp"><?php echo $data['supplier']; ?></td>
 			<td data-target="stok"><?php echo $data['stock_gudang']; ?></td>
-			<td data-target="hrg"><?php echo $data['hrg_jual']; ?></td>
+			<!-- <td data-target="hrg"><?php echo $data['hrg_jual']; ?></td> -->
 			<td><?php echo $tambah; ?></td>
 		</tr>
 	<?php }

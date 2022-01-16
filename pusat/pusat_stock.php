@@ -78,11 +78,27 @@
                                    <tr>
                                         <td>Harga Modal</td>
                                         <td><input type="number" name="modal" id="modal" min="0"></td>
-                                        <input type="hidden" name="kode" id="kode">
                                    </tr>
+                                   <input type="hidden" name="kode" id="kode">
                                    <tr>
                                         <td>Harga Jual</td>
                                         <td><input type="number" name="hrgjual" id="hrgjual" min="0"></td>
+                                   </tr>
+                                   <tr>
+                                        <td>Diskon Lv 2</td>
+                                        <td><input type="number" name="edit_diskon2" id="edit_diskon2" min="0" max="100"></td>
+                                   </tr>
+                                   <tr>
+                                        <td>Harga Jual Lv 2</td>
+                                        <td><input type="number" name="hrgjual2" id="hrgjual2" readonly></td>
+                                   </tr>
+                                   <tr>
+                                        <td>Diskon Lv 3</td>
+                                        <td><input type="number" name="edit_diskon3" id="edit_diskon3" min="0" max="100"></td>
+                                   </tr>
+                                   <tr>
+                                        <td>Harga Jual Lv 3</td>
+                                        <td><input type="number" name="hrgjual3" id="hrgjual3" readonly></td>
                                    </tr>
                               </table>
                          </div>
@@ -291,6 +307,20 @@ $pass = $data['pass'];
           var error_jual = true;
           var error_modal = true;
 
+          $("#edit_diskon2").keyup(function() {
+               let diskon = $("#edit_diskon2").val();
+               let harga = $("#hrgjual").val();
+               let jual = harga - (harga * (diskon / 100));
+               $("#hrgjual2").val(jual);
+          });
+
+          $("#edit_diskon3").keyup(function() {
+               let diskon = $("#edit_diskon3").val();
+               let harga = $("#hrgjual").val();
+               let jual = harga - (harga * (diskon / 100));
+               $("#hrgjual3").val(jual);
+          });
+
           $("#diskon2").keyup(function() {
                let diskon2 = $("#diskon2").val();
                let harga2 = $("#input_jual").val();
@@ -427,13 +457,18 @@ $pass = $data['pass'];
                var stok = $("#" + id).children("td[data-target=stock]").text();
                var modal = $("#" + id).children("td[data-target=hrg_modal]").text();
                var jual = $("#" + id).children("td[data-target=hrg_jual]").text();
+               var jual2 = $("#" + id).children("td[data-target=hrg_jual]").text();
+               var jual3 = $("#" + id).children("td[data-target=hrg_jual]").text();
+
 
                $("#editnama").val(nama);
                $("#ubahmerek").val(merek);
                $("#editsupp").val(supp);
                $("#editstok").val(stok);
                $("#modal").val(modal);
-               $("#hrgjual").val(jual)
+               $("#hrgjual").val(jual);
+               $("#hrgjual2").val(jual2);
+               $("#hrgjual3").val(jual3);
                $("#kode").val(id);
 
                $("#modaledit").modal('toggle');
@@ -457,7 +492,9 @@ $pass = $data['pass'];
                var stok = $("#editstok").val();
                var modal = $("#modal").val();
                var jual = $("#hrgjual").val();
-               var profit = parseInt(jual) - parseInt(modal);
+               var jual2 = $("#hrgjual2").val();
+               var jual3 = $("#hrgjual3").val();
+               // var profit = parseInt(jual) - parseInt(modal);
 
                if (error_khusus === false) {
                     $.ajax({
@@ -472,7 +509,9 @@ $pass = $data['pass'];
                               $("#" + id).children("td[data-target=stock]").text(stok);
                               $("#" + id).children("td[data-target=hrg_modal]").text(modal);
                               $("#" + id).children("td[data-target=hrg_jual]").text(jual);
-                              $("#" + id).children("td[data-target=profit]").text(profit);
+                              $("#" + id).children("td[data-target=hrg_jual2]").text(jual2);
+                              $("#" + id).children("td[data-target=hrg_jual3]").text(jual3);
+                              // $("#" + id).children("td[data-target=profit]").text(profit);
                               $("#khusus").text("");
                               $('#modaledit').modal('toggle');
                          },

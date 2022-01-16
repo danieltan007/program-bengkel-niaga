@@ -33,7 +33,9 @@ Tanggal Cetak: <?php echo $date; ?>
           <th>Supplier</th>
           <th>Harga Modal</th>
           <th>Harga Jual</th>
-          <th>Profit</th>
+          <th>Harga Jual Lv 2</th>
+          <th>Harga Jual Lv 3</th>
+          <!-- <th>Profit</th> -->
      </tr>
      <?php
      if (mysqli_num_rows($search) > 0) {
@@ -47,7 +49,9 @@ Tanggal Cetak: <?php echo $date; ?>
                     <td><?php echo $data["supplier"]; ?></td>
                     <td><?php echo number_format($data["hrg_modal"]); ?></td>
                     <td><?php echo number_format($data["hrg_jual"]); ?></td>
-                    <td><?php echo number_format($profit); ?></td>
+                    <td><?php echo number_format($data["hrg_jual2"]); ?></td>
+                    <td><?php echo number_format($data["hrg_jual3"]); ?></td>
+                    <!-- <td><?php echo number_format($profit); ?></td> -->
                </tr>
      <?php
           }
