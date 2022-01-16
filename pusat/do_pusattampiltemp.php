@@ -6,6 +6,8 @@
           <th>Supplier</th>
           <th>Harga Beli</th>
           <th>Harga Jual</th>
+          <th>Harga Jual lv 2</th>
+          <th>Harga Jual lv 3</th>
      </tr>
 
      <?php
@@ -23,6 +25,8 @@
                     <td><?php echo $data['sto_brg']; ?></td>
                     <td><?php echo $data['hrg_modal']; ?></td>
                     <td><?= $data['hrg_jual']; ?></td>
+                    <td><?= $data['hrg_jual2']; ?></td>
+                    <td><?= $data['hrg_jual3']; ?></td>
                     <td><a class="btn btn-danger" id="hapustemp" href="do_pusathapustemp.php?kode=<?php echo $data['kd_brg']; ?>"><i class="fa fa-close"></i> Hapus</a></td>
                </tr>
           <?php }

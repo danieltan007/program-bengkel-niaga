@@ -140,6 +140,24 @@
                               <td><input type="number" name="input_jual" id="input_jual" autocomplete="off" min="0"></td>
                               <div class="error" id="jualErr"></div>
                          </tr>
+                         <tr>
+                              <td>Diskon Lv 2</td>
+                              <td><input type="number" name="diskon2" id="diskon2" min="0" max="100"></td>
+                              <div class="error" id="dis2Err"></div>
+                         </tr>
+                         <tr>
+                              <td>Harga Jual Lv 2</td>
+                              <td><input type="number" name="input_jual2" id="input_jual2" readonly></td>
+                         </tr>
+                         <tr>
+                              <td>Diskon Lv 3</td>
+                              <td><input type="number" name="diskon3" id="diskon3" min="0" max="100"></td>
+                              <div class="error" id="dis3Err"></div>
+                         </tr>
+                         <tr>
+                              <td>Harga Jual Lv 3</td>
+                              <td><input type="number" name="input_jual3" id="input_jual3" readonly></td>
+                         </tr>
                     </table>
                     <div align="center">
                          <button class="btn btn-success" name="tambah"><i class="fa fa-plus-circle"></i> Tambah</button>
@@ -263,16 +281,29 @@ $pass = $data['pass'];
 <script>
      $(document).ready(function() {
           let password = "<?php echo $pass; ?>";
-          var error_khusus = false;
-          var error_khusus2 = false;
-          let error_khusus3 = false;
-          var error_harga = false;
-          var error_nama = false;
-          var error_khusus = false;
-          var error_stock = false;
-          var error_jual = false;
-          var error_modal = false;
+          var error_khusus = true;
+          var error_khusus2 = true;
+          let error_khusus3 = true;
+          var error_harga = true;
+          var error_nama = true;
+          var error_khusus = true;
+          var error_stock = true;
+          var error_jual = true;
+          var error_modal = true;
 
+          $("#diskon2").keyup(function() {
+               let diskon2 = $("#diskon2").val();
+               let harga2 = $("#input_jual").val();
+               let input_jual2 = Number(harga2 - (harga2 * (diskon2 / 100)));
+               $("#input_jual2").val(input_jual2);
+          });
+
+          $("#diskon3").keyup(function() {
+               let diskon3 = $("#diskon3").val();
+               let harga3 = $("#input_jual").val();
+               let input_jual3 = parseInt(harga3 - (harga3 * (diskon3 / 100)));
+               $("#input_jual3").val(input_jual3);
+          });
 
           $("#khusus").focusin(function() {
                check_khusus();
@@ -486,11 +517,8 @@ $pass = $data['pass'];
           $("#khusus3").keyup(function() {
                var khusus3 = $("#khusus3").val();
                if (khusus3 != password) {
-                    // $("#khususErr3").html("isi data dengan benar!");
-                    // $("#khususErr3").css("color", "red");
                     error_khusus3 = true;
                } else {
-                    $("#khususErr3").html("");
                     error_khusus3 = false;
                }
           });
@@ -518,8 +546,8 @@ $pass = $data['pass'];
 
           //! form tambah barang
 
-          $("#merek").load("do_gudangtampilmerek.php");
-          $("#supp_brg").load("do_gudangtampilsupp.php");
+          $("#merek").load("../gudang/do_gudangtampilmerek.php");
+          $("#supp_brg").load("../gudang/do_gudangtampilsupp.php");
 
           $("#tempbrg").load("do_pusattampiltemp.php");
 
@@ -567,14 +595,14 @@ $pass = $data['pass'];
                var merek = $("#nmerek").val();
                e.preventDefault();
                $.ajax({
-                    url: "do_gudangtambahmerek.php",
+                    url: "../gudang/do_gudangtambahmerek.php",
                     data: {
                          merek: merek
                     },
                     type: 'post',
                     success: function(data) {
                          alert(data);
-                         $("#c-merek").load("do_gudangcarimerek.php");
+                         $("#c-merek").load("../gudang/do_gudangcarimerek.php");
                     },
                });
           });
@@ -583,7 +611,7 @@ $pass = $data['pass'];
           $("#carimerek").keyup(function() {
                var nmerek = $("#carimerek").val();
                $.ajax({
-                    url: "do_gudangcarimerek.php",
+                    url: "../gudang/do_gudangcarimerek.php",
                     data: {
                          nmerek: nmerek
                     },
@@ -610,7 +638,7 @@ $pass = $data['pass'];
                               },
                               success: function() {
                                    $("#alert").html("data berhasil di update!");
-                                   $("#c-merek").load("do_gudangcarimerek.php");
+                                   $("#c-merek").load("../gudang/do_gudangcarimerek.php");
                               },
                          });
                     });
@@ -623,7 +651,7 @@ $pass = $data['pass'];
                     url: $(this).attr('href'),
                     type: 'get',
                     success: function() {
-                         $("#c-merek").load("do_gudangcarimerek.php");
+                         $("#c-merek").load("../gudang/do_gudangcarimerek.php");
                          $("#alert").html("data berhasil di delete!");
                     },
                });
