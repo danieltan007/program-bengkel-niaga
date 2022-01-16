@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2022 at 10:56 AM
+-- Generation Time: Jan 16, 2022 at 03:05 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -54,13 +54,6 @@ CREATE TABLE `daftar belanja temp` (
   `st_hrg` int(16) NOT NULL,
   `t_hrg` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `daftar belanja temp`
---
-
-INSERT INTO `daftar belanja temp` (`kd_brg`, `nm_brg`, `merek`, `jml_brg`, `diskon`, `korting`, `st_hrg`, `t_hrg`) VALUES
-('1DY-E740', 'AS GEAR DEPAN JUPITE', 'DENSHIN', 1, 0, 0, 15000, 15000);
 
 -- --------------------------------------------------------
 
@@ -225,7 +218,8 @@ INSERT INTO `laporan barang keluar` (`tgl_kirim`, `kd_brg`, `nm_brg`, `mrk_brg`,
 ('2020-08-28', 'BRG-002', 'test', 'top two', 20),
 ('2020-09-04', 'BRG-012', 'apalah', 'Yamaha12', 10),
 ('2020-09-13', 'BRG-015', 'Iphone XRR', 'astronout', 12),
-('2020-09-22', 'BRG-028', 'Ban Racing 125', 'Hrd', 10);
+('2020-09-22', 'BRG-028', 'Ban Racing 125', 'Hrd', 10),
+('2022-01-16', '1DY-E7402-', 'AS GEAR DEPAN JU', 'DENSHIN', 12);
 
 -- --------------------------------------------------------
 
@@ -382,7 +376,19 @@ INSERT INTO `laporan penjualan` (`id_lap_jual`, `id_trns`, `tgl_jual`, `user`, `
 ('LAP-035', 'DET-023', '2020-09-22', 'kasir 2', 'Ban Racing 123', 'Ganti Ban', 2, 300000, 15000, 315000, 0, 15000, 'toko lain'),
 ('LAP-036', 'DET-024', '2020-09-22', 'kasir 2', '', 'Ganti Ban', 0, 0, 10000, 10000, 0, 0, 'pembeli'),
 ('LAP-037', 'DET-025', '2020-09-22', 'kasir 2', '', 'Ganti Ban', 0, 0, 15000, 15000, 0, 0, 'pembeli'),
-('LAP-038', 'DET-026', '2021-03-17', 'kasir 1', 'Ban Tubles', 'jual barang', 5, 12200, 0, 0, 0, 12200, '');
+('LAP-038', 'DET-026', '2021-03-17', 'kasir 1', 'Ban Tubles', 'jual barang', 5, 12200, 0, 0, 0, 12200, ''),
+('LAP-039', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'jual barang', 2, 13500, 0, 0, 15000, -1500, ''),
+('LAP-040', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 2, 14400, 0, 0, 18000, -3600, ''),
+('LAP-041', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'jual barang', 2, 27000, 0, 0, 15000, 12000, ''),
+('LAP-042', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 2, 32400, 0, 0, 18000, 14400, ''),
+('LAP-043', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'jual barang', 2, 27000, 0, 0, 15000, 12000, ''),
+('LAP-044', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 1, 32400, 0, 0, 18000, 14400, ''),
+('LAP-045', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'jual barang', 1, 27000, 0, 0, 15000, 12000, ''),
+('LAP-046', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 1, 28800, 0, 0, 18000, 10800, ''),
+('LAP-047', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'jual barang', 1, 27000, 0, 0, 15000, 12000, ''),
+('LAP-048', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 1, 28800, 0, 0, 18000, 10800, ''),
+('LAP-049', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'jual barang', 1, 27000, 0, 0, 15000, 12000, ''),
+('LAP-050', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 1, 32400, 0, 0, 18000, 14400, '');
 
 -- --------------------------------------------------------
 
@@ -422,33 +428,35 @@ CREATE TABLE `tabel barang pusat` (
   `stock_gudang` int(5) NOT NULL,
   `supplier` text NOT NULL,
   `hrg_modal` int(12) NOT NULL,
-  `hrg_jual` int(12) NOT NULL
+  `hrg_jual` int(12) NOT NULL,
+  `hrg_jual2` int(12) NOT NULL,
+  `hrg_jual3` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tabel barang pusat`
 --
 
-INSERT INTO `tabel barang pusat` (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `stock_gudang`, `supplier`, `hrg_modal`, `hrg_jual`) VALUES
-('1DY-E7402-00T', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'DENSHIN', 1, 20, 'PT HONDA', 15000, 15000),
-('23221-GN5-910D', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHIN', 1, 21, 'PT HONDA', 18000, 18000),
-('23221-GN5-910F', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'FUKUYAMA', 1, 20, '', 10000, 10000),
-('23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHIN', 10, 20, 'PT MENTARI PRIMA SEMESTA KALBAR', 30000, 30000),
-('23221-KFL-860D', 'AS GEAR DEPAN SUPRA FIT NEW/REVO TYPE H', 'DENSHIN', 5, 20, '', 0, 0),
-('23221-KFL-860T', 'AS GEAR DEPAN SUPRA FIT NEW/REVO TYPE H', 'FUKUYAMA', 10, 20, 'PT MENTARI PRIMA SEMESTA KALBAR', 50000, 50000),
-('23221-KWB-600T', 'AS GEAR DEPAN REVO ABSOLUTE TYPE H', 'TOKAIDO', 3, 20, '', 0, 0),
-('24130-05220-000T', 'AS GEAR DEPAN THUNDER 125 NEW TYPE S', 'TOKAIDO', 2, 20, '', 0, 0),
-('24130-09G00-000T', 'AS GEAR DEPAN SMASH TYPE S', 'TOKAIDO', 2, 20, '', 0, 0),
-('24130-20G00F', 'AS GEAR DEPAN SHOGUN 125SP 25T TYPE S', 'FUKUYAMA', 13, 20, '', 0, 0),
-('24130-30A20F', 'AS GEAR DEPAN SHOGUN 110 30T TYPE S', 'FUKUYAMA', 3, 20, '', 0, 0),
-('2JG-17421-00F', 'AS GEAR DEPAN FORCE-1 TYPE Y', 'FUKUYAMA', 1, 20, 'PT MENTARI PRIMA SEMESTA KALBAR', 50000, 50000),
-('2JG-17421-00T', 'AS GEAR DEPAN ALFA TYPE Y', 'TOKAIDO', 4, 20, '', 0, 0),
-('3C1-17402-00F', 'AS GEAR DEPAN VIXION TYPE Y', 'FUKUYAMA', 2, 20, '', 0, 0),
-('4ST-17402-00F', 'AS GEAR DEPAN JUPITER/CRYPTON TYPE Y', 'FUKUYAMA', 7, 20, '', 0, 0),
-('5TP-17402-00F', 'AS GEAR DEPAN JUPITER Z 33T TYPE Y', 'FUKUYAMA', 7, 20, '', 0, 0),
-('BRG-175', 'FORK GEAR', 'ASPIRA', 0, 12, 'PT MENTARI PRIMA SEMESTA KALBAR', 9000, 10000),
-('BRG-176', 'SPRING FR FORK', 'ASPIRA', 0, 30, 'PT MENTARI PRIMA SEMESTA KALBAR', 300000, 500000),
-('BRG-177', '011111 SPRING FR FORK', 'ASPIRA', 0, 30, 'PT MENTARI PRIMA SEMESTA KALBAR', 300000, 500000);
+INSERT INTO `tabel barang pusat` (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `stock_gudang`, `supplier`, `hrg_modal`, `hrg_jual`, `hrg_jual2`, `hrg_jual3`) VALUES
+('1DY-E7402-00T', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'DENSHIN', 1, 12, 'PT MENTARI PRIMA SEMESTA KALBAR', 15000, 30000, 27000, 25500),
+('23221-GN5-910D', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHIN', 1, 14, 'PT HONDA', 18000, 36000, 0, 0),
+('23221-GN5-910F', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'FUKUYAMA', 1, 20, '', 10000, 20000, 0, 0),
+('23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHIN', 10, 20, 'PT MENTARI PRIMA SEMESTA KALBAR', 30000, 60000, 0, 0),
+('23221-KFL-860D', 'AS GEAR DEPAN SUPRA FIT NEW/REVO TYPE H', 'DENSHIN', 5, 20, '', 0, 0, 0, 0),
+('23221-KFL-860T', 'AS GEAR DEPAN SUPRA FIT NEW/REVO TYPE H', 'FUKUYAMA', 10, 20, 'PT MENTARI PRIMA SEMESTA KALBAR', 50000, 100000, 0, 0),
+('23221-KWB-600T', 'AS GEAR DEPAN REVO ABSOLUTE TYPE H', 'TOKAIDO', 3, 20, '', 0, 0, 0, 0),
+('24130-05220-000T', 'AS GEAR DEPAN THUNDER 125 NEW TYPE S', 'TOKAIDO', 2, 20, '', 0, 0, 0, 0),
+('24130-09G00-000T', 'AS GEAR DEPAN SMASH TYPE S', 'TOKAIDO', 2, 20, '', 0, 0, 0, 0),
+('24130-20G00F', 'AS GEAR DEPAN SHOGUN 125SP 25T TYPE S', 'FUKUYAMA', 13, 20, '', 0, 0, 0, 0),
+('24130-30A20F', 'AS GEAR DEPAN SHOGUN 110 30T TYPE S', 'FUKUYAMA', 3, 20, '', 0, 0, 0, 0),
+('2JG-17421-00F', 'AS GEAR DEPAN FORCE-1 TYPE Y', 'FUKUYAMA', 1, 20, 'PT MENTARI PRIMA SEMESTA KALBAR', 50000, 100000, 0, 0),
+('2JG-17421-00T', 'AS GEAR DEPAN ALFA TYPE Y', 'TOKAIDO', 4, 20, '', 0, 0, 0, 0),
+('3C1-17402-00F', 'AS GEAR DEPAN VIXION TYPE Y', 'FUKUYAMA', 2, 20, '', 0, 0, 0, 0),
+('4ST-17402-00F', 'AS GEAR DEPAN JUPITER/CRYPTON TYPE Y', 'FUKUYAMA', 7, 20, '', 0, 0, 0, 0),
+('5TP-17402-00F', 'AS GEAR DEPAN JUPITER Z 33T TYPE Y', 'FUKUYAMA', 7, 20, '', 0, 0, 0, 0),
+('BRG-175', 'FORK GEAR', 'ASPIRA', 0, 12, 'PT MENTARI PRIMA SEMESTA KALBAR', 9000, 18000, 0, 0),
+('BRG-176', 'SPRING FR FORK', 'ASPIRA', 0, 30, 'PT MENTARI PRIMA SEMESTA KALBAR', 300000, 600000, 0, 0),
+('BRG-177', '011111 SPRING FR FORK', 'ASPIRA', 0, 30, 'PT MENTARI PRIMA SEMESTA KALBAR', 300000, 600000, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -464,6 +472,13 @@ CREATE TABLE `tabel barang temp` (
   `sto_brg` int(12) NOT NULL,
   `supp_brg` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tabel barang temp`
+--
+
+INSERT INTO `tabel barang temp` (`kd_brg`, `nm_brg`, `hrg_brg`, `mrk_brg`, `sto_brg`, `supp_brg`) VALUES
+('BRG-178', 'asd123132', 0, 'DENSHIN', 20, 'PT MENTARI PRIMA SEMESTA KALBAR');
 
 -- --------------------------------------------------------
 
@@ -552,6 +567,8 @@ CREATE TABLE `tabel pusat temp` (
   `sto_brg` int(5) NOT NULL,
   `hrg_modal` int(50) NOT NULL,
   `hrg_jual` int(50) NOT NULL,
+  `hrg_jual2` int(12) NOT NULL,
+  `hrg_jual3` int(12) NOT NULL,
   `supp_brg` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `mrk_brg` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -588,6 +605,18 @@ CREATE TABLE `tabel transaksi` (
   `total_harga` int(12) NOT NULL,
   `status` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tabel transaksi`
+--
+
+INSERT INTO `tabel transaksi` (`id_trns`, `tgl_trns`, `total_harga`, `status`) VALUES
+('TRN-001', '2022-01-14', 55800, 'lunas'),
+('TRN-002', '2022-01-14', 118800, 'lunas'),
+('TRN-003', '2022-01-14', 86400, 'lunas'),
+('TRN-004', '2022-01-14', 55800, 'lunas'),
+('TRN-005', '2022-01-14', 55800, 'lunas'),
+('TRN-006', '2022-01-14', 59400, 'lunas');
 
 -- --------------------------------------------------------
 
@@ -735,6 +764,12 @@ ALTER TABLE `tabel pelanggan vip`
 --
 ALTER TABLE `tabel piutang`
   ADD PRIMARY KEY (`noktp`);
+
+--
+-- Indexes for table `tabel pusat temp`
+--
+ALTER TABLE `tabel pusat temp`
+  ADD PRIMARY KEY (`kd_brg`);
 
 --
 -- Indexes for table `tabel supplier`
