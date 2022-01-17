@@ -11,8 +11,8 @@ while ($data1 = mysqli_fetch_array($cari1)) {
      mysqli_query($conn, $sql2);
 
      $sql4 = "insert into `tabel barang pusat` 
-          (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `stock_gudang`, `supplier`, `hrg_modal`, `hrg_jual`) values 
-          ('$data1[kd_brg]', '$data1[nm_brg]', '$data1[mrk_brg]', 0,'$data1[sto_brg]' ,'$data1[supp_brg]', '$data1[hrg_modal]', '$data1[hrg_jual]')";
+          (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `stock_gudang`, `supplier`, `hrg_modal`, `hrg_jual`, hrg_jual2, hrg_jual3) values 
+          ('$data1[kd_brg]', '$data1[nm_brg]', '$data1[mrk_brg]', 0,'$data1[sto_brg]' ,'$data1[supp_brg]', '$data1[hrg_modal]', '$data1[hrg_jual]', '$data1[hrg_jual2]', '$data1[hrg_jual3]')";
      mysqli_query($conn, $sql4);
 }
 

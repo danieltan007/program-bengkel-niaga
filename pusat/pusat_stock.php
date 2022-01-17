@@ -610,6 +610,15 @@ $pass = $data['pass'];
                     success: function(data) {
                          if (data == "berhasil") {
                               $("#tempbrg").load("do_pusattampiltemp.php");
+                              // empty form
+                              $("#nama").val("");
+                              $("#merek").val("");
+                              $("#supplier").val("");
+                              $("#stok").val("");
+                              $("#hrg_modal").val("");
+                              $("#hrg_jual").val("");
+                              $("#hrg_jual2").val("");
+                              $("#hrg_jual3").val("");
                          } else {
                               alert("Data gagal di tambahkan! Silahkan coba lagi!");
                          }
@@ -624,7 +633,14 @@ $pass = $data['pass'];
                     success: function() {
                          alert("data berhasil di input!");
                          $("#tempbrg").load("do_pusattampiltemp.php");
-                         $("#tambahbrg").val('');
+                         $("#nama").val("");
+                         $("#merek").val("");
+                         $("#supplier").val("");
+                         $("#stok").val("");
+                         $("#hrg_modal").val("");
+                         $("#hrg_jual").val("");
+                         $("#hrg_jual2").val("");
+                         $("#hrg_jual3").val("");
                     }
                });
           });

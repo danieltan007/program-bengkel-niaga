@@ -130,11 +130,6 @@ session_start();
           var pilihan;
           var jbayar;
 
-          $("#mbayar").change(function() {
-               pilihan = $("#mbayar").val();
-               cek();
-          });
-
           $("#jbeli").change(function() {
                jbayar = $("#jbeli").val();
                cek();
@@ -224,6 +219,7 @@ session_start();
                          url: $(this).attr('href'),
                          success: function(data) {
                               update();
+                              totalharga();
                          },
                     });
                });
@@ -254,7 +250,6 @@ session_start();
 
           $(document).on("change", "select[id^='level_harga-']", function() {
                let hrg = $(this).val();
-               console.log("hrg = " + hrg);
                let kode = $(this).attr("id").substr(12, $(this).attr("id").length);
                $.ajax({
                     type: "post",
@@ -307,6 +302,9 @@ session_start();
           var error_mbayar = true;
 
           $("#mbayar").on("change", function() {
+               pilihan = $("#mbayar").val();
+               cek();
+
                if (pilihan == "") {
                     $("#mbayarErr").html("pilih metode bayar!");
                     $("#mbayar").css("outline-color", "red");
@@ -485,6 +483,9 @@ session_start();
                          alert("Masukkan form dengan lengkap dan benar!");
                          return false;
                     }
+               } else {
+                    alert("Pilih metode pembayaran!");
+                    return false;
                }
           });
 

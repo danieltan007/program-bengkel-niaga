@@ -24,7 +24,7 @@
 
 <div class="jumbotron">
      <div class="table-centered">
-          <h2 align="center">Cek Stok Toko</h2>
+          <h2 align="center">Cek Stok Gudang</h2>
           <br>
           &nbsp; Nama Barang &nbsp; <input type="text" id="cari" placeholder="masukkan nama barang" id="cari">
           <br><br>
@@ -78,24 +78,7 @@ $pass = $data['pass'];
 
           function reset() {
                $("#khusus").val('');
-          }
-
-          $(document).on("click", "a[data-role='edit']", function() {
-               var id = $(this).data('id');
-               var nama = $("#" + id).children("td[data-target=nama]").text();
-               var merek = $("#" + id).children("td[data-target=merek]").text();
-               var supp = $("#" + id).children("td[data-target=supp]").text();
-               var stok = $("#" + id).children("td[data-target=stok]").text();
-               var hrg = $("#" + id).children("td[data-target=hrg]").text();
-
-               $("#editnama").val(nama);
-               $("#ubahmerek").val(merek);
-               $("#editsupp").val(supp);
-               $("#editstok").val(stok);
-               $("#edithrg").val(hrg);
-               $("#kode").val(id);
-               $('#modaledit').modal('toggle');
-          });
+          };
 
           var kodebrg = "";
           $(document).on("change", "input[id^='jml_brg-']", function() {
@@ -108,19 +91,6 @@ $pass = $data['pass'];
                          kode: kode,
                          jml: jml
                     },
-                    success: function() {
-                         update();
-                    }
-               });
-          });
-
-          $(document).on("click", "a[id^='delbrg-']", function(e) {
-               e.preventDefault();
-
-               var kode = $(this).attr("id").substr(7, 14);
-               $.ajax({
-                    type: 'get',
-                    url: $(this).attr('href'),
                     success: function() {
                          update();
                     }

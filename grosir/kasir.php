@@ -84,7 +84,7 @@ if ($_SESSION['login grosir'] != "login") {
                     <a class="nav-link klik" id="laporan"><i class="fa fa-file-text"></i> Laporan</a>
                </li>
                <li class="nav-item">
-                    <a class="nav-link klik" id="stok_toko"><img src="box.ico" width="24" height="26"> Stok Toko</a>
+                    <a class="nav-link klik" id="stok_toko"><img src="box.ico" width="24" height="26"> Stok Gudang</a>
                </li>
                <li class="nav-item">
                     <a class="nav-link klik" id="cicil"><i class="fa fa-credit-card"></i> Belum Lunas</a>
