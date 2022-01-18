@@ -11,10 +11,10 @@ if ($merek == "" && $sup == "") {
      $sql = "select * from `tabel barang pusat` where nm_brg like '%$cari%' and mrk_brg = '$merek' ";
      $search = mysqli_query($conn, $sql);
 } else if ($merek == "" && $sup != "") {
-     $sql = "select * from `tabel barang pusat` where nm_brg like '%$cari%' and supp_brg = '$sup' ";
+     $sql = "select * from `tabel barang pusat` where nm_brg like '%$cari%' and supplier = '$sup' ";
      $search = mysqli_query($conn, $sql);
 } else {
-     $sql = "select * from `tabel barang pusat` where nm_brg like '%$cari%' and mrk_brg = '$merek' and supp_brg = '$sup' ";
+     $sql = "select * from `tabel barang pusat` where nm_brg like '%$cari%' and mrk_brg = '$merek' and supplier = '$sup' ";
      $search = mysqli_query($conn, $sql);
 }
 ?>

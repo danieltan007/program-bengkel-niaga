@@ -152,11 +152,11 @@
                                    <td>Stock</td>
                                    <td><input type="number" name="editstok" id="editstok" min="0"></td>
                               </tr>
-                              <tr>
+                              <!-- <tr>
                                    <td>Harga</td>
                                    <td><input type="number" name="edithrg" id="edithrg" min="0"></td>
                                    <input type="hidden" name="kode" id="kode">
-                              </tr>
+                              </tr> -->
                          </table>
                     </div>
 
@@ -197,7 +197,7 @@
 
 <?php
 include "../koneksi.php";
-$sql = mysqli_query($conn, "SELECT * FROM login where level = 'kasir'");
+$sql = mysqli_query($conn, "SELECT * FROM login where level = 'gudang'");
 $data = mysqli_fetch_array($sql);
 $pass = $data['pass'];
 ?>

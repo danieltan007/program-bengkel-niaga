@@ -14,8 +14,6 @@ Tanggal cetak: <?php echo $tgl1 ?>
           <th>Nama Barang</th>
           <th>Merek</th>
           <th>Jumlah Barang</th>
-          <th>Harga Satuan</th>
-          <th>Sub Total</th>
      </tr>
 
      <?php
@@ -23,9 +21,6 @@ Tanggal cetak: <?php echo $tgl1 ?>
      $cari = mysqli_query($conn, $sql1);
 
      while ($data = mysqli_fetch_array($cari)) {
-          $sql = "insert into `laporan barang keluar` (tgl_kirim, kd_brg, nm_brg, mrk_brg, jml_brg) values ('$tgl2', '$data[kd_brg]', '$data[nm_brg]', '$data[mrk_brg]', '$data[sto_brg]')";
-          mysqli_query($conn, $sql);
-
           $sql2 = "select * from `tabel barang pusat` where kd_brg = '$data[kd_brg]'";
           $cari2 = mysqli_query($conn, $sql2);
           $data2 = mysqli_fetch_array($cari2);
@@ -35,6 +30,16 @@ Tanggal cetak: <?php echo $tgl1 ?>
           $keluar = (int)$data['sto_brg'];
           $stokbaru = $stoklama - $keluar;
 
+          if (empty($stokbaru)) {
+               $stokbaru = 0;
+          } else if ($stokbaru < 0) {
+               exit("<script>alert('Stock barang " . $data['nm_brg'] . " tidak mencukupi'); window.location.href = 'gudang.php';</script>");
+          }
+
+
+          $sql = "insert into `laporan barang keluar` (tgl_kirim, kd_brg, nm_brg, mrk_brg, jml_brg) values ('$tgl2', '$data[kd_brg]', '$data[nm_brg]', '$data[mrk_brg]', '$data[sto_brg]')";
+          mysqli_query($conn, $sql);
+
           //update barang
           $sql3 = "update `tabel barang pusat` set stock_gudang = '$stokbaru' where kd_brg = '$data[kd_brg]' ";
           mysqli_query($conn, $sql3);
@@ -43,8 +48,6 @@ Tanggal cetak: <?php echo $tgl1 ?>
                <td><?php echo $data['nm_brg']; ?></td>
                <td><?php echo $data['mrk_brg']; ?></td>
                <td><?php echo $data['sto_brg']; ?></td>
-               <!-- <td><?php echo number_format($data['hrg_brg']); ?></td>
-               <td><?php echo number_format($subtotal); ?></td> -->
           </tr>
      <?php
      }
@@ -52,10 +55,6 @@ Tanggal cetak: <?php echo $tgl1 ?>
      $sql3 = "delete from `update barang temp`";
      mysqli_query($conn, $sql3);
      ?>
-     <tr>
-          <td colspan="4">Total Harga</td>
-          <td><?php echo number_format($total); ?></td>
-     </tr>
 </table>
 <br>
 <p align="center">Jangan lupa untuk mengecek kembali barang nya</p>

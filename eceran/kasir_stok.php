@@ -187,7 +187,7 @@ $pass = $data['pass'];
           });
 
           $(document).on("change", "input[id^='jml_brg-']", function() {
-               var kode = $(this).attr("id").substr(8, 15);
+               var kode = $(this).attr("id").substr(8, $(this).attr("id").length);
                var jml = $(this).val();
                $.ajax({
                     type: 'post',
@@ -205,7 +205,7 @@ $pass = $data['pass'];
           $(document).on("click", "a[id^='delbrg-']", function(e) {
                e.preventDefault();
 
-               var kode = $(this).attr("id").substr(7, 14);
+               var kode = $(this).attr("id").substr(7, $(this).attr("id").length);
                $.ajax({
                     type: 'get',
                     url: $(this).attr('href'),
@@ -214,39 +214,6 @@ $pass = $data['pass'];
                     }
                });
           });
-
-          // $("#editbarang").on("submit", function(e) {
-          //      var id = $("#kode").val();
-          //      var nama = $("#editnama").val();
-          //      var merek = $("#ubahmerek").val();
-          //      var supp = $("#editsupp").val();
-          //      var stok = $("#editstok").val();
-          //      var hrg = $("#edithrg").val();
-
-          //      e.preventDefault();
-
-          //      if (error_khusus === false) {
-          //           $.ajax({
-          //                url: "do_kasireditbrg.php",
-          //                data: $(this).serialize(),
-          //                type: 'post',
-          //                success: function(data) {
-          //                     alert(data);
-          //                     reset();
-          //                     $("#" + id).children("td[data-target=nama]").text(nama);
-          //                     $("#" + id).children("td[data-target=merek]").text(merek);
-          //                     $("#" + id).children("td[data-target=supp]").text(supp);
-          //                     $("#" + id).children("td[data-target=stok]").text(stok);
-          //                     $("#" + id).children("td[data-target=hrg]").text(hrg);
-          //                     $('#modaledit').modal('toggle');
-          //                },
-          //           });
-          //           return true;
-          //      } else {
-          //           alert("isi data dengan benar!");
-          //           return false;
-          //      }
-          // });
 
           function check_khusus() {
                $("#khusus").on("keyup", function() {
@@ -274,16 +241,18 @@ $pass = $data['pass'];
                $.ajax({
                     url: "do_kasirsimpanbrg.php",
                     type: 'post',
-                    success: function() {
-                         alert("data berhasil masuk");
-                         update();
+                    success: function(data) {
+                         if (data == 1) {
+                              alert("data berhasil masuk");
+                              update();
+                         } else if (data == 2) {
+                              alert("Data gagal masuk! Silahkan coba lagi!");
+                         } else {
+                              alert(data);
+                         }
                     },
                });
           });
-
-          // $('#modaledit').on('shown.bs.modal', function() {
-          //      $('#khusus').focus();
-          // });
 
           $('#modalhapus').on('shown.bs.modal', function() {
                $('#khusus').focus();
