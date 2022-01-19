@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2022 at 08:57 AM
+-- Generation Time: Jan 19, 2022 at 08:53 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `barang mekanik temp` (
-  `kd_brg` varchar(11) NOT NULL,
+  `kd_brg` varchar(20) NOT NULL,
   `nm_brg` text NOT NULL,
   `mrk_brg` text NOT NULL,
   `jml` int(11) NOT NULL,
@@ -38,6 +38,13 @@ CREATE TABLE `barang mekanik temp` (
   `total` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `barang mekanik temp`
+--
+
+INSERT INTO `barang mekanik temp` (`kd_brg`, `nm_brg`, `mrk_brg`, `jml`, `diskon`, `korting`, `hrg_brg`, `total`) VALUES
+('1DY-E7402-00T', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'DENSHIN', 1, 0, 0, 30000, 30000);
+
 -- --------------------------------------------------------
 
 --
@@ -46,7 +53,7 @@ CREATE TABLE `barang mekanik temp` (
 
 CREATE TABLE `daftar belanja temp` (
   `kd_brg` varchar(20) NOT NULL,
-  `nm_brg` varchar(20) NOT NULL,
+  `nm_brg` varchar(100) NOT NULL,
   `merek` varchar(20) NOT NULL,
   `jml_brg` int(7) NOT NULL,
   `diskon` int(3) NOT NULL,
@@ -76,8 +83,8 @@ CREATE TABLE `daftar grosir temp` (
 
 CREATE TABLE `daftar layanan temp` (
   `kd_trns` int(7) NOT NULL,
-  `kd_brg` varchar(20) NOT NULL,
-  `nm_brg` varchar(50) NOT NULL,
+  `kd_brg` varchar(25) NOT NULL,
+  `nm_brg` varchar(100) NOT NULL,
   `merek` varchar(20) NOT NULL,
   `diskon` int(3) NOT NULL,
   `korting` int(12) NOT NULL,
@@ -91,16 +98,6 @@ CREATE TABLE `daftar layanan temp` (
   `toko` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `daftar layanan temp`
---
-
-INSERT INTO `daftar layanan temp` (`kd_trns`, `kd_brg`, `nm_brg`, `merek`, `diskon`, `korting`, `ongkos`, `jenis`, `jml_brg`, `hrg_brg`, `subtotal`, `total`, `sumber`, `toko`) VALUES
-(1, '1DY-E7402-0', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'DENSHIN', 0, 0, 0, 'gani oli', 1, 20000, 20000, 20000, 'stok toko', ''),
-(2, '23221-GN5-9', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHIN', 0, 0, 0, 'gani oli', 1, 50000, 50000, 50000, 'stok toko', ''),
-(3, '23221-KFL-8', 'AS GEAR DEPAN SUPRA FIT NEW/REVO TYPE H', 'FUKUYAMA', 0, 0, 0, 'gani oli', 1, 100000, 100000, 100000, 'stok toko', ''),
-(4, '2JG-17421-0', 'AS GEAR DEPAN FORCE-1 TYPE Y', 'FUKUYAMA', 0, 0, 0, 'gani oli', 1, 100000, 100000, 100000, 'stok toko', '');
-
 -- --------------------------------------------------------
 
 --
@@ -110,8 +107,8 @@ INSERT INTO `daftar layanan temp` (`kd_trns`, `kd_brg`, `nm_brg`, `merek`, `disk
 CREATE TABLE `detail transaksi` (
   `tgl_trns` date NOT NULL,
   `id_trans` varchar(12) NOT NULL,
-  `kd_brg` varchar(8) NOT NULL,
-  `nm_brg` varchar(20) NOT NULL,
+  `kd_brg` varchar(20) NOT NULL,
+  `nm_brg` varchar(100) NOT NULL,
   `mrk_brg` text NOT NULL,
   `jml_beli` int(4) NOT NULL,
   `hrg_brg` int(12) NOT NULL,
@@ -126,7 +123,6 @@ CREATE TABLE `detail transaksi` (
 --
 
 INSERT INTO `detail transaksi` (`tgl_trns`, `id_trans`, `kd_brg`, `nm_brg`, `mrk_brg`, `jml_beli`, `hrg_brg`, `diskon`, `korting`, `total_harga`, `status`) VALUES
-('0000-00-00', 'DET-001', '', 'ban tubeless 12', 'astrea', 1, 0, 0, 0, 130000, 'lunas'),
 ('2020-09-02', 'DET-002', '', 'ban tubeless 12', 'astrea', 1, 0, 0, 0, 120000, 'lunas'),
 ('2020-09-03', 'DET-003', '', 'test', 'astrea', 1, 0, 0, 0, 100000, 'lunas'),
 ('2020-09-03', 'DET-004', '', 'test', 'astrea', 1, 0, 0, 0, 100000, 'cicil'),
@@ -162,8 +158,8 @@ INSERT INTO `detail transaksi` (`tgl_trns`, `id_trans`, `kd_brg`, `nm_brg`, `mrk
 
 CREATE TABLE `laporan barang keluar` (
   `tgl_kirim` date NOT NULL,
-  `kd_brg` varchar(12) CHARACTER SET utf8mb4 NOT NULL,
-  `nm_brg` varchar(50) NOT NULL,
+  `kd_brg` varchar(20) CHARACTER SET utf8mb4 NOT NULL,
+  `nm_brg` varchar(100) NOT NULL,
   `mrk_brg` varchar(20) NOT NULL,
   `jml_brg` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -220,7 +216,13 @@ INSERT INTO `laporan barang keluar` (`tgl_kirim`, `kd_brg`, `nm_brg`, `mrk_brg`,
 ('2020-09-04', 'BRG-012', 'apalah', 'Yamaha12', 10),
 ('2020-09-13', 'BRG-015', 'Iphone XRR', 'astronout', 12),
 ('2020-09-22', 'BRG-028', 'Ban Racing 125', 'Hrd', 10),
-('2022-01-16', '1DY-E7402-', 'AS GEAR DEPAN JU', 'DENSHIN', 12);
+('2022-01-16', '1DY-E7402-', 'AS GEAR DEPAN JU', 'DENSHIN', 12),
+('2022-01-18', '1DY-E7402-00T', 'AS GEAR DEPAN JU', 'DENSHIN', 32),
+('2022-01-18', '23221-GN5-910D', 'AS GEAR DEPAN SU', 'DENSHIN', 34),
+('2022-01-18', '1DY-E7402-00T', 'AS GEAR DEPAN JU', 'DENSHIN', -32),
+('2022-01-18', '23221-GN5-910D', 'AS GEAR DEPAN SU', 'DENSHIN', -3),
+('2022-01-18', '23221-GN5-910D', 'AS GEAR DEPAN SU', 'DENSHIN', 3),
+('2022-01-18', '1DY-E7402-00T', 'AS GEAR DEPAN JU', 'DENSHIN', 30);
 
 -- --------------------------------------------------------
 
@@ -230,8 +232,8 @@ INSERT INTO `laporan barang keluar` (`tgl_kirim`, `kd_brg`, `nm_brg`, `mrk_brg`,
 
 CREATE TABLE `laporan barang masuk` (
   `tgl_dtg` date NOT NULL,
-  `kd_brg` varchar(12) NOT NULL,
-  `nm_brg` varchar(50) NOT NULL,
+  `kd_brg` varchar(20) NOT NULL,
+  `nm_brg` varchar(100) NOT NULL,
   `mrk_brg` varchar(30) NOT NULL,
   `jml_brg` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -268,7 +270,13 @@ INSERT INTO `laporan barang masuk` (`tgl_dtg`, `kd_brg`, `nm_brg`, `mrk_brg`, `j
 ('2022-01-17', 'BRG-178', 'test123123', 'DENSHIN', 22),
 ('2022-01-17', 'BRG-180', 'test12312', 'DENSHIN', 22),
 ('2022-01-17', 'BRG-182', 'test12312', 'DENSHIN', 21),
-('2022-01-17', 'BRG-183', 'test12312', 'DENSHIN', 21);
+('2022-01-17', 'BRG-183', 'test12312', 'DENSHIN', 21),
+('2022-01-18', '1DY-E7402-', 'AS GEAR DEPAN JU', 'DENSHIN', 15),
+('2022-01-18', '23221-GN5-', 'AS GEAR DEPAN SU', 'DENSHIN', 16),
+('2022-01-18', '1DY-E7402-', 'AS GEAR DEPAN JU', 'DENSHIN', 20),
+('2022-01-18', '23221-GN5-', 'AS GEAR DEPAN SU', 'DENSHIN', 20),
+('2022-01-18', '1DY-E7402-00T', 'AS GEAR DEPAN JU', 'DENSHIN', 20),
+('2022-01-18', '23221-GN5-910D', 'AS GEAR DEPAN SU', 'DENSHIN', 20);
 
 -- --------------------------------------------------------
 
@@ -329,7 +337,7 @@ CREATE TABLE `laporan penjualan` (
   `id_trns` varchar(10) NOT NULL,
   `tgl_jual` date NOT NULL,
   `user` varchar(15) NOT NULL,
-  `nm_brg` varchar(50) NOT NULL,
+  `nm_brg` varchar(100) NOT NULL,
   `jasa` varchar(50) NOT NULL,
   `jumlah` int(4) NOT NULL,
   `harga_jual` int(12) NOT NULL,
@@ -444,9 +452,9 @@ CREATE TABLE `tabel barang pusat` (
 --
 
 INSERT INTO `tabel barang pusat` (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `stock_gudang`, `supplier`, `hrg_modal`, `hrg_jual`, `hrg_jual2`, `hrg_jual3`) VALUES
-('1DY-E7402-00T', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'DENSHIN', 1, 11, 'PT MENTARI PRIMA SEMESTA KALBAR', 15000, 30000, 27000, 25500),
-('23221-GN5-910D', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHIN', 1, 14, 'PT HONDA', 18000, 36000, 0, 0),
-('23221-GN5-910F', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'FUKUYAMA', 1, 20, '', 10000, 20000, 0, 0),
+('1DY-E7402-00T', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'DENSHIN', 5, 20, 'PT MENTARI PRIMA SEMESTA KALBAR', 15000, 30000, 27000, 25500),
+('23221-GN5-910D', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHIN', 4, 15, 'PT HONDA', 18000, 36000, 0, 0),
+('23221-GN5-910F', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'FUKUYAMA', 4, 17, '', 10000, 20000, 0, 0),
 ('23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHIN', 10, 20, 'PT MENTARI PRIMA SEMESTA KALBAR', 30000, 60000, 0, 0),
 ('23221-KFL-860D', 'AS GEAR DEPAN SUPRA FIT NEW/REVO TYPE H', 'DENSHIN', 5, 20, '', 0, 0, 0, 0),
 ('23221-KFL-860T', 'AS GEAR DEPAN SUPRA FIT NEW/REVO TYPE H', 'FUKUYAMA', 10, 20, 'PT MENTARI PRIMA SEMESTA KALBAR', 50000, 100000, 0, 0),
@@ -460,10 +468,10 @@ INSERT INTO `tabel barang pusat` (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `
 ('3C1-17402-00F', 'AS GEAR DEPAN VIXION TYPE Y', 'FUKUYAMA', 2, 20, '', 0, 0, 0, 0),
 ('4ST-17402-00F', 'AS GEAR DEPAN JUPITER/CRYPTON TYPE Y', 'FUKUYAMA', 7, 20, '', 0, 0, 0, 0),
 ('5TP-17402-00F', 'AS GEAR DEPAN JUPITER Z 33T TYPE Y', 'FUKUYAMA', 7, 20, '', 0, 0, 0, 0),
-('BRG-175', 'FORK GEAR', 'ASPIRA', 0, 12, 'PT MENTARI PRIMA SEMESTA KALBAR', 9000, 18000, 0, 0),
+('BRG-175', 'FORK GEAR', 'ASPIRA', 2, 10, 'PT MENTARI PRIMA SEMESTA KALBAR', 9000, 18000, 0, 0),
 ('BRG-176', 'SPRING FR FORK', 'ASPIRA', 0, 30, 'PT MENTARI PRIMA SEMESTA KALBAR', 300000, 600000, 0, 0),
 ('BRG-177', '011111 SPRING FR FORK', 'ASPIRA', 0, 30, 'PT MENTARI PRIMA SEMESTA KALBAR', 300000, 600000, 0, 0),
-('BRG-178', 'test123123', 'DENSHIN', 0, 22, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 50000, 0, 0),
+('BRG-178', 'test123123', 'DENSHIN', 20, 2, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 50000, 0, 0),
 ('BRG-180', 'test12312', 'DENSHIN', 0, 22, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 50000, 0, 0),
 ('BRG-182', 'test12312', 'DENSHIN', 0, 21, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 40000, 0, 0),
 ('BRG-183', 'test12312', 'DENSHIN', 0, 21, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 40000, 34000, 32000);
@@ -475,8 +483,8 @@ INSERT INTO `tabel barang pusat` (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `
 --
 
 CREATE TABLE `tabel barang temp` (
-  `kd_brg` varchar(8) NOT NULL,
-  `nm_brg` varchar(50) NOT NULL,
+  `kd_brg` varchar(20) NOT NULL,
+  `nm_brg` varchar(100) NOT NULL,
   `hrg_brg` int(12) NOT NULL,
   `mrk_brg` varchar(20) NOT NULL,
   `sto_brg` int(12) NOT NULL,
@@ -488,7 +496,8 @@ CREATE TABLE `tabel barang temp` (
 --
 
 INSERT INTO `tabel barang temp` (`kd_brg`, `nm_brg`, `hrg_brg`, `mrk_brg`, `sto_brg`, `supp_brg`) VALUES
-('BRG-178', 'asd123132', 0, 'DENSHIN', 20, 'PT MENTARI PRIMA SEMESTA KALBAR');
+('1DY-E7402-00T', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 30000, 'DENSHIN', 5, 'PT MENTARI PRIMA SEMESTA KALBAR'),
+('23221-GN5-910D', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 36000, 'DENSHIN', 4, 'PT HONDA');
 
 -- --------------------------------------------------------
 
@@ -528,7 +537,7 @@ INSERT INTO `tabel bonus` (`id_mekanik`, `nm_mekanik`, `periode awal`, `periode 
 
 CREATE TABLE `tabel laporan` (
   `tgl_rpt` date NOT NULL,
-  `nm_brg` varchar(50) NOT NULL,
+  `nm_brg` varchar(100) NOT NULL,
   `jml_beli` int(16) NOT NULL,
   `hrg_brg` int(16) NOT NULL,
   `t_hrg` int(16) NOT NULL,
@@ -573,7 +582,7 @@ CREATE TABLE `tabel piutang` (
 
 CREATE TABLE `tabel pusat temp` (
   `kd_brg` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nm_brg` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nm_brg` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sto_brg` int(5) NOT NULL,
   `hrg_modal` int(50) NOT NULL,
   `hrg_jual` int(50) NOT NULL,
@@ -627,7 +636,8 @@ INSERT INTO `tabel transaksi` (`id_trns`, `tgl_trns`, `total_harga`, `status`) V
 ('TRN-004', '2022-01-14', 55800, 'lunas'),
 ('TRN-005', '2022-01-14', 55800, 'lunas'),
 ('TRN-006', '2022-01-14', 59400, 'lunas'),
-('TRN-007', '2022-01-17', 24000, 'lunas');
+('TRN-007', '2022-01-17', 24000, 'lunas'),
+('TRN-008', '2022-01-19', 0, 'lunas');
 
 -- --------------------------------------------------------
 
@@ -641,6 +651,14 @@ CREATE TABLE `table mekanik` (
   `no_hp` varchar(12) NOT NULL,
   `no_ktp` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `table mekanik`
+--
+
+INSERT INTO `table mekanik` (`id_mekanik`, `nm_mekanik`, `no_hp`, `no_ktp`) VALUES
+('MEK-001', 'danieltan', '0845164861', '07894141654'),
+('MEK-002', 'danieltan2', '0846131311', '0813138468');
 
 -- --------------------------------------------------------
 
@@ -669,8 +687,8 @@ INSERT INTO `table merek` (`kd_merk`, `mrk_brg`) VALUES
 --
 
 CREATE TABLE `update barang temp` (
-  `kd_brg` varchar(10) NOT NULL,
-  `nm_brg` varchar(16) NOT NULL,
+  `kd_brg` varchar(20) NOT NULL,
+  `nm_brg` varchar(100) NOT NULL,
   `hrg_brg` int(12) NOT NULL,
   `mrk_brg` text NOT NULL,
   `sto_brg` int(8) NOT NULL,
@@ -686,10 +704,10 @@ CREATE TABLE `update barang temp` (
 CREATE TABLE `utang toko` (
   `kd_utg` varchar(8) NOT NULL DEFAULT 'UTG-001',
   `tgl_trns` date NOT NULL,
-  `nm_brg` varchar(50) NOT NULL,
+  `nm_brg` varchar(100) NOT NULL,
   `hrg_brg` int(16) NOT NULL,
   `total_harga` int(12) NOT NULL,
-  `nm_toko` varchar(20) NOT NULL,
+  `nm_toko` varchar(40) NOT NULL,
   `ket` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
