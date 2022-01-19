@@ -225,13 +225,8 @@ $pass = $data['pass'];
                          $("#khususErr").css("color", "red");
                          error_khusus = true;
                     } else if (khusus != password_akun) {
-                         $("#khususErr").html("Password Salah!");
-                         $("#khusus").css("outline-color", "red");
-                         $("#khususErr").css("color", "red");
                          error_khusus = true;
                     } else {
-                         $("#khususErr").html("");
-                         $("#khusus").css("outline-color", "green");
                          error_khusus = false;
                     }
                });

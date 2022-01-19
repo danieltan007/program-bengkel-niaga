@@ -2,7 +2,6 @@
      include "../koneksi.php";
 
      $nama = $_POST['nama'];
-     $alamat = $_POST['alamat'];
      $nohp = $_POST['nohp'];
      $noktp = $_POST['noktp'];
 
@@ -16,5 +15,9 @@
      $kd_mekanik = "MEK-" . sprintf("%03s", $ubah1);
 
      $sql = mysqli_query($conn, "insert into `table mekanik` values ('$kd_mekanik', '$nama', '$nohp', '$noktp') ");
-     
+if (mysqli_affected_rows($conn) > 0) {
+     echo 1;
+} else {
+     echo 0;
+}
 ?>

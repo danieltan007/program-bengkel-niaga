@@ -20,7 +20,7 @@
                </tr>
                <tr>
                     <td>Password Khusus</td>
-                    <td><input type="text" maxlength="50" id="khusus" name="khusus" autocomplete="off"></td>
+                    <td><input type="password" maxlength="50" id="khusus" name="khusus" autocomplete="off"></td>
                     <div class="error" id="khususErr">
                </tr>
           </table>
@@ -40,7 +40,7 @@
 include "../koneksi.php";
 $sql = mysqli_query($conn, "select * from login where level = 'mekanik'");
 $data = mysqli_fetch_array($sql);
-$password = $data['password'];
+$password = $data['pass'];
 ?>
 
 <script>
@@ -50,7 +50,7 @@ $password = $data['password'];
           let error_nohp = true;
           let error_khusus = true;
           let nama, pattern, nohp, khusus;
-          let cek_khusus = <?= $password ?>;
+          let cek_khusus = "<?= $password ?>";
 
           $("#tampil").load("do_mekaniktampil.php");
 
@@ -189,6 +189,23 @@ $password = $data['password'];
                     alert("Mohon lengkapi data dengan benar!");
                     return false;
                }
+          });
+
+          $(document).on("click", "a[id='delete-']", function(e) {
+               e.preventDefault();
+
+               $.ajax({
+                    type: "get",
+                    url: $(this).attr("href"),
+                    success: function(data) {
+                         if (data == 1) {
+                              alert("berhasil hapus mekanik!");
+                              $("#tampil").load("do_mekaniktampil.php");
+                         } else {
+                              alert("Gagal hapus mekanik! Silahkan coba lagi!");
+                         }
+                    }
+               });
           });
      });
 </script>

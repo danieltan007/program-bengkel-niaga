@@ -40,6 +40,20 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                     $cek2 = mysqli_query($conn, $sql3);
                     $data2 = mysqli_fetch_array($cek2);
 
+                    $brgbeli = (int)$data['jml_brg'];
+                    $brgstok = (int)$data2['stock_toko'];
+                    $sisastok = $brgstok - $brgbeli;
+
+                    if (empty($sisastok)) {
+                         $sisastok = 0;
+                    } else if ($sisastok < 0) {
+                         exit("
+                         <script>
+                              alert('Stock barang " . $data['nm_brg'] . " tidak mencukupi');
+                              window.location.href = 'kasir.php';
+                         </script>");
+                    }
+
                     //kode DET-001 detail transaksi
                     $query1 = "select max(id_trans) as maxkode from `detail transaksi`";
                     $hasil2 = mysqli_query($conn, $query1);
@@ -74,10 +88,6 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                ('$kodetrans3', '$kodetrans2', '$tgl', 'kasir 1', '$data[nm_brg]', 'jual barang', '$data[jml_brg]', '$jual', '$modal', '$profit')";
                     mysqli_query($conn, $sql6);
                     // mysqli_error($conn);
-
-                    $brgbeli = (int)$data['jml_brg'];
-                    $brgstok = (int)$data2['stock_toko'];
-                    $sisastok = $brgstok - $brgbeli;
 
                     $sql4 = "update `tabel barang pusat` set stock_toko = '$sisastok' where kd_brg = '$data[kd_brg]'";
                     $cek3 = mysqli_query($conn, $sql4);

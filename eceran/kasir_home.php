@@ -224,6 +224,7 @@ session_start();
                          url: $(this).attr('href'),
                          success: function(data) {
                               update();
+                              totalharga();
                          },
                     });
                });
@@ -246,8 +247,8 @@ session_start();
                          jml: jml
                     },
                     success: function() {
-                         totalharga();
                          update();
+                         totalharga();
                     }
                });
           });
@@ -280,7 +281,6 @@ session_start();
                          korting: korting
                     },
                     success: function() {
-                         console.log(kode3);
                          totalharga();
                          update();
                     }
