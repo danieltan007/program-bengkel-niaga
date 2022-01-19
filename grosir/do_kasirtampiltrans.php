@@ -24,7 +24,7 @@ if (empty($_POST['awal']) || empty($_POST['akhir'])) {
 
           while ($data = mysqli_fetch_array($cek)) {
           ?>
-
+               
                <tr>
                     <td><?php echo $data['tgl_trns'] ?></td>
                     <td><?php echo $data['nm_brg'] ?></td>

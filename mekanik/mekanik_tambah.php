@@ -15,7 +15,7 @@
                </tr>
                <tr>
                     <td>No Hp</td>
-                    <td><input type="text" maxlength="50" id="nohp" name="nohp" autocomplete="off"></td>
+                    <td><input type="text" maxlength="12" id="nohp" name="nohp" autocomplete="off"></td>
                     <div class="error" id="nohpErr">
                </tr>
                <tr>
@@ -53,6 +53,19 @@ $password = $data['pass'];
           let cek_khusus = "<?= $password ?>";
 
           $("#tampil").load("do_mekaniktampil.php");
+
+          $(document).on("click", "a[id^='delete-']", function(e) {
+               e.preventDefault();
+
+               $.ajax({
+                    type: "get",
+                    url: $(this).attr("href"),
+                    success: function(data) {
+                         alert("berhasil hapus mekanik!");
+                         $("#tampil").load("do_mekaniktampil.php");
+                    },
+               });
+          });
 
           $("#nama").keyup(function() {
                var nama = $("#nama").val();
@@ -156,12 +169,8 @@ $password = $data['pass'];
                     $("#khusus").css("outline-color", "red");
                     error_khusus = true;
                } else if (khusus == cek_khusus) {
-                    $("#khususErr").html("");
-                    $("#khusus").css("outline-color", "green");
                     error_khusus = false;
                } else {
-                    $("#khususErr").html("Password khusus salah!");
-                    $("#khusus").css("outline-color", "red");
                     error_khusus = true;
                }
           });
@@ -177,6 +186,10 @@ $password = $data['pass'];
                          success: function(data) {
                               if (data == 1) {
                                    alert("berhasil tambah mekanik!");
+                                   $("#nama").val("");
+                                   $("#nohp").val("");
+                                   $("#noktp").val("");
+                                   $("#khusus").val("");
                                    $("#tampil").load("do_mekaniktampil.php");
                                    return true;
                               } else {
@@ -189,23 +202,6 @@ $password = $data['pass'];
                     alert("Mohon lengkapi data dengan benar!");
                     return false;
                }
-          });
-
-          $(document).on("click", "a[id='delete-']", function(e) {
-               e.preventDefault();
-
-               $.ajax({
-                    type: "get",
-                    url: $(this).attr("href"),
-                    success: function(data) {
-                         if (data == 1) {
-                              alert("berhasil hapus mekanik!");
-                              $("#tampil").load("do_mekaniktampil.php");
-                         } else {
-                              alert("Gagal hapus mekanik! Silahkan coba lagi!");
-                         }
-                    }
-               });
           });
      });
 </script>

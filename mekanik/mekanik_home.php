@@ -417,10 +417,6 @@
                          $("#namaErr").html("hanya boleh nama dan spasi!");
                          $("#nama").css("outline-color", "red");
                          error_nama = true;
-                    } else if (nama.length < 6) {
-                         $("#namaErr").html("nama harus lebih dari 6 karakter!");
-                         $("#nama").css("outline-color", "red");
-                         error_nama = true;
                     } else {
                          $.ajax({
                               url: "do_mekanikceknama.php",

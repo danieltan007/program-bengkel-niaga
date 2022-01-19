@@ -9,7 +9,7 @@ else
 {
 	$kode = $_POST['kode'];
 	$bayar = $_POST['byr'];
-	$sisa = $_POST['sisabyr'];
+	$sisa = $_POST['sisa_byr'];
 	$cek = mysqli_query($conn, "SELECT * FROM `tabel piutang` where noktp = '$kode'"); 
 
 	$lunas = $sisa - $bayar;

@@ -36,6 +36,10 @@ if (mysqli_num_rows($cari) < 1) { ?>
      <br>
      <hr>
      <table stlye="font-size:8px;" border=0 align="center">
+          <tr>
+               <td colspan="2">Jasa</td>
+               <td colspan="2">Nama Barang</td>
+          </tr>
           <?php
           while ($data = mysqli_fetch_array($cari)) {
                if ($data['sumber'] == 'stok toko') {
@@ -204,28 +208,18 @@ if (mysqli_num_rows($cari) < 1) { ?>
                     (kd_lap, id_mekanik, tgl, nm_mknk, reparasi, id_lap_jual) values 
                     ('$kodetrans10', '$mekanik', '$tgl', '$data9[nm_mekanik]', '$data[jenis]', '$kodetrans3')";
                     mysqli_query($conn, $sql8);
-
-
                     // echo print_r(mysqli_error($conn));
                }
-
-
           ?>
                <tr>
-                    <td colspan="4">Jasa</td>
-               </tr>
-               <tr>
                     <td colspan="2"><?php echo $data['jenis']; ?></td>
-                    <td colspan="2"><?php echo $data['ongkos'] ?></td>
-               </tr>
-               <tr>
-                    <td colspan="4"><?php echo $data['nm_brg']; ?></td>
+                    <td colspan="2"><?php echo $data['nm_brg']; ?></td>
                </tr>
                <Tr>
-                    <td><?php echo number_format($data['subtotal']); ?></td>
-                    <td><?php echo $data['jml_brg']; ?></td>
-                    <td>-<?php echo $data['diskon']; ?>%</td>
-                    <td><?php echo number_format($data['total']); ?></td>
+                    <td><?php echo "subtotal : " . number_format($data['subtotal']); ?></td>
+                    <td><?php echo "jumlah barang : " . $data['jml_brg']; ?></td>
+                    <td>-<?php echo "diskon : " . $data['diskon']; ?>%</td>
+                    <td><?php echo "total : " . number_format($data['total']); ?></td>
                </Tr>
           <?php    }
           $sql = "insert into `tabel piutang` (noktp, nama, alamat, `no hp`, tgl_trns, t_hrg, sisa_byr, id_trns) values ('$noktp', '$nama', '$alamat', '$nohp', '$tgl', '$total', '$sisa' ,'$kodetrans2')";
