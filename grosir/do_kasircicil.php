@@ -6,7 +6,6 @@
 <?php
 include "../koneksi.php";
 
-$jbeli = $_POST['jbeli'];
 $mbayar = $_POST['mbayar'];
 $noktp = $_POST['noktp'];
 $nama = $_POST['nama'];

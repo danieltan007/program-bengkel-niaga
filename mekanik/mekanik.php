@@ -64,7 +64,7 @@ if ($_SESSION['login mekanik'] != "login") {
 </head>
 
 <body>
-     <nav class="navbar navbar-expand-md bg-primary">
+     <nav class="navbar navbar-expand-md bg-primary navbar-light">
           <a class="navbar-brand" style="font-size:26px; padding-left:20px;"><i class="fa fa-wrench"></i> KASIR MEKANIK</a>
           <ul class="navbar-nav">
                <li class="nav-item">
@@ -88,8 +88,9 @@ if ($_SESSION['login mekanik'] != "login") {
           </ul>
      </nav>
 
-     <div class="tampil">
-
+     <div class="container">
+          <div class="tampil">
+          </div>
      </div>
 
      <script>

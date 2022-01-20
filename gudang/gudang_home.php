@@ -152,11 +152,6 @@
                                    <td>Stock</td>
                                    <td><input type="number" name="editstok" id="editstok" min="0"></td>
                               </tr>
-                              <!-- <tr>
-                                   <td>Harga</td>
-                                   <td><input type="number" name="edithrg" id="edithrg" min="0"></td>
-                                   <input type="hidden" name="kode" id="kode">
-                              </tr> -->
                          </table>
                     </div>
 
@@ -164,9 +159,8 @@
                     <div class="modal-footer">
                          <button class="btn btn-success" type="submit" id="ubah"><i class="fa fa-edit"></i> Ubah</button>
                </form>
-               <button class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i>Close</button>
+               <button class="btn btn-danger" type="button" data-bs-dismiss="modal"><i class="fa fa-close"></i>Close</button>
           </div>
-
      </div>
 </div>
 </div>
@@ -188,7 +182,7 @@
                <!-- Modal footer -->
                <div class="modal-footer">
                     <button class="btn btn-success" type="submit" id="hapusbrg"><i class="fa fa-check"></i> Ya</button>
-                    <button class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Tidak</button>
+                    <button class="btn btn-danger" type="button" data-bs-dismiss="modal"><i class="fa fa-close"></i> Tidak</button>
                </div>
 
           </div>
@@ -460,9 +454,11 @@ $pass = $data['pass'];
                $("#editstok").val(stok);
                $("#edithrg").val(hrg);
                $("#kode").val(id);
+               $('#modaledit').modal('show');
                $('#modaledit').modal({
                     focus: true
                });
+
           });
 
           $('#modaledit').on('shown.bs.modal', function() {

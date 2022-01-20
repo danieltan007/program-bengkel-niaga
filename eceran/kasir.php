@@ -97,8 +97,9 @@ if ($_SESSION['login kasir'] != "login") {
           </ul>
      </nav>
 
-     <div class="tampil">
-
+     <div class="container">
+          <div class="tampil">
+          </div>
      </div>
 
      <script>

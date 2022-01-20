@@ -57,7 +57,7 @@
                     <div class="modal-footer">
                          <button class="btn btn-success" type="submit"><i class="fa fa-money"></i> Bayar</button>
                </form>
-               <button class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i>Close</button>
+               <button class="btn btn-danger" type="button" data-bs-dismiss="modal"><i class="fa fa-close"></i>Close</button>
           </div>
 
      </div>

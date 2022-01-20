@@ -1,5 +1,6 @@
 <?php
 include "../koneksi.php";
+error_reporting(0);
 $cari = $_POST['cari'];
 $merek = $_POST['merek'];
 $sup = $_POST['sup'];

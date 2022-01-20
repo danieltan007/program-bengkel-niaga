@@ -67,7 +67,7 @@
                <!-- Modal footer -->
                <div class="modal-footer">
                     <button class="btn btn-success" type="submit" id="hapusbrg"><i class="fa fa-check"></i> Ya</button>
-                    <button class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Tidak</button>
+                    <button class="btn btn-danger" type="button" data-bs-dismiss="modal"><i class="fa fa-close"></i> Tidak</button>
                </div>
 
           </div>

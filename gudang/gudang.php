@@ -77,7 +77,7 @@ if ($_SESSION['login gudang'] != "login") {
 </head>
 
 <body>
-     <nav class="navbar navbar-expand-md  bg-primary">
+     <nav class="navbar navbar-expand-md bg-primary navbar-light">
           <a class="navbar-brand" style="font-size:26px; padding-left:20px;"><img src="../assets/gudang.png" width="30" height="30"> GUDANG</a>
           <ul class="navbar-nav">
                <li class="nav-item">
@@ -95,8 +95,9 @@ if ($_SESSION['login gudang'] != "login") {
           </ul>
      </nav>
 
-     <div class="tampil">
-
+     <div class="container">
+          <div class="tampil">
+          </div>
      </div>
 
      <script>
