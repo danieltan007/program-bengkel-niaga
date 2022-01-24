@@ -40,6 +40,19 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                $cek2 = mysqli_query($conn, $sql3);
                $data2 = mysqli_fetch_array($cek2);
 
+               $brgbeli = (int)$data['jml_brg'];
+               $brgstok = (int)$data2['stock_gudang'];
+               $sisastok = $brgstok - $brgbeli;
+
+               if (empty($sisastok)) {
+                    $sisastok = 0;
+               } else if ($sisastok < 0) {
+                    exit("<script>
+                              alert('Stock barang " . $data['nm_brg'] . " tidak mencukupi!');
+                              window.location.href = 'kasir.php';
+                         </script>");
+               }
+
                //kode det-001
                $query1 = "select max(id_trans) as maxkode from `detail transaksi`";
                $hasil2 = mysqli_query($conn, $query1);
@@ -60,7 +73,6 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                ('$tgl', '$kodetrans2', '$data2[nm_brg]', '$data2[mrk_brg]', '$data[jml_brg]', '$data[st_hrg]', '$diskon', '$data[t_hrg]', 'Cicil', '$data[kd_brg]', '0')";
                mysqli_query($conn, $sql5);
 
-
                //kode LAP-001 laporan penjualan
                $query2 = "select max(id_lap_jual) as maxkode from `laporan penjualan`";
                $hasil3 = mysqli_query($conn, $query2);
@@ -73,12 +85,11 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                $sql6 = "INSERT INTO `laporan penjualan` (`id_lap_jual`, `id_trns`, `tgl_jual`, `user`, `nm_brg`, `jasa`, `jumlah`, `harga_jual`, `modal_brg`, `profit_brg`) VALUES ('$kodetrans3', '$kodetrans2', '$tgl', 'grosir', '$data2[nm_brg]', 'jual barang', '$data[jml_brg]', '$jual', '$modal', '$profit')";
                mysqli_query($conn, $sql6);
 
-               $brgbeli = (int)$data['jml_brg'];
-               $brgstok = (int)$data2['stock_gudang'];
-               $sisastok = $brgstok - $brgbeli;
-
                $sql4 = "update `tabel barang pusat` set stock_gudang = '$sisastok' where kd_brg = '$data[kd_brg]'";
                $cek3 = mysqli_query($conn, $sql4);
+
+               // input ke tabel transaksi grosir
+               $sql8 = mysqli_query($conn, "insert into `tabel transaksi grosir` values ('$kodetrans2', '$nama')");
           ?>
                <tr>
                     <td colspan="4"><?php echo $data2['nm_brg']; ?></td>

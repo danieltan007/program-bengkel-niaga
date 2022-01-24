@@ -8,7 +8,7 @@
 include "../koneksi.php";
 
 // ! nnti mau di perbaiki lagi
-
+$nama = $_POST['nama'];
 $total = $_POST['total'];
 $bayar = $_POST['bayar'];
 $sisa = $_POST['kembalian'];
@@ -36,6 +36,19 @@ $dapat = mysqli_query($conn, $sql1);
                $cek2 = mysqli_query($conn, $sql3);
                $data2 = mysqli_fetch_array($cek2);
 
+               $brgbeli = (int)$data['jml_brg'];
+               $brgstok = (int)$data2['stock_gudang'];
+               $sisastok = $brgstok - $brgbeli;
+
+               if (empty($sisastok)) {
+                    $sisastok = 0;
+               } else if ($sisastok < 0) {
+                    exit("<script>
+                              alert('Stock barang " . $data['nm_brg'] . " tidak mencukupi!');
+                              window.location.href = 'kasir.php';
+                         </script>");
+               }
+
                $diskon = 0;
                //kode DET-001 detail transaksi
                $query1 = "select max(id_trans) as maxkode from `detail transaksi`";
@@ -53,7 +66,7 @@ $dapat = mysqli_query($conn, $sql1);
                $diskon = ($data2['hrg_jual'] - $jual) / $data2['hrg_jual'] * 100;
 
                $sql5 = "insert into `detail transaksi` 
-               (tgl_trns, id_trans, kd_brg,  nm_brg, mrk_brg, jml_beli, hrg_brg, diskon, total_harga, status, korting) values 
+               (tgl_trns, id_trans, kd_brg, nm_brg, mrk_brg, jml_beli, hrg_brg, diskon, total_harga, status, korting) values 
                ('$tgl', '$kodetrans2', '$data[kd_brg]', '$data2[nm_brg]', '$data2[mrk_brg]', '$data[jml_brg]', '$data[st_hrg]', '$diskon', '$data[t_hrg]', 'Lunas', '0')";
                mysqli_query($conn, $sql5);
 
@@ -71,9 +84,7 @@ $dapat = mysqli_query($conn, $sql1);
                ('$kodetrans3', '$kodetrans2', '$tgl', 'grosir', '$data2[nm_brg]', 'jual barang', '$data[jml_brg]', '$jual', '$modal', '$profit')";
                mysqli_query($conn, $sql6);
 
-               $brgbeli = (int)$data['jml_brg'];
-               $brgstok = (int)$data2['stock_gudang'];
-               $sisastok = $brgstok - $brgbeli;
+               $sql8 = mysqli_query($conn, "insert into `tabel transaksi grosir` values ('$kodetrans2', '$nama')");
 
                $sql4 = "update `tabel barang pusat` set stock_gudang = '$sisastok' where kd_brg = '$data[kd_brg]'";
                mysqli_query($conn, $sql4);

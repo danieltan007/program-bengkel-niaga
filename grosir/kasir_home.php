@@ -76,7 +76,7 @@ session_start();
                               <td><input type="number" name="noktp" id="noktp" maxlength="9999999999999999" autocomplete="off"></td>
                               <div class="error" id="noktpErr"></div>
                          </tr>
-                         <tr class="belumlunas2" style="display:none">
+                         <tr>
                               <td>Nama</td>
                               <td><input type="text" name="nama" id="nama" maxlength="50" autocomplete="off"></td>
                               <div class="error" id="namaErr"></div>
@@ -113,7 +113,7 @@ session_start();
           </div>
      </div>
 </div>
-
+<br><br>
 <div class="container">
      <h2 align="center">Tampilkan Transaksi</h2>
      <br>
@@ -138,16 +138,13 @@ session_start();
           function cek() {
                if (pilihan == "cicil") {
                     $(".belumlunas").css("display", "");
-                    $(".belumlunas2").css("display", "");
                     $(".belumlunas3").css("display", "");
                     $(".belumlunas4").css("display", "");
-                    check_nama();
                     check_nohp();
                     check_noktp();
                     check_bayar();
                } else if (pilihan == "lunas") {
                     $(".belumlunas").css("display", "none");
-                    $(".belumlunas2").css("display", "none");
                     $(".belumlunas3").css("display", "none");
                     $(".belumlunas4").css("display", "none");
                     check_bayar();
@@ -316,43 +313,37 @@ session_start();
                }
           });
 
-          function check_nama() {
-               $("#nama").keyup(function() {
-                    var nama = $("#nama").val();
-                    var pattern = /^[a-zA-Z ]*$/;
+          $("#nama").keyup(function() {
+               var nama = $("#nama").val();
+               var pattern = /^[a-zA-Z ]*$/;
 
-                    if (nama == 0) {
-                         $("#namaErr").html("Masukkan nama anda");
-                         $("#nama").css("outline-color", "red");
-                         error_nama = true;
-                    } else if (!pattern.test(nama)) {
-                         $("#namaErr").html("hanya boleh nama dan spasi!");
-                         $("#nama").css("outline-color", "red");
-                         error_nama = true;
-                    } else if (nama.length < 4) {
-                         $("#namaErr").html("nama harus lebih dari 4 karakter!");
-                         $("#nama").css("outline-color", "red");
-                         error_nama = true;
-                    } else {
-                         $.ajax({
-                              url: "do_kasirceknama.php",
-                              type: "post",
-                              data: "nama=" + nama,
-                              success: function(data) {
-                                   if (data == 0) {
-                                        $("#namaErr").html("nama tersedia");
-                                        $("#nama").css("outline-color", "green");
-                                        error_nama = false;
-                                   } else {
-                                        $("#namaErr").html("nama tidak tersedia");
-                                        $("#nama").css("outline-color", "red");
-                                        error_nama = true;
-                                   }
-                              },
-                         });
-                    }
-               });
-          };
+               if (nama == 0) {
+                    $("#namaErr").html("Masukkan nama anda");
+                    $("#nama").css("outline-color", "red");
+                    error_nama = true;
+               } else if (!pattern.test(nama)) {
+                    $("#namaErr").html("hanya boleh nama dan spasi!");
+                    $("#nama").css("outline-color", "red");
+                    error_nama = true;
+               } else {
+                    $.ajax({
+                         url: "do_kasirceknama.php",
+                         type: "post",
+                         data: "nama=" + nama,
+                         success: function(data) {
+                              if (data == 0) {
+                                   $("#namaErr").html("nama tersedia");
+                                   $("#nama").css("outline-color", "green");
+                                   error_nama = false;
+                              } else {
+                                   $("#namaErr").html("nama tidak tersedia");
+                                   $("#nama").css("outline-color", "red");
+                                   error_nama = true;
+                              }
+                         },
+                    });
+               }
+          });
 
           function check_nohp() {
                $("#nohp").keyup(function() {
@@ -476,7 +467,7 @@ session_start();
                          return false;
                     }
                } else if (pilihan == "lunas") {
-                    if (error_bayar === false && error_kembali === false && error_mbayar === false) {
+                    if (error_bayar === false && error_kembali === false && error_mbayar === false && error_nama === false) {
                          $("#kasirbayar").attr("action", "do_kasirgrosir.php");
                          return true;
                     } else {

@@ -18,6 +18,7 @@ if ($_SESSION['login pusat'] != "login") {
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js" integrity="sha512-qzgd5cYSZcosqpzpn7zF2ZId8f/8CHmFKZ8j7mU4OUXTNRd5g+ZHBPsgKEwoqxCtdQvExE5LprwwPAgoicguNg==" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
      body {
@@ -62,7 +63,7 @@ if ($_SESSION['login pusat'] != "login") {
 </head>
 
 <body>
-     <nav class="navbar navbar-expand-md bg-primary">
+     <nav class="navbar navbar-expand-md bg-primary navbar-light">
           <a class="navbar-brand" style="font-size:26px; padding-left:20px;"><img src="../assets/pusat.png" width="30" height="30"> PUSAT</a>
           <ul class="navbar-nav">
                <li class="nav-item">
@@ -86,8 +87,10 @@ if ($_SESSION['login pusat'] != "login") {
           </ul>
      </nav>
 
-     <div class="tampil">
+     <div class="container">
+          <div class="tampil">
 
+          </div>
      </div>
 
      <script>
