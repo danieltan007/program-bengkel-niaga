@@ -1,6 +1,6 @@
 <?php
 include "../koneksi.php";
-error_reporting();
+error_reporting(0);
 
 if (empty($_POST['awal']) || empty($_POST['akhir'])) {
      echo "Masukkan Tanggal";

@@ -13,19 +13,21 @@ session_start();
      </form>
      <div id="show"></div>
 </div>
+<br><br>
 
 <div class="jumbotron">
      <h2 align="center">Laporan Penjualan Grosir</h2>
      <br>
-     <form action="do_pusatcarilappenj.php" name="tampillappenj" id="tampillappenj" method="post">
+     <form action="do_pusatcarilappenjgros.php" name="tampillappenjgros" id="tampillappenjgros" method="post">
           <table class="table table-borderless">
                <tr>
-                    <td>Pilih Tanggal &nbsp;<i class="fa fa-calendar"></i> <input type="text" id="awal" name="awal" autocomplete="off"> &nbsp; sampai &nbsp; <i class="fa fa-calendar"></i> <input type="text" id="akhir" name="akhir" autocomplete="off"> &nbsp; <button type="submit" class="btn btn-success" name="tampil" id="tampil"><i class="fa fa-eye"></i> Tampil</button></td>
+                    <td>Pilih Tanggal &nbsp;<i class="fa fa-calendar"></i> <input type="text" id="awal3" name="awal3" autocomplete="off"> &nbsp; sampai &nbsp; <i class="fa fa-calendar"></i> <input type="text" id="akhir3" name="akhir3" autocomplete="off"> &nbsp; <button type="submit" class="btn btn-success" name="tampil3" id="tampil3"><i class="fa fa-eye"></i> Tampil</button></td>
                </tr>
           </table>
      </form>
-     <div id="show"></div>
+     <div id="show3"></div>
 </div>
+<br><br>
 
 <div class="jumbotron">
      <h2 align="center">Laporan Pekerjaan Mekanik</h2>
@@ -58,6 +60,14 @@ session_start();
                dateFormat: 'yy-mm-dd'
           });
 
+          $('input[id$=awal3]').datepicker({
+               dateFormat: 'yy-mm-dd'
+          });
+
+          $('input[id$=akhir3]').datepicker({
+               dateFormat: 'yy-mm-dd'
+          });
+
           $("#tampillappenj").on("submit", function(e) {
                e.preventDefault();
                $.ajax({
@@ -66,6 +76,18 @@ session_start();
                     data: $(this).serialize(),
                     success: function(data) {
                          $("#show").html(data);
+                    }
+               });
+          });
+
+          $("#tampillappenjgros").on("submit", function(e) {
+               e.preventDefault();
+               $.ajax({
+                    type: "post",
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function(data) {
+                         $("#show3").html(data);
                     }
                });
           });
