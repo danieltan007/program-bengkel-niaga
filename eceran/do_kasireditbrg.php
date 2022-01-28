@@ -1,6 +1,8 @@
 <?php
      include "../koneksi.php";
+session_start();
 
+$user = $_SESSION['id_ecer'];
      $namabrg = $_POST['editnama'];
      $merek = $_POST['ubahmerek'];
      $supp = $_POST['editsupp'];
@@ -8,7 +10,7 @@
      $harga = $_POST['edithrg'];
      $kode = $_POST['kode'];
 
-     $sql = "update `tabel barang pusat` set nm_brg = '$namabrg', mrk_brg = '$merek', hrg_jual = '$harga', stock_toko = '$stock', supp_brg = '$supp' where kd_brg = '$kode'";
+$sql = "update `tabel barang pusat` set nm_brg = '$namabrg', mrk_brg = '$merek', hrg_jual = '$harga', stock_toko = '$stock', supp_brg = '$supp' where kd_brg = '$kode' and user = '$user'";
      mysqli_query($conn, $sql);
 
      if(mysqli_affected_rows($conn) < 1)

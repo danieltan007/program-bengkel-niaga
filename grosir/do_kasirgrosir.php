@@ -6,7 +6,9 @@
 
 <?php
 include "../koneksi.php";
+     session_start();
 
+     $user = $_SESSION['id_grosir'];
 // ! nnti mau di perbaiki lagi
 $nama = $_POST['nama'];
 $total = $_POST['total'];
@@ -14,7 +16,7 @@ $bayar = $_POST['bayar'];
 $sisa = $_POST['kembalian'];
 $tgl = date('Y-m-d');
 
-$sql1 = "select * from `daftar grosir temp`";
+$sql1 = "select * from `daftar grosir temp` where user = '$user'";
 $dapat = mysqli_query($conn, $sql1);
 ?>
 

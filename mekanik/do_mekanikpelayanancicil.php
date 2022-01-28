@@ -6,7 +6,9 @@
 
 <?php
 include "../koneksi.php";
+session_start();
 
+$user = $_SESSION['id_mekanik'];
 $mbayar = $_POST['mbayar'];
 $noktp = $_POST['noktp'];
 $nama = $_POST['nama'];
@@ -18,7 +20,7 @@ $bayar = $_POST['bayar'];
 $sisa = abs($_POST['kembali']);
 $tgl = date('Y-m-d');
 
-$sql1 = "select * from `daftar layanan temp`";
+$sql1 = "select * from `daftar layanan temp` where user = '$user'";
 $cari = mysqli_query($conn, $sql1);
 
 if (mysqli_num_rows($cari) < 1) { ?>
@@ -113,6 +115,7 @@ if (mysqli_num_rows($cari) < 1) { ?>
                     (kd_lap, id_mekanik, tgl, nm_mknk, reparasi, id_lap_jual) values 
                     ('$kodetrans10', '$mekanik', '$tgl', '$data9[nm_mekanik]', '$data[jenis]', '$kodetrans3')";
                     mysqli_query($conn, $sql8);
+
                } else if ($data['sumber'] == 'toko lain') {
                     //kode DET-001
                     $query1 = "select max(id_trans) as maxkode from `detail transaksi`";
@@ -241,7 +244,7 @@ if (mysqli_num_rows($cari) < 1) { ?>
      <hr>
      <H4 align="center">Terima Kasih atas Belanjaan Anda</H4>
 <?php
-     $sql2 = "delete from `daftar layanan temp` ";
+     $sql2 = "delete from `daftar layanan temp` where user = '$user'";
      mysqli_query($conn, $sql2);
 
      //buat id trans

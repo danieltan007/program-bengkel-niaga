@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2022 at 08:53 AM
+-- Generation Time: Jan 28, 2022 at 09:26 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -35,15 +35,9 @@ CREATE TABLE `barang mekanik temp` (
   `diskon` int(3) NOT NULL,
   `korting` int(12) NOT NULL,
   `hrg_brg` int(11) NOT NULL,
-  `total` int(12) NOT NULL
+  `total` int(12) NOT NULL,
+  `user` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `barang mekanik temp`
---
-
-INSERT INTO `barang mekanik temp` (`kd_brg`, `nm_brg`, `mrk_brg`, `jml`, `diskon`, `korting`, `hrg_brg`, `total`) VALUES
-('1DY-E7402-00T', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'DENSHIN', 1, 0, 0, 30000, 30000);
 
 -- --------------------------------------------------------
 
@@ -62,6 +56,13 @@ CREATE TABLE `daftar belanja temp` (
   `t_hrg` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `daftar belanja temp`
+--
+
+INSERT INTO `daftar belanja temp` (`kd_brg`, `nm_brg`, `merek`, `jml_brg`, `diskon`, `korting`, `st_hrg`, `t_hrg`) VALUES
+('23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHINa', 1, 1, 0, 59400, 59400);
+
 -- --------------------------------------------------------
 
 --
@@ -72,7 +73,8 @@ CREATE TABLE `daftar grosir temp` (
   `kd_brg` varchar(25) NOT NULL,
   `jml_brg` int(4) NOT NULL,
   `st_hrg` int(10) NOT NULL,
-  `t_hrg` int(10) NOT NULL
+  `t_hrg` int(10) NOT NULL,
+  `user` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -95,8 +97,16 @@ CREATE TABLE `daftar layanan temp` (
   `subtotal` int(12) NOT NULL,
   `total` int(16) NOT NULL,
   `sumber` text NOT NULL,
-  `toko` text NOT NULL
+  `toko` text NOT NULL,
+  `user` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `daftar layanan temp`
+--
+
+INSERT INTO `daftar layanan temp` (`kd_trns`, `kd_brg`, `nm_brg`, `merek`, `diskon`, `korting`, `ongkos`, `jenis`, `jml_brg`, `hrg_brg`, `subtotal`, `total`, `sumber`, `toko`, `user`) VALUES
+(1, '23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHINa', 0, 0, 20000, 'aasd', 1, 60000, 60000, 80000, 'stok toko', '', 'mekanik');
 
 -- --------------------------------------------------------
 
@@ -148,7 +158,15 @@ INSERT INTO `detail transaksi` (`tgl_trns`, `id_trans`, `kd_brg`, `nm_brg`, `mrk
 ('2020-09-22', 'DET-024', '0', '', '', 0, 0, 0, 0, 10000, 'lunas'),
 ('2020-09-22', 'DET-025', '0', '', '', 0, 0, 0, 0, 15000, 'cicil'),
 ('2021-03-17', 'DET-026', 'BRG-005', 'Ban Tubles', 'Honda', 5, 12250, 2, 250, 61000, 'Cicil'),
-('2022-01-17', 'DET-027', '1DY-E740', 'AS GEAR DEPAN JUPITE', 'DENSHIN', 1, 24000, 20, 0, 24000, 'Lunas');
+('2022-01-17', 'DET-027', '1DY-E740', 'AS GEAR DEPAN JUPITE', 'DENSHIN', 1, 24000, 20, 0, 24000, 'Lunas'),
+('2022-01-20', 'DET-028', '23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHIN', 1, 60000, 0, 0, 60000, 'Lunas'),
+('2022-01-20', 'DET-029', '23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHIN', 1, 60000, 0, 0, 60000, 'Cicil'),
+('2022-01-23', 'DET-030', '23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHINa', 2, 54000, 10, 0, 108000, 'Lunas'),
+('2022-01-24', 'DET-031', '23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHINa', 10, 48000, 20, 0, 480000, 'Lunas'),
+('2022-01-24', 'DET-032', 'BRG-183', 'test12312', 'DENSHINa', 15, 32000, 20, 0, 320000, 'Lunas'),
+('2022-01-24', 'DET-033', '23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHINa', 1, 54000, 10, 0, 54000, 'Lunas'),
+('2022-01-24', 'DET-034', '23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHINa', 1, 54000, 10, 0, 54000, 'Lunas'),
+('2022-01-24', 'DET-035', 'BRG-183', 'test12312', 'DENSHINa', 1, 36000, 10, 0, 36000, 'Lunas');
 
 -- --------------------------------------------------------
 
@@ -402,7 +420,15 @@ INSERT INTO `laporan penjualan` (`id_lap_jual`, `id_trns`, `tgl_jual`, `user`, `
 ('LAP-048', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 1, 28800, 0, 0, 18000, 10800, ''),
 ('LAP-049', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'jual barang', 1, 27000, 0, 0, 15000, 12000, ''),
 ('LAP-050', 'DET-027', '2022-01-14', 'grosir', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 1, 32400, 0, 0, 18000, 14400, ''),
-('LAP-051', 'DET-027', '2022-01-17', 'grosir', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'jual barang', 1, 24000, 0, 0, 15000, 9000, '');
+('LAP-051', 'DET-027', '2022-01-17', 'grosir', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'jual barang', 1, 24000, 0, 0, 15000, 9000, ''),
+('LAP-052', 'DET-028', '2022-01-20', 'kasir 1', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 1, 60000, 0, 0, 30000, 30000, ''),
+('LAP-053', 'DET-029', '2022-01-20', 'kasir 1', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 1, 60000, 0, 0, 30000, 30000, ''),
+('LAP-054', 'DET-030', '2022-01-23', 'grosir', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 2, 54000, 0, 0, 30000, 24000, ''),
+('LAP-055', 'DET-031', '2022-01-24', 'grosir', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 10, 48000, 0, 0, 30000, 18000, ''),
+('LAP-056', 'DET-032', '2022-01-24', 'grosir', 'test12312', 'jual barang', 15, 32000, 0, 0, 20000, 12000, ''),
+('LAP-057', 'DET-033', '2022-01-24', 'grosir', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 1, 54000, 0, 0, 30000, 24000, ''),
+('LAP-058', 'DET-034', '2022-01-24', 'grosir', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'jual barang', 1, 54000, 0, 0, 30000, 24000, ''),
+('LAP-059', 'DET-035', '2022-01-24', 'grosir', 'test12312', 'jual barang', 1, 36000, 0, 0, 20000, 16000, '');
 
 -- --------------------------------------------------------
 
@@ -425,7 +451,11 @@ INSERT INTO `login` (`nama`, `id`, `pass`, `level`) VALUES
 ('grosir', 'grosir', 'grosirtiara', 'grosir'),
 ('gudang\r\n', 'gudang', 'gudangtiara', 'Gudang'),
 ('kasir\r\n', 'kasir', 'kasirtiara', 'kasir'),
+('kasir2', 'kasir2', 'kasir2tiara', 'kasir'),
+('kasir3', 'kasir3', 'kasir3tiara', 'kasir'),
 ('mekanik', 'mekanik', 'mekaniktiara', 'mekanik'),
+('mekanik2', 'mekanik2', 'mekanik2tiara', 'mekanik'),
+('mekanik3', 'mekanik3', 'mekanik3tiara', 'mekanik'),
 ('pusat', 'pusat', 'pusattiara', 'pusat');
 
 -- --------------------------------------------------------
@@ -452,11 +482,8 @@ CREATE TABLE `tabel barang pusat` (
 --
 
 INSERT INTO `tabel barang pusat` (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `stock_gudang`, `supplier`, `hrg_modal`, `hrg_jual`, `hrg_jual2`, `hrg_jual3`) VALUES
-('1DY-E7402-00T', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 'DENSHIN', 5, 20, 'PT MENTARI PRIMA SEMESTA KALBAR', 15000, 30000, 27000, 25500),
-('23221-GN5-910D', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHIN', 4, 15, 'PT HONDA', 18000, 36000, 0, 0),
-('23221-GN5-910F', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'FUKUYAMA', 4, 17, '', 10000, 20000, 0, 0),
-('23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHIN', 10, 20, 'PT MENTARI PRIMA SEMESTA KALBAR', 30000, 60000, 0, 0),
-('23221-KFL-860D', 'AS GEAR DEPAN SUPRA FIT NEW/REVO TYPE H', 'DENSHIN', 5, 20, '', 0, 0, 0, 0),
+('23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHINa', 9, 6, 'PT MENTARI PRIMA SEMESTA KALBAR', 30000, 60000, 50000, 40000),
+('23221-KFL-860D', 'AS GEAR DEPAN SUPRA FIT NEW/REVO TYPE H', 'DENSHINa', 5, 20, '', 0, 0, 0, 0),
 ('23221-KFL-860T', 'AS GEAR DEPAN SUPRA FIT NEW/REVO TYPE H', 'FUKUYAMA', 10, 20, 'PT MENTARI PRIMA SEMESTA KALBAR', 50000, 100000, 0, 0),
 ('23221-KWB-600T', 'AS GEAR DEPAN REVO ABSOLUTE TYPE H', 'TOKAIDO', 3, 20, '', 0, 0, 0, 0),
 ('24130-05220-000T', 'AS GEAR DEPAN THUNDER 125 NEW TYPE S', 'TOKAIDO', 2, 20, '', 0, 0, 0, 0),
@@ -471,10 +498,10 @@ INSERT INTO `tabel barang pusat` (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `
 ('BRG-175', 'FORK GEAR', 'ASPIRA', 2, 10, 'PT MENTARI PRIMA SEMESTA KALBAR', 9000, 18000, 0, 0),
 ('BRG-176', 'SPRING FR FORK', 'ASPIRA', 0, 30, 'PT MENTARI PRIMA SEMESTA KALBAR', 300000, 600000, 0, 0),
 ('BRG-177', '011111 SPRING FR FORK', 'ASPIRA', 0, 30, 'PT MENTARI PRIMA SEMESTA KALBAR', 300000, 600000, 0, 0),
-('BRG-178', 'test123123', 'DENSHIN', 20, 2, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 50000, 0, 0),
-('BRG-180', 'test12312', 'DENSHIN', 0, 22, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 50000, 0, 0),
-('BRG-182', 'test12312', 'DENSHIN', 0, 21, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 40000, 0, 0),
-('BRG-183', 'test12312', 'DENSHIN', 0, 21, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 40000, 34000, 32000);
+('BRG-178', 'test123123', 'DENSHINa', 20, 2, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 50000, 0, 0),
+('BRG-180', 'test12312', 'DENSHINa', 0, 22, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 50000, 0, 0),
+('BRG-182', 'test12312', 'DENSHINa', 0, 21, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 40000, 0, 0),
+('BRG-183', 'test12312', 'DENSHINa', 0, 5, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 40000, 34000, 32000);
 
 -- --------------------------------------------------------
 
@@ -488,16 +515,9 @@ CREATE TABLE `tabel barang temp` (
   `hrg_brg` int(12) NOT NULL,
   `mrk_brg` varchar(20) NOT NULL,
   `sto_brg` int(12) NOT NULL,
-  `supp_brg` text NOT NULL
+  `supp_brg` text NOT NULL,
+  `user` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tabel barang temp`
---
-
-INSERT INTO `tabel barang temp` (`kd_brg`, `nm_brg`, `hrg_brg`, `mrk_brg`, `sto_brg`, `supp_brg`) VALUES
-('1DY-E7402-00T', 'AS GEAR DEPAN JUPITER Z1 TYPE Y', 30000, 'DENSHIN', 5, 'PT MENTARI PRIMA SEMESTA KALBAR'),
-('23221-GN5-910D', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 36000, 'DENSHIN', 4, 'PT HONDA');
 
 -- --------------------------------------------------------
 
@@ -574,6 +594,13 @@ CREATE TABLE `tabel piutang` (
   `sisa_byr` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tabel piutang`
+--
+
+INSERT INTO `tabel piutang` (`id_trns`, `noktp`, `nama`, `alamat`, `no hp`, `tgl_trns`, `t_hrg`, `sisa_byr`) VALUES
+('DET-029', '1635131316516528', 'daniel', 'jlasdadasd', '084321346915', '2022-01-20', 60000, 10000);
+
 -- --------------------------------------------------------
 
 --
@@ -637,7 +664,36 @@ INSERT INTO `tabel transaksi` (`id_trns`, `tgl_trns`, `total_harga`, `status`) V
 ('TRN-005', '2022-01-14', 55800, 'lunas'),
 ('TRN-006', '2022-01-14', 59400, 'lunas'),
 ('TRN-007', '2022-01-17', 24000, 'lunas'),
-('TRN-008', '2022-01-19', 0, 'lunas');
+('TRN-008', '2022-01-19', 0, 'lunas'),
+('TRN-009', '2022-01-20', 60000, 'lunas'),
+('TRN-010', '2022-01-20', 60000, 'cicil'),
+('TRN-011', '2022-01-23', 108000, 'lunas'),
+('TRN-012', '2022-01-24', 800000, 'lunas'),
+('TRN-013', '2022-01-24', 90000, 'lunas'),
+('TRN-014', '2022-01-25', 0, 'lunas'),
+('TRN-015', '2022-01-25', 0, 'lunas');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tabel transaksi grosir`
+--
+
+CREATE TABLE `tabel transaksi grosir` (
+  `id_trans` varchar(12) CHARACTER SET latin1 NOT NULL,
+  `nama` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tabel transaksi grosir`
+--
+
+INSERT INTO `tabel transaksi grosir` (`id_trans`, `nama`) VALUES
+('DET-031', 'daniel tan'),
+('DET-032', 'daniel tan'),
+('DET-033', 'asdasd'),
+('DET-034', 'bunga'),
+('DET-035', 'bunga');
 
 -- --------------------------------------------------------
 
@@ -657,8 +713,7 @@ CREATE TABLE `table mekanik` (
 --
 
 INSERT INTO `table mekanik` (`id_mekanik`, `nm_mekanik`, `no_hp`, `no_ktp`) VALUES
-('MEK-001', 'danieltan', '0845164861', '07894141654'),
-('MEK-002', 'danieltan2', '0846131311', '0813138468');
+('MEK-001', 'daniel', '081313641351', '654684613468412');
 
 -- --------------------------------------------------------
 
@@ -676,9 +731,10 @@ CREATE TABLE `table merek` (
 --
 
 INSERT INTO `table merek` (`kd_merk`, `mrk_brg`) VALUES
-('MRK-001', 'DENSHIN'),
+('MRK-001', 'DENSHINa'),
 ('MRK-002', 'FUKUYAMA'),
-('MRK-005', 'ASPIRA');
+('MRK-005', 'ASPIRA'),
+('MRK-006', 'test');
 
 -- --------------------------------------------------------
 
@@ -813,6 +869,12 @@ ALTER TABLE `tabel transaksi`
   ADD PRIMARY KEY (`id_trns`);
 
 --
+-- Indexes for table `tabel transaksi grosir`
+--
+ALTER TABLE `tabel transaksi grosir`
+  ADD PRIMARY KEY (`id_trans`);
+
+--
 -- Indexes for table `table mekanik`
 --
 ALTER TABLE `table mekanik`
@@ -835,6 +897,16 @@ ALTER TABLE `update barang temp`
 --
 ALTER TABLE `utang toko`
   ADD PRIMARY KEY (`kd_utg`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tabel transaksi grosir`
+--
+ALTER TABLE `tabel transaksi grosir`
+  ADD CONSTRAINT `cek kode` FOREIGN KEY (`id_trans`) REFERENCES `detail transaksi` (`id_trans`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

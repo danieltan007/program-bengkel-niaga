@@ -1,6 +1,5 @@
 <?php
      include "../koneksi.php";
-
      $nomor = $_GET['nomor'];
 
      $sql = "select * from `detail transaksi` where id_trns = '$nomor' ";

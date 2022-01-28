@@ -6,7 +6,9 @@
 
 <?php
 include "../koneksi.php";
+session_start();
 
+$user = $_SESSION['id_mekanik'];
 $total = $_POST['total'];
 $bayar = $_POST['bayar'];
 $sisa = $_POST['kembali'];
@@ -14,7 +16,7 @@ $mekanik = $_POST['mekanik'];
 
 $tgl = date('Y-m-d');
 
-$sql1 = "select * from `daftar layanan temp`";
+$sql1 = "select * from `daftar layanan temp` where user = '$user'";
 $cari = mysqli_query($conn, $sql1);
 
 if (mysqli_num_rows($cari) < 1) { ?>
@@ -233,7 +235,7 @@ if (mysqli_num_rows($cari) < 1) { ?>
      <hr>
      <H4 align="center">Terima Kasih atas Belanjaan Anda</H4>
 <?php
-     $sql2 = "delete from `daftar layanan temp` ";
+     $sql2 = "delete from `daftar layanan temp` where user = '$user' ";
      mysqli_query($conn, $sql2);
 
      //buat id trans

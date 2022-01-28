@@ -15,6 +15,7 @@ if ($data = mysqli_fetch_array($cari) < 1) { ?>
      </script>
 <?php     } else {
      $_SESSION['login grosir'] = "login";
+     $_SESSION['id_grosir'] = $id;
 ?>
      <script>
           window.location.href = "kasir.php";

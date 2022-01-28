@@ -1,16 +1,21 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/theme.bootstrap_4.min.css" integrity="sha512-2C6AmJKgt4B+bQc08/TwUeFKkq8CsBNlTaNcNgUmsDJSU1Fg+R6azDbho+ZzuxEkJnCjLZQMozSq3y97ZmgwjA==" crossorigin="anonymous" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js" integrity="sha512-qzgd5cYSZcosqpzpn7zF2ZId8f/8CHmFKZ8j7mU4OUXTNRd5g+ZHBPsgKEwoqxCtdQvExE5LprwwPAgoicguNg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 <div class="accordion" id="data-trans">
      <?php
      include "../koneksi.php";
-     error_reporting(0);
 
-     if (empty($_POST['awal']) || empty($_POST['akhir'])) {
+     if (empty($_GET['awal']) || empty($_GET['akhir'])) {
           echo "Masukkan Tanggal Transaksi!";
      } else {
      ?> <?php
-          $tglawal = $_POST['awal'];
-          $tglakhir = $_POST['akhir'];
+          $tglawal = $_GET['awal'];
+          $tglakhir = $_GET['akhir'];
 
-          $print = "<a class='btn btn-info' href='do_kasirprintlaporan.php?tglawal=$tglawal&tglakhir=$tglakhir'><i class='fa fa-print'></i> Print</a> ";
           $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `tabel transaksi grosir` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir'";
           $cek = mysqli_query($conn, $sql);
           $no = 1;
@@ -82,8 +87,16 @@
      }
           ?>
                </div>
-               <br>
+</div>
+</div>
+<script type="text/javascript">
+     // alert("berhasil melakukan print!");
+     window.print();
+     window.onafterprint = function(e) {
+          closePrintView();
+     }
 
-               <?php
-               echo $print;
-               ?>
+     function closePrintView() {
+          window.location.href = "pusat.php";
+     }
+</script>

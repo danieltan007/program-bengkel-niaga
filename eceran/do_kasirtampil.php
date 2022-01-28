@@ -10,8 +10,10 @@
 
      <?php
      include "../koneksi.php";
+     session_start();
 
-     $sql = "SELECT `daftar belanja temp`.`kd_brg`, `daftar belanja temp`.`nm_brg`, `daftar belanja temp`.merek, `daftar belanja temp`.`jml_brg`, `daftar belanja temp`.`diskon`, `daftar belanja temp`.`korting`, `daftar belanja temp`.`st_hrg`, `daftar belanja temp`.`t_hrg`, `tabel barang pusat`.`hrg_jual` FROM `daftar belanja temp` inner join `tabel barang pusat` on `daftar belanja temp`.`kd_brg` = `tabel barang pusat`.`kd_brg`";
+     $user = $_SESSION['id_ecer'];
+     $sql = "SELECT `daftar belanja temp`.`kd_brg`, `daftar belanja temp`.`nm_brg`, `daftar belanja temp`.merek, `daftar belanja temp`.`jml_brg`, `daftar belanja temp`.`diskon`, `daftar belanja temp`.`korting`, `daftar belanja temp`.`st_hrg`, `daftar belanja temp`.`t_hrg`, `tabel barang pusat`.`hrg_jual` FROM `daftar belanja temp` inner join `tabel barang pusat` on `daftar belanja temp`.`kd_brg` = `tabel barang pusat`.`kd_brg` where `daftar belanja temp`.`user` = '$user'";
      $search = mysqli_query($conn, $sql);
 
      if (mysqli_affected_rows($conn) > 0) {

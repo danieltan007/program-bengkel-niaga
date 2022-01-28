@@ -1,6 +1,7 @@
 <div class="accordion" id="data-trans">
      <?php
      include "../koneksi.php";
+     error_reporting(0);
 
      if (empty($_POST['awal3']) || empty($_POST['akhir3'])) {
           echo "Masukkan Tanggal Transaksi!";
@@ -8,7 +9,7 @@
      ?> <?php
           $tglawal = $_POST['awal3'];
           $tglakhir = $_POST['akhir3'];
-
+          $print = "<div align='center'><a class='btn btn-info' style='width:200px;' href='do_pusatcetaklapgros.php?awal=$tglawal&akhir=$tglakhir'><i class='fa fa-print'></i> Print</a></div> ";
           $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `tabel transaksi grosir` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir'";
           $cek = mysqli_query($conn, $sql);
           $no = 1;
@@ -80,3 +81,8 @@
      }
           ?>
                </div>
+               <br><br>
+
+               <?php
+               echo $print;
+               ?>

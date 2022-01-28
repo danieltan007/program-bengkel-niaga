@@ -1,6 +1,5 @@
 <?php
      include "../koneksi.php";
-
      $namabrg = $_POST['editnama'];
      $merek = $_POST['ubahmerek'];
      $supp = $_POST['editsupp'];

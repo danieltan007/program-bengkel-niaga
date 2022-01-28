@@ -11,8 +11,10 @@
      </tr>
      <?php
      include "../koneksi.php";
+     session_start();
 
-     $sql = "select * from `daftar layanan temp`";
+     $user = $_SESSION['id_mekanik'];
+     $sql = "select * from `daftar layanan temp` where user = '$user'";
      $cari = mysqli_query($conn, $sql);
 
      while ($data = mysqli_fetch_array($cari)) {

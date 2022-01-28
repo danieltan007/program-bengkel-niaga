@@ -13,7 +13,9 @@
                </tr>
                <?php
                include "../koneksi.php";
+               session_start();
 
+               $user = $_SESSION['id_mekanik'];
                $sql = "select * from `barang mekanik temp`";
                $cari = mysqli_query($conn, $sql);
 

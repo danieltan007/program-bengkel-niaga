@@ -5,7 +5,9 @@
 </style>
 <?php
 include "../koneksi.php";
+session_start();
 
+$user = $_SESSION['id_grosir'];
 $mbayar = $_POST['mbayar'];
 $noktp = $_POST['noktp'];
 $nama = $_POST['nama'];
@@ -16,7 +18,7 @@ $alamat = $_POST['alamat'];
 $bayar = $_POST['bayar'];
 $tgl = date('Y-m-d');
 
-$sql1 = "select * from `daftar grosir temp`";
+$sql1 = "select * from `daftar grosir temp` where user = '$user'";
 $dapat = mysqli_query($conn, $sql1);
 
 if (mysqli_num_rows($dapat) < 1) { ?>
@@ -133,7 +135,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      $sql4 = "insert into `tabel transaksi` (id_trns, tgl_trns, total_harga, status) values ('$kodetrans', '$tgl', '$total', '$mbayar')";
      mysqli_query($conn, $sql4);
 
-     $sql8 = "delete from `daftar grosir temp`";
+     $sql8 = "delete from `daftar grosir temp` where user = '$user'";
      mysqli_query($conn, $sql8);
 }
 ?>

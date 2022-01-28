@@ -8,16 +8,18 @@
 
      <?php
      include "../koneksi.php";
+     session_start();
 
-     $sql = "SELECT `daftar grosir temp`.`kd_brg`, `tabel barang pusat`.`nm_brg`, `daftar grosir temp`.`jml_brg`, `daftar grosir temp`.`st_hrg`, `daftar grosir temp`.`t_hrg`, `tabel barang pusat`.`hrg_jual` FROM `daftar grosir temp` inner join `tabel barang pusat` on `daftar grosir temp`.`kd_brg` = `tabel barang pusat`.`kd_brg`";
+     $user = $_SESSION['id_grosir'];
+     $sql = "SELECT `daftar grosir temp`.`kd_brg`, `tabel barang pusat`.`nm_brg`, `daftar grosir temp`.`jml_brg`, `tabel barang pusat`.hrg_jual2, `tabel barang pusat`.hrg_jual3, `daftar grosir temp`.`st_hrg`, `daftar grosir temp`.`t_hrg`, `tabel barang pusat`.`hrg_jual` FROM `daftar grosir temp` inner join `tabel barang pusat` on `daftar grosir temp`.`kd_brg` = `tabel barang pusat`.`kd_brg` where `daftar grosir temp`.`user` = '$user'";
      $search = mysqli_query($conn, $sql);
 
      if (mysqli_affected_rows($conn) > 0) {
           while ($data = mysqli_fetch_array($search)) {
                $link_delete = "<a href='do_kasirhpstemp.php?kode=" . $data['kd_brg'] . "' id='delbrg' class='btn btn-danger'><i class='fa fa-close'></i> Hapus</a>";
                $jumlah = "<input type='number' style='width:60px;' value='" . $data['jml_brg'] . "' min='0' max='100' id='jml_brg-" . $data['kd_brg'] . "' name='jumlah'>";
-               $harga_lv2 = $data['hrg_jual'] * 0.9;
-               $harga_lv3 = $data['hrg_jual'] * 0.8;
+          $harga_lv2 = $data['hrg_jual2'];
+          $harga_lv3 = $data['hrg_jual3'];
      ?>
                <tr>
                     <td><?php echo $data['nm_brg']; ?></td>

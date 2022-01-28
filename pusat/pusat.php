@@ -13,7 +13,6 @@ if ($_SESSION['login pusat'] != "login") {
 <link rel="icon" href="logo pusat.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/theme.bootstrap_4.min.css" integrity="sha512-2C6AmJKgt4B+bQc08/TwUeFKkq8CsBNlTaNcNgUmsDJSU1Fg+R6azDbho+ZzuxEkJnCjLZQMozSq3y97ZmgwjA==" crossorigin="anonymous" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
 <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js" integrity="sha512-qzgd5cYSZcosqpzpn7zF2ZId8f/8CHmFKZ8j7mU4OUXTNRd5g+ZHBPsgKEwoqxCtdQvExE5LprwwPAgoicguNg==" crossorigin="anonymous"></script>
@@ -78,9 +77,6 @@ if ($_SESSION['login pusat'] != "login") {
                <li class="nav-item">
                     <a class="nav-link klik" id="vip"><img src="../assets/crown.svg" width="22" height="27"> Pelanggan VIP</a>
                </li>
-               <!-- <li class="nav-item">
-               <a class="nav-link klik" id="aktivitas"><i class="fa fa-clock-o"></i> Aktivitas</a>
-          </li> -->
                <li class="nav-item">
                     <a class="nav-link" style="color:black;" href="logout_pusat.php"><i class="fa fa-sign-out"></i> Logout</a>
                </li>

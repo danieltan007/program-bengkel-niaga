@@ -7,7 +7,9 @@
 <?php
 include "../koneksi.php";
 error_reporting(0);
+session_start();
 
+$user = $_SESSION['id_ecer'];
 $total = $_POST['total'];
 $bayar = $_POST['bayar'];
 $sisa = $_POST['kembalian'];
@@ -135,7 +137,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      mysqli_query($conn, $sql4);
 }
 
-$sql8 = "delete from `daftar belanja temp`";
+$sql8 = "delete from `daftar belanja temp` where user = '$user'";
 mysqli_query($conn, $sql8);
      ?>
      </body>

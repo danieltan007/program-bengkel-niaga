@@ -1,6 +1,8 @@
 <?php
 include "../koneksi.php";
+session_start();
 
+$user = $_SESSION['id_ecer'];
 $sql2 = "select * from `tabel barang temp`";
 $cari2 = mysqli_query($conn, $sql2);
 
@@ -23,7 +25,7 @@ while ($data2 = mysqli_fetch_array($cari2)) {
      mysqli_query($conn, $sql3);
 }
 
-$sql1 = "delete from `tabel barang temp`";
+$sql1 = "delete from `tabel barang temp` where user = '$user'";
 mysqli_query($conn, $sql1);
 
 if (mysqli_affected_rows($conn) > 0) {

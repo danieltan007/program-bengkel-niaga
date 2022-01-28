@@ -9,8 +9,10 @@
 
      <?php
      include "../koneksi.php";
+     session_start();
 
-     $sql = "select * from `tabel barang temp`";
+     $user = $_SESSION['id_ecer'];
+     $sql = "select * from `tabel barang temp` where user = '$user' ";
      $search = mysqli_query($conn, $sql);
 
      if (mysqli_affected_rows($conn) > 0) {
