@@ -78,6 +78,9 @@ if ($_SESSION['login pusat'] != "login") {
                     <a class="nav-link klik" id="vip"><img src="../assets/crown.svg" width="22" height="27"> Pelanggan VIP</a>
                </li>
                <li class="nav-item">
+                    <a class="nav-link klik" id="tambah"><i class="fa fa-user-plus"></i> Tambah Kasir</a>
+               </li>
+               <li class="nav-item">
                     <a class="nav-link" style="color:black;" href="logout_pusat.php"><i class="fa fa-sign-out"></i> Logout</a>
                </li>
           </ul>
@@ -103,6 +106,8 @@ if ($_SESSION['login pusat'] != "login") {
                          $(".tampil").load("pusat_vip.php");
                     } else if (menu == "aktivitas") {
                          $(".tampil").load("pusat_aktivitas.php");
+                    } else if (menu == "tambah") {
+                         $(".tampil").load("pusat_tambah.php");
                     }
                });
 

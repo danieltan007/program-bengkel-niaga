@@ -6,7 +6,7 @@ $user = $_SESSION['id_grosir'];
 $kode = $_POST['kode'];
 $jml = $_POST['jml'];
 
-$sql1 = "select * from `daftar grosir temp` where kd_brg = '$kode'";
+$sql1 = "select * from `daftar grosir temp` where kd_brg = '$kode' and user = '$user' ";
 $find = mysqli_query($conn, $sql1);
 $data = mysqli_fetch_array($find);
 

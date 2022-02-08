@@ -6,7 +6,7 @@ $user = $_SESSION['id_ecer'];
 $kode = $_POST['kode2'];
 $diskon = $_POST['diskon'];
 
-$sql1 = "select * from `daftar belanja temp` where kd_brg = '$kode' where user = '$user'";
+$sql1 = "select * from `daftar belanja temp` where kd_brg = '$kode' and user = '$user'";
 $find = mysqli_query($conn, $sql1);
 $data = mysqli_fetch_array($find);
 
