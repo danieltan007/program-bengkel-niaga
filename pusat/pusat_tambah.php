@@ -16,12 +16,12 @@ session_start();
           <table class="table table-borderless">
                <tr>
                     <td>Id</td>
-                    <td><input type="text" name="id" id="id" class="form-control" minlength="4" required placeholder="masukkan id"></td>
+                    <td><input type="text" name="id" id="id" class="form-control" minlength="4" maxlength="16" required placeholder="masukkan id"></td>
                     <div class="error" id="id_error"></div>
                </tr>
                <tr>
                     <td>Password</td>
-                    <td><input type="password" name="password" id="password" minlength="4" class="form-control" required placeholder="masukkan password"></td>
+                    <td><input type="password" name="password" id="password" minlength="4" maxlength="16" class="form-control" required placeholder="masukkan password"></td>
                </tr>
                <tr>
                     <td>Posisi</td>
@@ -50,13 +50,14 @@ session_start();
 
 <script>
      $(document).ready(function() {
-          let id_regex = /^[a-zA-Z]$/;
+          let pattern = /^[a-zA-Z0-9]*$/;
           let errId = true;
+
+          $("#tampil").load("do_pusattampilkasir.php");
 
           $("#id").keyup(function() {
                let id = $("#id").val();
-               if (id.match(id_regex)) {
-                    $("#id_error").html("");
+               if (pattern.test(id)) {
                     $.ajax({
                          type: "post",
                          url: "do_pusatcekid.php",
@@ -64,28 +65,32 @@ session_start();
                               id: id
                          },
                          success: function(data) {
-                              if (data == 1) {
+                              if (data == 2) {
                                    $("#id").css("border-color", "red");
+                                   $(".error").css("color", "red");
                                    $("#id_error").html("id sudah ada");
                                    errId = true;
                               } else {
                                    $("#id").css("border-color", "green");
+                                   $(".error").css("color", "green");
                                    $("#id_error").html("id tersedia!");
                                    errId = false;
                               }
                          }
                     });
                } else {
-                    $("#id_error").html("id harus huruf");
+                    $("#id").css("border-color", "red");
+                    $(".error").css("color", "red");
+                    $("#id_error").html("id harus huruf dan angka");
                     errId = true;
                }
           });
 
-          $("#hapusakun").click(function(e) {
+          $(document).on('click', '#hapusakun', function(e) {
                e.preventDefault();
                $.ajax({
                     type: "get",
-                    url: $(this).serialize(),
+                    url: $(this).attr('href'),
                     success: function(data) {
                          alert("Data berhasil di hapus!");
                          $("#tampil").load("do_pusattampilkasir.php");
@@ -105,6 +110,7 @@ session_start();
                                    alert("Berhasil tambah akun!");
                                    $("#id").val("");
                                    $("#password").val("");
+                                   $("#tampil").load("do_pusattampilkasir.php");
                               } else {
                                    alert("Gagal tambah akun! Silahkan coba lagi!");
                               }
