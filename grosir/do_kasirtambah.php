@@ -9,6 +9,6 @@ $user = $_SESSION['id_grosir'];
      $cari = mysqli_query($conn, $sql);
      $data = mysqli_fetch_array($cari);
 
-$hrg = $data['hrg_jual'] * 0.9;
+$hrg = $data['hrg_jual2'];
 $sql1 = "insert into `daftar grosir temp` (kd_brg, jml_brg,  st_hrg, t_hrg, user) values ('$kode', '1', '$hrg', '$hrg', '$user')";
      $input = mysqli_query($conn, $sql1);

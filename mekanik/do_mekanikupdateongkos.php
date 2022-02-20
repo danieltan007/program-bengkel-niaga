@@ -6,7 +6,7 @@ $user = $_SESSION['id_mekanik'];
      $kode = $_POST['kode'];
      $ongkos = (int)$_POST['ongkos'];
 
-     $sql = "select * from `daftar layanan temp` where kd_trns = '$kode'";
+$sql = "select * from `daftar layanan temp` where kd_trns = '$kode' and user = '$user' ";
      $cari = mysqli_query($conn, $sql);
      $data = mysqli_fetch_array($cari);
 

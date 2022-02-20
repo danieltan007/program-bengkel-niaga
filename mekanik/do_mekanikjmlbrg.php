@@ -5,10 +5,14 @@ session_start();
 $user = $_SESSION['id_mekanik'];
 $jml = (int)$_POST['jml'];
 $kode = $_POST['kode'];
+echo  "kode = $kode";
 
-$sql0 = "select * from `barang mekanik temp` where kd_brg = '$kode' where user = '$user'";
+$sql0 = "select * from `barang mekanik temp` where kd_brg = '$kode' and user = '$user'";
 $cari0 = mysqli_query($conn, $sql0);
 $data0 = mysqli_fetch_array($cari0);
+
+// file deepcode ignore XSS: <please specify a reason of ignoring this>
+echo "sql0: $sql0";
 
 $sql = "select * from `tabel barang pusat` where kd_brg = '$kode' ";
 $cari = mysqli_query($conn, $sql);
