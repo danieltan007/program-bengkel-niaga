@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2022 at 09:26 AM
+-- Generation Time: Feb 21, 2022 at 12:40 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -39,6 +39,13 @@ CREATE TABLE `barang mekanik temp` (
   `user` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `barang mekanik temp`
+--
+
+INSERT INTO `barang mekanik temp` (`kd_brg`, `nm_brg`, `mrk_brg`, `jml`, `diskon`, `korting`, `hrg_brg`, `total`, `user`) VALUES
+('23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHINa', 1, 0, 0, 60000, 60000, 'mekanik');
+
 -- --------------------------------------------------------
 
 --
@@ -53,15 +60,17 @@ CREATE TABLE `daftar belanja temp` (
   `diskon` int(3) NOT NULL,
   `korting` int(9) NOT NULL,
   `st_hrg` int(16) NOT NULL,
-  `t_hrg` int(16) NOT NULL
+  `t_hrg` int(16) NOT NULL,
+  `user` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `daftar belanja temp`
 --
 
-INSERT INTO `daftar belanja temp` (`kd_brg`, `nm_brg`, `merek`, `jml_brg`, `diskon`, `korting`, `st_hrg`, `t_hrg`) VALUES
-('23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHINa', 1, 1, 0, 59400, 59400);
+INSERT INTO `daftar belanja temp` (`kd_brg`, `nm_brg`, `merek`, `jml_brg`, `diskon`, `korting`, `st_hrg`, `t_hrg`, `user`) VALUES
+('23221-GN5-914T', 'AS GEAR DEPAN SUPRA/GRAND/PRIMA TYPE H', 'DENSHINa', 1, 0, 0, 60000, 60000, 'kasir'),
+('23221-KFL-860D', 'AS GEAR DEPAN SUPRA FIT NEW/REVO TYPE H', 'DENSHINa', 1, 0, 0, 0, 0, 'kasir');
 
 -- --------------------------------------------------------
 
@@ -76,6 +85,14 @@ CREATE TABLE `daftar grosir temp` (
   `t_hrg` int(10) NOT NULL,
   `user` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `daftar grosir temp`
+--
+
+INSERT INTO `daftar grosir temp` (`kd_brg`, `jml_brg`, `st_hrg`, `t_hrg`, `user`) VALUES
+('23221-GN5-914T', 2, 40000, 80000, 'grosir'),
+('BRG-183', 2, 35000, 70000, 'grosir');
 
 -- --------------------------------------------------------
 
@@ -501,7 +518,7 @@ INSERT INTO `tabel barang pusat` (`kd_brg`, `nm_brg`, `mrk_brg`, `stock_toko`, `
 ('BRG-178', 'test123123', 'DENSHINa', 20, 2, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 50000, 0, 0),
 ('BRG-180', 'test12312', 'DENSHINa', 0, 22, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 50000, 0, 0),
 ('BRG-182', 'test12312', 'DENSHINa', 0, 21, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 40000, 0, 0),
-('BRG-183', 'test12312', 'DENSHINa', 0, 5, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 40000, 34000, 32000);
+('BRG-183', 'test12312', 'DENSHINa', 0, 5, 'PT MENTARI PRIMA SEMESTA KALBAR', 20000, 40000, 35000, 32000);
 
 -- --------------------------------------------------------
 
