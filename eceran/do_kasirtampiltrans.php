@@ -38,7 +38,6 @@
                                    while ($data2 = mysqli_fetch_array($sql2)) {
                                    ?>
                                         <tr>
-                                             <td><?php echo $data2['tgl_trns'] ?></td>
                                              <td><?php echo $data2['nm_brg'] ?></td>
                                              <td><?php echo $data2['mrk_brg'] ?></td>
                                              <td><?php echo $data2['jml_beli'] ?></td>
