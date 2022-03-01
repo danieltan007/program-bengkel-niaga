@@ -411,10 +411,12 @@
 
                     if (nama == 0) {
                          $("#namaErr").html("Masukkan nama anda");
+                         $("#namaErr").css("color", "red");
                          $("#nama").css("outline-color", "red");
                          error_nama = true;
                     } else if (!pattern.test(nama)) {
                          $("#namaErr").html("hanya boleh nama dan spasi!");
+                         $("#namaErr").css("color", "red");
                          $("#nama").css("outline-color", "red");
                          error_nama = true;
                     } else {
@@ -425,10 +427,12 @@
                               success: function(data) {
                                    if (data == 0) {
                                         $("#namaErr").html("nama tersedia");
+                                        $("#namaErr").css("color", "green");
                                         $("#nama").css("outline-color", "green");
                                         error_nama = false;
                                    } else {
                                         $("#namaErr").html("nama tidak tersedia");
+                                        $("#namaErr").css("color", "red");
                                         $("#nama").css("outline-color", "red");
                                         error_nama = true;
                                    }
@@ -445,8 +449,10 @@
                     if (nohp == "0") {
                          $("#nohpErr").html("Masukkan no hp pembeli!");
                          $("#nohp").css("outline-color", "red");
+                         $("#nohpErr").css("color", "red");
                          error_nohp = true;
                     } else if (nohp.length < 12) {
+                         $("#nohpErr").css("color", "red");
                          $("#nohpErr").html("No hp harus 12 digit!");
                          $("#nohp").css("outline-color", "red");
                          error_nohp = true;
@@ -458,9 +464,11 @@
                               success: function(data) {
                                    if (data == 0) {
                                         $("#nohpErr").html("nohp tersedia");
+                                        $("#nohpErr").css("color", "green");
                                         $("#nohp").css("outline-color", "green");
                                         error_nohp = false;
                                    } else {
+                                        $("#nohpErr").css("color", "red");
                                         $("#nohpErr").html("nohp tidak tersedia");
                                         $("#nohp").css("outline-color", "red");
                                         error_nohp = true;
@@ -477,10 +485,12 @@
 
                     if (noktp == "0") {
                          $("#noktpErr").html("Masukkan No KTP pembeli!");
+                         $("#noktpErr").css("color", "red");
                          $("#noktp").css("outline-color", "red");
                          error_noktp = true;
                     } else if (noktp.length < 15) {
                          $("#noktpErr").html("No KTP harus 16 digit");
+                         $("#noktpErr").css("color", "red");
                          $("#noktp").css("outline-color", "red");
                          error_noktp = true;
                     } else {
@@ -491,10 +501,12 @@
                               success: function(data) {
                                    if (data == 0) {
                                         $("#noktpErr").html("no ktp tersedia");
+                                        $("#noktpErr").css("color", "green");
                                         $("#noktp").css("outline-color", "green");
                                         error_noktp = false;
                                    } else {
                                         $("#noktpErr").html("no ktp tidak tersedia");
+                                        $("#noktpErr").css("color", "red");
                                         $("#noktp").css("outline-color", "red");
                                         error_nohp = true;
                                    }

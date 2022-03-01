@@ -73,11 +73,13 @@ $password = $data['pass'];
 
                if (nama == 0) {
                     $("#namaErr").html("Masukkan nama mekanik");
+                    $("#namaErr").css("color", "red");
                     $("#nama").css("outline-color", "red");
                     error_nama = true;
                } else if (!pattern.test(nama)) {
                     $("#namaErr").html("hanya boleh nama dan spasi!");
                     $("#nama").css("outline-color", "red");
+                    $("#namaErr").css("color", "red");
                     error_nama = true;
                } else {
                     $.ajax({
@@ -87,10 +89,12 @@ $password = $data['pass'];
                          success: function(data) {
                               if (data == 0) {
                                    $("#namaErr").html("nama tersedia");
+                                   $("#namaErr").css("color", "green");
                                    $("#nama").css("outline-color", "green");
                                    error_nama = false;
                               } else {
                                    $("#namaErr").html("nama tidak tersedia");
+                                   $("#namaErr").css("color", "red");
                                    $("#nama").css("outline-color", "red");
                                    error_nama = true;
                               }
@@ -103,11 +107,13 @@ $password = $data['pass'];
                nohp = $("#nohp").val();
 
                if (nohp == "0") {
-                    $("#nohpErr").html("Masukkan no hp pembeli!");
+                    $("#nohpErr").html("Masukkan no hp mekanik!");
                     $("#nohp").css("outline-color", "red");
+                    $("#nohpErr").css("color", "red");
                     error_nohp = true;
                } else if (nohp.length < 12) {
                     $("#nohpErr").html("No hp harus 12 digit!");
+                    $("#nohpErr").css("color", "red");
                     $("#nohp").css("outline-color", "red");
                     error_nohp = true;
                } else {
@@ -118,9 +124,11 @@ $password = $data['pass'];
                          success: function(data) {
                               if (data == 0) {
                                    $("#nohpErr").html("nohp tersedia");
+                                   $("#nohpErr").css("color", "green");
                                    $("#nohp").css("outline-color", "green");
                                    error_nohp = false;
                               } else {
+                                   $("#nohpErr").css("color", "red");
                                    $("#nohpErr").html("nohp tidak tersedia");
                                    $("#nohp").css("outline-color", "red");
                                    error_nohp = true;
@@ -134,12 +142,14 @@ $password = $data['pass'];
                noktp = $("#noktp").val();
 
                if (noktp == "0") {
-                    $("#noktpErr").html("Masukkan No KTP pembeli!");
+                    $("#noktpErr").html("Masukkan No KTP mekanik!");
                     $("#noktp").css("outline-color", "red");
+                    $("#noktpErr").css("color", "red");
                     error_noktp = true;
                } else if (noktp.length < 15) {
                     $("#noktpErr").html("No KTP harus 16 digit");
                     $("#noktp").css("outline-color", "red");
+                    $("#noktpErr").css("color", "red");
                     error_noktp = true;
                } else {
                     $.ajax({
@@ -149,10 +159,12 @@ $password = $data['pass'];
                          success: function(data) {
                               if (data == 0) {
                                    $("#noktpErr").html("no ktp tersedia");
+                                   $("#noktpErr").css("color", "green");
                                    $("#noktp").css("outline-color", "green");
                                    error_noktp = false;
                               } else {
                                    $("#noktpErr").html("no ktp tidak tersedia");
+                                   $("#noktpErr").css("color", "red");
                                    $("#noktp").css("outline-color", "red");
                                    error_nohp = true;
                               }

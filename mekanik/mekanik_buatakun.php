@@ -58,10 +58,12 @@
                     var nik = $("#nik").val();
 
                     if (nik == 0) {
-                        $("#nikErr").html("masukkan nik");
+                        $("#nikErr").html("masukkan nik!");
+                        $("#nikErr").css("color", "red");
                         $("#nik").css("outline-color", "red");
                         error_nik = true;
                     } else if (nik.length < 16) {
+                        $("#nikErr").css("color", "red");
                         $("#nikErr").html("nik harus lebih dari 16 angka!");
                         $("#nik").css("outline-color", "red");
                         error_nik = true;

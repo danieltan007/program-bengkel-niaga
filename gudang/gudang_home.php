@@ -266,15 +266,18 @@ $pass = $data['pass'];
 
                     if (nama == 0) {
                          $("#nameErr").html("Masukkan nama barang");
+                         $("#nameErr").css("color", "red");
                          $("#nm_brg").css("outline-color", "red");
                          error_nama = true;
                     } else if (!pattern.test(nama)) {
                          $("#nameErr").html("Masukkan nama barang dengan benar!");
+                         $("#nameErr").css("color", "red");
                          $("#nm_brg").css("outline-color", "red");
                          error_nama = true;
                     } else if (nama.length < 6) {
                          $("#nameErr").html("Nama barang harus lebih dari 6 karakter!");
                          $("#nm_brg").css("outline-color", "red");
+                         $("#nameErr").css("color", "red");
                          error_nama = true;
                     } else {
                          $.ajax({
@@ -284,10 +287,12 @@ $pass = $data['pass'];
                               success: function(data) {
                                    if (data == 0) {
                                         $("#nameErr").html("nama tersedia");
+                                        $("#nameErr").css("color", "green");
                                         $("#nm_brg").css("outline-color", "green");
                                         error_nama = false;
                                    } else {
                                         $("#nameErr").html("nama tidak tersedia");
+                                        $("#nameErr").css("color", "red");
                                         $("#nm_brg").css("outline-color", "red");
                                         error_nama = true;
                                    }
@@ -306,13 +311,8 @@ $pass = $data['pass'];
                          $("#khususErr").css("color", "red");
                          error_khusus = true;
                     } else if (khusus != password_akun) {
-                         $("#khususErr").html("Password Salah!");
-                         $("#khusus").css("outline-color", "red");
-                         $("#khususErr").css("color", "red");
                          error_khusus = true;
                     } else {
-                         $("#khususErr").html("");
-                         $("#khusus").css("outline-color", "green");
                          error_khusus = false;
                     }
                });

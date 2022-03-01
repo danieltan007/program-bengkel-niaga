@@ -206,13 +206,8 @@ $pass = $data['pass'];
                     $("#passErr").css("color", "red");
                     error_password = true;
                 } else if (pass != password_akun) {
-                    $("#passErr").html("Password Salah!");
-                    $("#pass").css("outline-color", "red");
-                    $("#passErr").css("color", "red");
                     error_password = true;
                 } else {
-                    $("#passErr").html("");
-                    $("#pass").css("outline-color", "green");
                     error_password = false;
                 }
             });

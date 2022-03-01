@@ -228,7 +228,7 @@
                     <h4 class="modal-title">Konfirmasi</h4>
                </div>
 
-               <form action="do_pusatupdatehrg.php" id="hapusbrg" method="post">
+               <form action="do_pusathapusbrg.php" id="hapusbrg" method="post">
                     <!-- Modal body -->
                     <div class="modal-body">
                          Apakah Anda yakin mau menghapus?
@@ -349,13 +349,8 @@ $pass = $data['pass'];
                          $("#khususErr").css("color", "red");
                          error_khusus = true;
                     } else if (khusus != password) {
-                         $("#khususErr").html("Password Salah!");
-                         $("#khusus").css("outline-color", "red");
-                         $("#khususErr").css("color", "red");
                          error_khusus = true;
                     } else {
-                         $("#khususErr").html("");
-                         $("#khusus").css("outline-color", "green");
                          error_khusus = false;
                     }
                });
@@ -375,13 +370,8 @@ $pass = $data['pass'];
                          $("#khususErr").css("color", "red");
                          error_khusus2 = true;
                     } else if (khusus2 != password) {
-                         $("#khususErr2").html("Password Salah!");
-                         $("#khusus2").css("outline-color", "red");
-                         $("#khususErr2").css("color", "red");
                          error_khusus2 = true;
                     } else {
-                         $("#khususErr2").html("");
-                         $("#khusus2").css("outline-color", "green");
                          error_khusus2 = false;
                     }
                });
@@ -537,10 +527,15 @@ $pass = $data['pass'];
                          url: $(this).attr('action'),
                          type: 'post',
                          data: $(this).serialize(),
-                         success: function() {
-                              alert("data barang berhasil di hapus!");
-                              $("#hasil").load("do_pusatcekbrg.php");
-                              $('#modalhapus').modal('toggle');
+                         success: function(data) {
+                              if (data == 1) {
+                                   alert("Data barang berhasil di hapus!");
+                                   $("#hasil").load("do_pusatcekbrg.php");
+                                   $("#khusus2").val("");
+                                   $('#modalhapus').modal('toggle');
+                              } else {
+                                   alert("data barang gagal di hapus! Silahkan coba lagi!");
+                              }
                          }
                     });
                } else {
