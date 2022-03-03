@@ -127,6 +127,10 @@
                               </td>
                               <div class="error" id="mekanikErr"></div>
                          </tr>
+                         <!-- <tr>
+                              <td>Ongkos Mekanik</td>
+                              <td><input type="number" name="ongkos" id="ongkos" required></td>
+                         </tr> -->
                          <tr>
                               <td>Total Harga</td>
                               <td><input type="number" id="total" name="total" readonly></td>

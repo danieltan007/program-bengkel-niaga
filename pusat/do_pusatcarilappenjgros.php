@@ -33,6 +33,10 @@
                               while ($data2 = mysqli_fetch_array($sql2)) {
                                    $nama = $data2['nama'];
                                    $sql3 = mysqli_query($conn, "select * from `detail transaksi` inner join `tabel transaksi grosir` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `tabel transaksi grosir`.`nama` = '$nama'");
+
+                                   $sql4 = mysqli_query($conn, "select sum(`detail transaksi`.`total_harga`) as total_harga from `detail transaksi` inner join `tabel transaksi grosir` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `tabel transaksi grosir`.`nama` = '$nama'");
+                                   $data4 = mysqli_fetch_array($sql4);
+                                   $total_belanja = $data4['total_harga'];
                               ?>
                                    <div class="accordion-item">
                                         <h2 class="accordion-header" id="heading-<?= $no ?>-<?= $children ?>">
@@ -65,6 +69,10 @@
                                                        <?php
                                                        }
                                                        ?>
+                                                       <tr>
+                                                            <td colspan="5" align="center">Total Belanja</td>
+                                                            <td><?= number_format($total_belanja); ?></td>
+                                                       </tr>
                                                   </table>
                                              </div>
                                         </div>
