@@ -40,12 +40,12 @@ if (mysqli_num_rows($dapat) < 1) { ?>
           $sql7 = mysqli_query($conn, "select max(nama) as maxkode from `laporan penjualan`");
           $data7 = mysqli_fetch_array($sql7);
           $kodetrans4 = $data7['maxkode'];
-          if ($kodetrans4(preg_match("/^[0-9]*$/", $kodetrans4))) {
-               $kodetrans4 = date('ymd') . "0001";
-          } else {
+          if (preg_match("/[0-9]/", $kodetrans4)) {
                $ubah4 = substr($kodetrans4, -4, 4);
                $ubah4++;
                $kodetrans4 = date('ymd') . sprintf("%04s", $ubah4);
+          } else {
+               $kodetrans4 = date('ymd') . "0001";
           }
 
           while ($data = mysqli_fetch_array($dapat)) {
@@ -115,6 +115,10 @@ if (mysqli_num_rows($dapat) < 1) { ?>
           $sql = "insert into `tabel piutang` (noktp, nama, alamat, `no hp`, tgl_trns, t_hrg, sisa_byr, id_trns) values ('$noktp', '$nama', '$alamat', '$nohp', '$tgl', '$total', '$sisa' ,'$kodetrans2')";
           mysqli_query($conn, $sql);
           ?>
+          <tr>
+               <td></td>
+               <td></td>
+          </tr>
           <tr>
                <td>Kode Transaksi</td>
                <td><?= $kodetrans4; ?></td>
