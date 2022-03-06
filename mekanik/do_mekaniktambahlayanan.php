@@ -22,16 +22,20 @@ $user = $_SESSION['id_mekanik'];
                //hitung total harga
                $totalharga = (int)$data1['total'] + (int)$ongkos;
 
-                //buat kode trans, auto increment doang
-               $sql = "select max(kd_trns) as maxkode from `daftar layanan temp` ";
+          $sql = "select max(kd_temp) as maxkode from `daftar layanan temp` ";
                $cari = mysqli_query($conn, $sql);
                $data = mysqli_fetch_array($cari);
-               $newkode = (int)$data['maxkode'];
-               $newkode++;
+          $ubah = (int) substr(
+               $data['kd_temp'],
+               5,
+               3
+          );
+          $ubah++;
+          $kd_temp = "TEMP-" . sprintf("%03s", $ubah);
 
                $sql2 = "insert into `daftar layanan temp` 
-               (kd_trns, kd_brg, nm_brg, ongkos, jenis, jml_brg, hrg_brg, total, sumber, subtotal, merek, diskon, korting, user) values 
-               ('$newkode', '$data1[kd_brg]', '$data1[nm_brg]', '$ongkos', '$jenis', '$data1[jml]', '$data1[hrg_brg]', '$totalharga', 'stok toko', '$data1[total]' ,'$data1[mrk_brg]', '$data1[diskon]', '$data1[korting]', '$user')";
+               (kd_temp, kd_brg, nm_brg, ongkos, jenis, jml_brg, hrg_brg, total, sumber, subtotal, merek, diskon, korting, user) values 
+               ('$kd_temp', '$data1[kd_brg]', '$data1[nm_brg]', '$ongkos', '$jenis', '$data1[jml]', '$data1[hrg_brg]', '$totalharga', 'stok toko', '$data1[total]' ,'$data1[mrk_brg]', '$data1[diskon]', '$data1[korting]', '$user')";
           mysqli_query($conn, $sql2);
           }
 
@@ -40,33 +44,33 @@ $user = $_SESSION['id_mekanik'];
      }
      else if($pilihan == 'tokolain')
      {
-          //buat kode trans, auto increment doang
-          $sql = "select max(kd_trns) as maxkode from `daftar layanan temp` ";
+     $sql = "select max(kd_temp) as maxkode from `daftar layanan temp` ";
           $cari = mysqli_query($conn, $sql);
           $data = mysqli_fetch_array($cari);
-          $newkode = (int)$data['maxkode'];
-          $newkode++;
+     $ubah = (int) substr($data['kd_temp'], 5, 3);
+     $ubah++;
+     $kd_temp = "TEMP-" . sprintf("%03s", $ubah);
 
           //hitung total harga
           $totalharga = $thrg + $ongkos;
 
-     $sql2 = "insert into `daftar layanan temp` (kd_trns, kd_brg, nm_brg, ongkos, jenis, jml_brg, hrg_brg, total, sumber, subtotal, toko, merek, diskon, korting, user) values 
-          ('$newkode', '0', '$namabrg', '$ongkos', '$jenis', '$jmlbrg', '$hbrg', '$totalharga', 'toko lain', '$thrg' , '$toko' ,'$data[mrk_brg]', '$data[diskon]', '0', '$user')";
+     $sql2 = "insert into `daftar layanan temp` (kd_temp, kd_brg, nm_brg, ongkos, jenis, jml_brg, hrg_brg, total, sumber, subtotal, toko, merek, diskon, korting, user) values 
+          ('$kd_temp', '0', '$namabrg', '$ongkos', '$jenis', '$jmlbrg', '$hbrg', '$totalharga', 'toko lain', '$thrg' , '$toko' ,'$data[mrk_brg]', '$data[diskon]', '0', '$user')";
           mysqli_query($conn, $sql2);
 
           $sql4 = "delete from `barang mekanik temp`";
           mysqli_query($conn, $sql4);
      }
      else if($pilihan == 'pembeli')
-     {
-          //buat kode trans, auto increment doang
-          $sql = "select max(kd_trns) as maxkode from `daftar layanan temp` ";
+
+$sql = "select max(kd_temp) as maxkode from `daftar layanan temp` ";
           $cari = mysqli_query($conn, $sql);
           $data = mysqli_fetch_array($cari);
-          $newkode = (int)$data['maxkode'];
-          $newkode++;
+$ubah = (int) substr($data['kd_temp'], 5, 3);
+$ubah++;
+$kd_temp = "TEMP-" . sprintf("%03s", $ubah);
 
-     $sql2 = "insert into `daftar layanan temp` (kd_trns, kd_brg, nm_brg, ongkos, jenis, jml_brg, hrg_brg, total, sumber, subtotal, merek, diskon, korting, user) values ('$newkode', '0', '', '$ongkos', '$jenis', '0', '0', '$ongkos', 'pembeli', '0' ,'$data[mrk_brg]', '$data[diskon]', '0', '$user') ";
+$sql2 = "insert into `daftar layanan temp` (kd_temp, kd_brg, nm_brg, ongkos, jenis, jml_brg, hrg_brg, total, sumber, subtotal, merek, diskon, korting, user) values ('$kd_temp', '0', '', '$ongkos', '$jenis', '0', '0', '$ongkos', 'pembeli', '0' ,'$data[mrk_brg]', '$data[diskon]', '0', '$user') ";
           mysqli_query($conn, $sql2);
 
           $sql3 = "delete from `barang mekanik temp`";
