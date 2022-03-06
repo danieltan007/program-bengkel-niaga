@@ -29,7 +29,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      <h3 align="center">Tiara Motor</h3>
      <p align="center">Jl Raya Ngabang, Ngabang, Kalimantan Barat</p>
      <br>
-     Tanggal : <?php echo $tgl; ?><br>
+     Tanggal : <?php echo date('d-m-Y', strtotime($tgl)); ?><br>
      Metode Pembayaran: Lunas
      <br>
      <hr>
@@ -37,6 +37,17 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      <body>
           <table style="font-size:8px;" border=0 align="center">
                <?php
+               $sql7 = mysqli_query($conn, "select max(nama) as maxkode from `riwayat pembelian`");
+               $data7 = mysqli_fetch_array($sql7);
+               $kodetrans4 = $data7['maxkode'];
+               if ($kodetrans4(preg_match("/^[0-9]*$/", $kodetrans4))) {
+                    $kodetrans4 = date('ymd') . "0001";
+               } else {
+                    $ubah4 = substr($kodetrans4, -4, 4);
+                    $ubah4++;
+                    $kodetrans4 = date('ymd') . sprintf("%04s", $ubah4);
+               }
+
                while ($data = mysqli_fetch_array($dapat)) {
                     $sql3 = "select * from `tabel barang pusat` where kd_brg = '$data[kd_brg]' ";
                     $cek2 = mysqli_query($conn, $sql3);
@@ -61,7 +72,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                     $hasil2 = mysqli_query($conn, $query1);
                     $data4 = mysqli_fetch_array($hasil2);
                     $kodetrans2 = $data4['maxkode'];
-                    $ubah1 = (int) substr($kodetrans2, 4, 3);
+                    $ubah1 = (int) substr($kodetrans2, 4, strlen($kodetrans2));
                     $ubah1++;
                     $kodetrans2 = "DET-" . sprintf("%03s", $ubah1);
 
@@ -81,7 +92,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                     $hasil3 = mysqli_query($conn, $query2);
                     $data5 = mysqli_fetch_array($hasil3);
                     $kodetrans3 = $data5['maxkode'];
-                    $ubah2 = (int) substr($kodetrans3, 4, 3);
+                    $ubah2 = (int) substr($kodetrans3, 4, strlen($kodetrans3));
                     $ubah2++;
                     $kodetrans3 = "LAP-" . sprintf("%03s", $ubah2);
 
@@ -90,6 +101,8 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                ('$kodetrans3', '$kodetrans2', '$tgl', 'kasir 1', '$data[nm_brg]', 'jual barang', '$data[jml_brg]', '$jual', '$modal', '$profit')";
                     mysqli_query($conn, $sql6);
                     // mysqli_error($conn);
+
+                    $sql9 = mysqli_query($conn, "insert into `riwayat pembelian` values ('$kodetrans2', '$kodetrans4')");
 
                     $sql4 = "update `tabel barang pusat` set stock_toko = '$sisastok' where kd_brg = '$data[kd_brg]'";
                     $cek3 = mysqli_query($conn, $sql4);
@@ -103,8 +116,13 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                          <td>-<?php echo $data['diskon']; ?>%</td>
                          <td><?php echo number_format($data['t_hrg']); ?></td>
                     </tr>
-               <?php    }
+               <?php
+               }
                ?>
+               <tr>
+                    <td>Kode Transaksi</td>
+                    <td><?= $kodetrans4; ?></td>
+               </tr>
                <tr>
                     <td>Total Harga</td>
                     <td><?php echo number_format($total); ?></td>
@@ -129,7 +147,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      $hasil = mysqli_query($conn, $query);
      $data3 = mysqli_fetch_array($hasil);
      $kodetrans = $data3['maxkode'];
-     $ubah = (int) substr($kodetrans, 4, 3);
+     $ubah = (int) substr($kodetrans, 4, strlen($kodetrans));
      $ubah++;
      $kodetrans = "TRN-" . sprintf("%03s", $ubah);
 

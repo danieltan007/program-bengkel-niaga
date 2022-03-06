@@ -6,9 +6,9 @@
 
 <?php
 include "../koneksi.php";
-     session_start();
+session_start();
 
-     $user = $_SESSION['id_grosir'];
+$user = $_SESSION['id_grosir'];
 // ! nnti mau di perbaiki lagi
 $nama = $_POST['nama'];
 $total = $_POST['total'];
@@ -24,7 +24,7 @@ $dapat = mysqli_query($conn, $sql1);
      <h3 align="center">Tiara Motor</h3>
      <p align="center">Jl Raya Ngabang, Ngabang, Kalimantan Barat</p>
      <br>
-     Tanggal : <?php echo $tgl; ?><br>
+     Tanggal : <?php echo date('d-m-Y', strtotime($tgl)); ?><br>
      Metode Pembayaran: Lunas
      <br>
 </head>
@@ -86,7 +86,7 @@ $dapat = mysqli_query($conn, $sql1);
                ('$kodetrans3', '$kodetrans2', '$tgl', 'grosir', '$data2[nm_brg]', 'jual barang', '$data[jml_brg]', '$jual', '$modal', '$profit')";
                mysqli_query($conn, $sql6);
 
-               $sql8 = mysqli_query($conn, "insert into `tabel transaksi grosir` values ('$kodetrans2', '$nama')");
+               $sql8 = mysqli_query($conn, "insert into `riwayat penjualan` values ('$kodetrans2', '$nama')");
 
                $sql4 = "update `tabel barang pusat` set stock_gudang = '$sisastok' where kd_brg = '$data[kd_brg]'";
                mysqli_query($conn, $sql4);
@@ -103,6 +103,10 @@ $dapat = mysqli_query($conn, $sql1);
                </tr>
           <?php    }
           ?>
+          <tr>
+               <td>Nama Pembeli</td>
+               <td><?= $nama; ?></td>
+          </tr>
           <tr>
                <td>Total Harga</td>
                <td><?php echo number_format($total); ?></td>

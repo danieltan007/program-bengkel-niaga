@@ -31,7 +31,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      <p align="center">Jl Raya Ngabang, Ngabang, Kalimantan Barat</p>
      <br><br>
      Nama Pembeli: <?php echo $nama; ?><br>
-     Tanggal : <?php echo $tgl; ?><br>
+     Tanggal : <?php echo date('d-m-Y', strotime($tgl)); ?><br>
      Metode Pembayaran: Cicil
      <br>
      <hr>
@@ -105,6 +105,10 @@ if (mysqli_num_rows($dapat) < 1) { ?>
           $sql = "insert into `tabel piutang` (noktp, nama, alamat, `no hp`, tgl_trns, t_hrg, sisa_byr, id_trns) values ('$noktp', '$nama', '$alamat', '$nohp', '$tgl', '$total', '$sisa' ,'$kodetrans2')";
           mysqli_query($conn, $sql);
           ?>
+          <tr>
+               <td>Nama Pembeli</td>
+               <td><?= $nama; ?></td>
+          </tr>
           <tr>
                <td>Total Harga</td>
                <td><?php echo number_format($total); ?></td>

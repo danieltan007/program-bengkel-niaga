@@ -2,7 +2,6 @@
 session_start();
 ?>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
      .error {
@@ -15,14 +14,31 @@ session_start();
           border: 2px solid #ccc;
           border-radius: 4px;
           font-size: 16px;
+          position: relative;
           background-color: white;
-          background-image: url('cari.png');
+          /* background-image: url('cari.png'); */
           background-position: 10px 10px;
           background-size: 28px, 28px, auto;
           background-repeat: no-repeat;
           padding: 12px 20px 12px 50px;
           -webkit-transition: width 0.7s ease-in-out;
           transition: width 0.7s ease-in-out;
+     }
+
+     .icon::before {
+          display: inline-block;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+     }
+
+     #cari::before {
+          content: "\f002";
+          font: var(--fa-font-solid);
+          font-family: "Font Awesome 6 Free";
+          font-weight: normal;
+          font-style: normal;
+          text-decoration: inherit;
+          margin-right: 10px;
      }
 
      #cari:focus {
