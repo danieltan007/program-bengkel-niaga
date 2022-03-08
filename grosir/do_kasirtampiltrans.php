@@ -9,7 +9,7 @@
           $tglawal = $_POST['awal'];
           $tglakhir = $_POST['akhir'];
 
-          $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `tabel transaksi grosir` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir'";
+               $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir' and tipe = 'grosir' ";
           $cek = mysqli_query($conn, $sql);
           $no = 1;
           $children = 1;
@@ -24,16 +24,16 @@
                          </button>
                     </h2>
                     <?php
-                    $sql2 = mysqli_query($conn, "select DISTINCT(`tabel transaksi grosir`.`nama`) from `tabel transaksi grosir` inner join `detail transaksi` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `detail transaksi`.`tgl_trns` = '$tgl_trans'");
+               $sql2 = mysqli_query($conn, "select DISTINCT(`riwayat pembelian`.`nama`) from `riwayat pembelian` inner join `detail transaksi` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `detail transaksi`.`tgl_trns` = '$tgl_trans' and tipe = 'grosir'");
                     ?>
                     <div id="collapse-<?= $no ?>" class="accordion-collapse collapse show" aria-labelledby="heading-<?= $no ?>" data-bs-parent="#data-trans">
                          <div class="accordion-body">
                               <?php
                               while ($data2 = mysqli_fetch_array($sql2)) {
                                    $nama = $data2['nama'];
-                                   $sql3 = mysqli_query($conn, "select * from `detail transaksi` inner join `tabel transaksi grosir` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `tabel transaksi grosir`.`nama` = '$nama'");
+                                   $sql3 = mysqli_query($conn, "select * from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `riwayat pembelian`.`nama` = '$nama' and tipe = 'grosir'");
 
-                                   $sql4 = mysqli_query($conn, "select sum(`detail transaksi`.`total_harga`) as total_harga from `detail transaksi` inner join `tabel transaksi grosir` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `tabel transaksi grosir`.`nama` = '$nama'");
+                                   $sql4 = mysqli_query($conn, "select sum(`detail transaksi`.`total_harga`) as total_harga from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `riwayat pembelian`.`nama` = '$nama' and tipe = 'grosir'");
                                    $data4 = mysqli_fetch_array($sql4);
                                    $total_belanja = $data4['total_harga'];
                               ?>

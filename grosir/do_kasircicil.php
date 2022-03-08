@@ -91,7 +91,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                $cek3 = mysqli_query($conn, $sql4);
 
                // input ke tabel transaksi grosir
-               $sql8 = mysqli_query($conn, "insert into `tabel transaksi grosir` values ('$kodetrans2', '$nama')");
+               $sql8 = mysqli_query($conn, "insert into `riwayat pembelian` values ('$kodetrans2', '$nama', 'grosir')");
           ?>
                <tr>
                     <td colspan="4"><?php echo $data2['nm_brg']; ?></td>

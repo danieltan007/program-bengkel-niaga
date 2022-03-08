@@ -102,7 +102,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                     mysqli_query($conn, $sql6);
                     // mysqli_error($conn);
 
-                    $sql9 = mysqli_query($conn, "insert into `riwayat pembelian` values ('$kodetrans2', '$kodetrans4')");
+                    $sql9 = mysqli_query($conn, "insert into `riwayat pembelian` values ('$kodetrans2', '$kodetrans4', 'eceran')");
 
                     $sql4 = "update `tabel barang pusat` set stock_toko = '$sisastok' where kd_brg = '$data[kd_brg]'";
                     $cek3 = mysqli_query($conn, $sql4);

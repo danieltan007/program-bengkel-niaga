@@ -55,6 +55,7 @@ session_start();
      <div class="row">
           <div class="col">
                <h2 align="center">Retur Barang</h2>
+               <br>
                <input type="text" name="cari" id="cari" placeholder="masukkan kode transaksi">
                <br><br>
                <div id="tampil_trans"></div>
@@ -63,12 +64,32 @@ session_start();
                <h2 align="center">Daftar Barang yang di Retur</h2>
                <br><br>
                <div id="daftar_retur"></div>
+               <br>
+               <form action="do_kasirretur.php" method="post">
+                    <table class="table table-borderless">
+                         <tr>
+                              <td>Total Harga</td>
+                              <td><input type="number" name="total_harga" id="total_harga" readonly></td>
+                         </tr>
+                    </table>
+                    <div align="center">
+                         <button class="btn btn-success" type="submit" id="proses" name="proses"><i class="fa-solid fa-box-archive"></i>Retur</button>
+                    </div>
+               </form>
           </div>
      </div>
 </div>
 
 <script>
      $(document).ready(function() {
+          function tampil_barang() {
+               $("#daftar_retur").load("do_kasirtampilbrgretur.php");
+          }
+
+          function totalharga() {
+               $("#total_harga").load("do_kasirttlhrgretur.php");
+          }
+
           $("#cari").keyup(function() {
                var cari = $("#cari").val();
                $.ajax({
@@ -76,15 +97,11 @@ session_start();
                     url: "do_kasircariretur.php",
                     data: "cari=" + cari,
                     success: function(data) {
-                         $("#tampil_trans").html(data)
+                         $("#tampil_trans").html(data);
                     }
                });
           });
-
-          function tampil_barang() {
-               $("#daftar_retur").load("do_kasirtampilbrgretur.php");
-          }
-
+          
           $(document).on("click", "a[id^='tambah-']", function(e) {
                e.preventDefault();
                let id = $(this).attr("id").substr(7, $(this).attr("id").length);
@@ -92,23 +109,36 @@ session_start();
                $.ajax({
                     type: "get",
                     url: $(this).attr("href"),
-                    data: "id=" + id,
                     success: function(data) {
                          tampil_barang();
                     }
                });
           });
 
-          $(document).on("click", "a[id^='hapus-']", function(e) {
+          $(document).on("click", "a[id^='delretur']", function(e) {
                e.preventDefault();
-               let id = $(this).attr("id").substr(6, $(this).attr("id").length);
-
                $.ajax({
                     type: "get",
                     url: $(this).attr("href"),
-                    data: "id=" + id,
                     success: function(data) {
                          tampil_barang();
+                    }
+               });
+          });
+
+          $(document).on("change", "input[id^='jml_brg-']", function() {
+               var kode = $(this).attr("id").substr(8, $(this).attr("id").length);
+               var jml = $(this).val();
+               $.ajax({
+                    type: 'post',
+                    url: "do_kasirupdatejmlretur.php",
+                    data: {
+                         kode: kode,
+                         jml: jml
+                    },
+                    success: function() {
+                         tampil_barang();
+                         totalharga();
                     }
                });
           });

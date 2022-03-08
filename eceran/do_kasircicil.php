@@ -98,6 +98,8 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                $sql6 = "INSERT INTO `laporan penjualan` (`id_lap_jual`, `id_trns`, `tgl_jual`, `user`, `nm_brg`, `jasa`, `jumlah`, `harga_jual`, `modal_brg`, `profit_brg`) VALUES ('$kodetrans3', '$kodetrans2', '$tgl', 'kasir 1', '$data[nm_brg]', 'jual barang', '$data[jml_brg]', '$jual', '$modal', '$profit')";
                mysqli_query($conn, $sql6);
 
+               $sql9 = mysqli_query($conn, "insert into `riwayat pembelian` values ('$kodetrans2', '$kodetrans4', 'eceran')");
+               
                $sql4 = "update `tabel barang pusat` set sto_toko = '$sisastok' where kd_brg = '$data[kd_brg]'";
                $cek3 = mysqli_query($conn, $sql4);
           ?>
