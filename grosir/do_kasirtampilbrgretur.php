@@ -1,7 +1,7 @@
 <?php
 include "../koneksi.php";
 session_start();
-$user = $_SESSION['id_ecer'];
+$user = $_SESSION['id_grosir'];
 $sql = mysqli_query($conn, "SELECT `tabel retur temp`.`kd_temp`, `tabel retur temp`.`kd_trans`, `detail transaksi`.`nm_brg`, `tabel retur temp`.`jml_brg`, `tabel retur temp`.`hrg_brg`, `tabel retur temp`.`total_hrg` FROM `tabel retur temp` inner join `detail transaksi` on `tabel retur temp`.`kd_trans` = `detail transaksi`.`id_trans` where `tabel retur temp`.`user` = '$user'");
 ?>
 <table class="table table-bordered table-hover">

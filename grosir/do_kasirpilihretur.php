@@ -2,7 +2,7 @@
 include "../koneksi.php";
 session_start();
 
-$user = $_SESSION['id_ecer'];
+$user = $_SESSION['id_grosir'];
 $id = $_GET['id'];
 $sql = mysqli_query($conn, "select * from `detail transaksi` where id_trans = '$id' ");
 $data = mysqli_fetch_array($sql);

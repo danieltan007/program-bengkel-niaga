@@ -41,6 +41,12 @@ session_start();
      <div id="show2"></div>
 </div>
 
+<br><br>
+
+<div class="jumbotron">
+     
+</div>
+
 
 <script type="text/javascript">
      $(document).ready(function() {
