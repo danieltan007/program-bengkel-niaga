@@ -6,8 +6,8 @@
      if (empty($_POST['awal']) || empty($_POST['akhir'])) {
           echo "Masukkan Tanggal Transaksi!";
      } else {
-          $tglawal = $_POST['awal'];
-          $tglakhir = $_POST['akhir'];
+          $tglawal = date('Y-m-d', strtotime($_POST['awal']));
+          $tglakhir = date('Y-m-d', strtotime($_POST['akhir']));
           $sql = "select distinct(tgl_trns) from `detail transaksi` where tgl_trns between '$tglawal' and '$tglakhir'";
           $cek = mysqli_query($conn, $sql);
           $no = 1;

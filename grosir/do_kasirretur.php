@@ -30,12 +30,12 @@ while ($data = mysqli_fetch_array($sql)) {
      } else {
           $sql2 = mysqli_query($conn, "select max(kd_retur) as maxkode from `tabel retur`");
           $data2 = mysqli_fetch_array($sql2);
-          $kode = $data2['maxkode'];
-          $noUrut = (int) substr($kode, 4, strlen($kode));
+          $kd_retur = $data2['maxkode'];
+          $noUrut = (int) substr($kd_retur, 4, strlen($kd_retur));
           $noUrut++;
           $kd_retur = "RTR-" . sprintf("%03s", $noUrut);
 
-          $sql3 = mysqli_query($conn, "insert into `tabel retur` values ('$kd_retur','$date','$kd_brg','$jml','$hrg','$total')");
+          $sql3 = mysqli_query($conn, "insert into `tabel retur` values ('$kd_retur','$date','$kode','$jml','$hrg','$total')");
           $sql4 = mysqli_query($conn, "update `tabel barang pusat` set stock_gudang = stock_gudang + $jml where kd_brg = '$kd_brg'");
      }
 }

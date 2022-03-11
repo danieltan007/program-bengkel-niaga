@@ -50,7 +50,6 @@ session_start();
      }
 </style>
 
-
 <div class="container">
      <div class="row">
           <div class="col">
@@ -73,15 +72,43 @@ session_start();
                          </tr>
                     </table>
                     <div align="center">
-                         <button class="btn btn-success" type="submit" id="proses" name="proses"><i class="fa-solid fa-box-archive"></i>Retur</button>
+                         <button class="btn btn-success" type="submit" id="proses" name="proses"><i class="fa-solid fa-box-archive"></i> Retur</button>
                     </div>
                </form>
           </div>
      </div>
 </div>
+<div class="container">
+     <h2 align="center">Cetak Laporan Retur</h2>
+     <br>
+     <p>Pilih Tanggal :</p>
+     <form action="do_kasircetakretur.php" method="post" id="cetaklaporan">
+          <input type="text" name="awal" id="awal" required> sampai <input type="text" name="akhir" id="akhir" required> &nbsp;&nbsp;&nbsp;
+          <button class="btn btn-success" type="submit"><i class="fa fa-eye"></i> Cari</button>
+     </form>
+     <br><br>
+     <div id="tampil_laporan"></div>
+</div>
 
 <script>
      $(document).ready(function() {
+          $("#awal, #akhir").datepicker();
+          $("#awal").datepicker("option", {
+               changeMonth: true,
+               changeYear: true,
+               showAnim: "slideDown",
+               dateFormat: "dd-m-yy",
+               maxDate: "0",
+          });
+
+          $("#akhir").datepicker("option", {
+               changeMonth: true,
+               changeYear: true,
+               showAnim: "slideDown",
+               dateFormat: "dd-m-yy",
+               maxDate: "0",
+          });
+
           function tampil_barang() {
                $("#daftar_retur").load("do_kasirtampilbrgretur.php");
           }
@@ -100,6 +127,18 @@ session_start();
                     data: "cari=" + cari,
                     success: function(data) {
                          $("#tampil_trans").html(data);
+                    }
+               });
+          });
+
+          $("#cetaklaporan").submit(function(e) {
+               e.preventDefault();
+               $.ajax({
+                    type: $(this).attr("method"),
+                    url: $(this).attr('href'),
+                    data: $(this).serialize(),
+                    success: function(data) {
+                         $("#tampil_laporan").html(data);
                     }
                });
           });
@@ -154,13 +193,11 @@ session_start();
                     url: $(this).attr("action"),
                     data: $("#retur").serialize(),
                     success: function(data) {
-                         if(data == 1)
-                         {
+                         if (data == 1) {
                               $("#retur").trigger("reset");
                               tampil_barang();
                               totalharga();
-                         }
-                         else {
+                         } else {
                               alert("Gagal Retur! Silahkan coba lagi!");
                          }
                     }

@@ -2,7 +2,7 @@
      <?php
      include "../koneksi.php";
      $cari = "%" . $_POST['cari'] . "%";
-     $sql = "select distinct(nama) from `riwayat pembelian` where `nama` like '$cari' and tipe = 'grosir' ";
+     $sql = "select distinct nama from `riwayat pembelian` where not EXISTS (select kd_retur from `tabel retur` where `riwayat pembelian`.`id_trans` = `tabel retur`.`kd_trans`) and `riwayat pembelian`.`nama` like '$cari' and `riwayat pembelian`.tipe = 'grosir'";
      $cek = mysqli_query($conn, $sql);
      $no = 1;
 

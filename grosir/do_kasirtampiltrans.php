@@ -6,8 +6,8 @@
           echo "Masukkan Tanggal Transaksi!";
      } else {
      ?> <?php
-          $tglawal = $_POST['awal'];
-          $tglakhir = $_POST['akhir'];
+               $tglawal = date('Y-m-d', strtotime($_POST['awal']));
+               $tglakhir = date('Y-m-d', strtotime($_POST['akhir']));
 
                $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir' and tipe = 'grosir' ";
           $cek = mysqli_query($conn, $sql);
@@ -33,7 +33,7 @@
                                    $nama = $data2['nama'];
                                    $sql3 = mysqli_query($conn, "select * from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `riwayat pembelian`.`nama` = '$nama' and tipe = 'grosir'");
 
-                                   $sql4 = mysqli_query($conn, "select sum(`detail transaksi`.`total_harga`) as total_harga from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `riwayat pembelian`.`nama` = '$nama' and tipe = 'grosir'");
+                                   $sql4 = mysqli_query($conn, "select sum(`detail transaksi`.`total_harga`) as total_harga from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat  pembelian`.`id_trans` where `riwayat pembelian`.`nama` = '$nama' and tipe = 'grosir'");
                                    $data4 = mysqli_fetch_array($sql4);
                                    $total_belanja = $data4['total_harga'];
                               ?>

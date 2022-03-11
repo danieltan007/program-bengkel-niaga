@@ -11,29 +11,33 @@
 </div>
 
 <script>
-$(document).ready(function () {
- $('input[id$=awal]').datepicker({
-	dateFormat: 'yy-mm-dd'
-    });
- });
- 
-$(document).ready(function () {
- $('input[id$=akhir]').datepicker({
-  dateFormat: 'yy-mm-dd'
-  });
-});
-
-$(document).ready(function(){
-     $("#cetaklaporan").on("submit", function(e){
-          e.preventDefault();
-          $.ajax({
-               type: $(this).attr('method'),
-               url: $(this).attr('action'),
-               data: $(this).serialize(),
-               success: function(data){
-                    $("#tampil2").html(data);
-               }
+     $(document).ready(function() {
+          $("#cetaklaporan").on("submit", function(e) {
+               e.preventDefault();
+               $.ajax({
+                    type: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function(data) {
+                         $("#tampil2").html(data);
+                    }
+               });
           });
-     });
-})
+
+          $("#awal, #akhir").datepicker();
+          $("#awal").datepicker("option", {
+               changeMonth: true,
+               changeYear: true,
+               showAnim: "slideDown",
+               dateFormat: "dd-m-yy"
+          });
+
+          $("#akhir").datepicker("option", {
+               changeMonth: true,
+               changeYear: true,
+               showAnim: "slideDown",
+               dateFormat: "dd-m-yy",
+               maxDate: "0",
+          });
+     })
 </script>
