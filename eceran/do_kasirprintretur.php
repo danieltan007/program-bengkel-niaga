@@ -1,9 +1,20 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<?php
+$awal = date('d-m-Y', strtotime($_GET['awal']));
+$akhir = date('d-m-Y', strtotime($_GET['akhir']));
+?>
+
+<h2 align="center">Laporan Barang Retur</h2>
+<h4 align="center">Periode <?= $awal; ?> Sampai <?= $akhir; ?></h4>
+<br>
+Tanggal Cetak : <?= date('d-m-Y'); ?>
+<br><br>
+
 <div class="accordion" id="data-retur">
      <?php
      include "../koneksi.php";
-
-     $awal = date('Y-m-d', strtotime($_POST['awal']));
-     $akhir = date('Y-m-d', strtotime($_POST['akhir']));
+     $awal = date('Y-m-d', strtotime($_GET['awal']));
+     $akhir = date('Y-m-d', strtotime($_GET['akhir']));
 
      $sql = mysqli_query($conn, "select distinct(tgl_trans) as tgl from `tabel retur` where tgl_trans between '$awal' and '$akhir'");
      $no = 1;
@@ -53,7 +64,23 @@
           ?>
           </div>
 </div>
-<br><br>
-<div align="center">
-     <a href="do_kasirprintretur.php?awal=<?= $awal; ?>&akhir=<?= $akhir; ?>" target="_blank" class="btn btn-success">Cetak Laporan</a>
-</div>
+
+<?php
+$sql4 = mysqli_query($conn, "select sum(total_hrg) as total from `tabel retur` where tgl_trans between '$awal' and '$akhir'");
+$data4 = mysqli_fetch_array($sql4);
+$total_retur = $data4['total'];
+?>
+<br>
+Total Retur : <?= number_format($total_retur) ?>
+
+<script type="text/javascript">
+     alert("berhasil melakukan print!");
+     window.print();
+     window.onafterprint = function(e) {
+          closePrintView();
+     }
+
+     function closePrintView() {
+          window.location.href = "kasir.php";
+     }
+</script>

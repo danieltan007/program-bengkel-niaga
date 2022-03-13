@@ -78,7 +78,7 @@ session_start();
           </div>
      </div>
 </div>
-<div class="container">
+<div class="jumbotron">
      <h2 align="center">Cetak Laporan Retur</h2>
      <br>
      <p>Pilih Tanggal :</p>
@@ -135,7 +135,7 @@ session_start();
                e.preventDefault();
                $.ajax({
                     type: $(this).attr("method"),
-                    url: $(this).attr('href'),
+                    url: $(this).attr('action'),
                     data: $(this).serialize(),
                     success: function(data) {
                          $("#tampil_laporan").html(data);
@@ -187,7 +187,7 @@ session_start();
           });
 
           $("#retur").submit(function(e) {
-               e.preventDefault();
+               // e.preventDefault();
                $.ajax({
                     type: "post",
                     url: $(this).attr("action"),
