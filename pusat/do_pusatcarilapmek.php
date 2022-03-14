@@ -5,8 +5,8 @@ error_reporting();
 if (empty($_POST['awal2']) || empty($_POST['akhir2'])) {
      echo "Masukkan Tanggal :";
 } else {
-     $awal = $_POST['awal2'];
-     $akhir = $_POST['akhir2'];
+     $awal = date('Y-m-d', strtotime($_POST['awal2']));
+     $akhir = date('Y-m-d', strtotime($_POST['akhir2']));
      $sql = "select * from `laporan pekerjaan mekanik` where tgl between '$awal' and '$akhir' order by id_mekanik asc ";
      $cari = mysqli_query($conn, $sql);
 ?>

@@ -13,8 +13,8 @@
           echo "Masukkan Tanggal Transaksi!";
      } else {
      ?> <?php
-          $tglawal = $_GET['awal'];
-          $tglakhir = $_GET['akhir'];
+               $tglawal = date('Y-m-d', strtotime($_GET['awal']));
+               $tglakhir = date('Y-m-d', strtotime($_GET['akhir']));
 
           $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `tabel transaksi grosir` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir'";
           $cek = mysqli_query($conn, $sql);

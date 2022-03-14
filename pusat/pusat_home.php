@@ -44,34 +44,26 @@ session_start();
 <br><br>
 
 <div class="jumbotron">
-     
+
 </div>
 
 
 <script type="text/javascript">
      $(document).ready(function() {
-          $('input[id$=awal]').datepicker({
-               dateFormat: 'yy-mm-dd'
+          $("#awal, #awal2, #awal3").datepicker({
+               dateFormat: "dd-mm-yy",
+               changeMonth: true,
+               changeYear: true,
+               showAnim: "slideDown",
+               maxDate: 0,
           });
 
-          $('input[id$=akhir]').datepicker({
-               dateFormat: 'yy-mm-dd'
-          });
-
-          $('input[id$=awal2]').datepicker({
-               dateFormat: 'yy-mm-dd'
-          });
-
-          $('input[id$=akhir2]').datepicker({
-               dateFormat: 'yy-mm-dd'
-          });
-
-          $('input[id$=awal3]').datepicker({
-               dateFormat: 'yy-mm-dd'
-          });
-
-          $('input[id$=akhir3]').datepicker({
-               dateFormat: 'yy-mm-dd'
+          $("#akhir, #akhir2, #akhir3").datepicker({
+               dateFormat: "dd-mm-yy",
+               changeMonth: true,
+               changeYear: true,
+               showAnim: "slideDown",
+               maxDate: 0,
           });
 
           $("#tampillappenj").on("submit", function(e) {

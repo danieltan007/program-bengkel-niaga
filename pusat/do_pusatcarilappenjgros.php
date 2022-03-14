@@ -7,8 +7,8 @@
           echo "Masukkan Tanggal Transaksi!";
      } else {
      ?> <?php
-          $tglawal = $_POST['awal3'];
-          $tglakhir = $_POST['akhir3'];
+               $tglawal = date('Y-m-d', strtotime($_POST['awal3']));
+               $tglakhir = date('Y-m-d', strtotime($_POST['akhir3']));
           $print = "<div align='center'><a class='btn btn-info' style='width:200px;' href='do_pusatcetaklapgros.php?awal=$tglawal&akhir=$tglakhir'><i class='fa fa-print'></i> Print</a></div> ";
           $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `tabel transaksi grosir` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir'";
           $cek = mysqli_query($conn, $sql);

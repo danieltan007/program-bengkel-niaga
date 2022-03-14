@@ -123,7 +123,7 @@
                changeMonth: true,
                changeYear: true,
                showAnim: "slideDown",
-               dateFormat: "dd-m-yy",
+               dateFormat: "dd-mm-yy",
                maxDate: "0"
           });
 
@@ -131,7 +131,7 @@
                changeMonth: true,
                changeYear: true,
                showAnim: "slideDown",
-               dateFormat: "dd-m-yy",
+               dateFormat: "dd-mm-yy",
                maxDate: "0",
           });
 

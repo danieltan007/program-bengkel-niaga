@@ -8,8 +8,8 @@
 <?php
 include "../koneksi.php";
 
-$awal = $_GET['awal'];
-$akhir = $_GET['akhir'];
+                         $awal = date('Y-m-d', strtotime($_GET['awal']));
+                         $akhir = date('Y-m-d', strtotime($_GET['akhir']));
 $hariini = date("d-m-Y");
 
 //hitung jumlah profit

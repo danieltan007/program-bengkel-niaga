@@ -16,14 +16,14 @@
           changeMonth: true,
           changeYear: true,
           showAnim: "slideDown",
-          dateFormat: "dd-m-yy"
+          dateFormat: "dd-mm-yy"
      });
 
      $("#akhir").datepicker("option", {
           changeMonth: true,
           changeYear: true,
           showAnim: "slideDown",
-          dateFormat: "dd-m-yy",
+          dateFormat: "dd-mm-yy",
           maxDate: "0",
      });
 

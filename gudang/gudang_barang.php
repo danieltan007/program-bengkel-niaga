@@ -111,12 +111,14 @@
                });
           });
 
-          $('input[id$=awal]').datepicker({
-               dateFormat: 'yy-mm-dd'
-          });
+          $("#awal, #akhir").datepicker();
 
-          $('input[id$=akhir]').datepicker({
-               dateFormat: 'yy-mm-dd'
+          $("#awal, #akhir").datepicker("option", {
+               changeYear: true,
+               changeMonth: true,
+               showAnim: "slideDown",
+               dateformat: "dd-mm-yy",
+               maxDate: 0,
           });
 
           $(document).ready(function() {
