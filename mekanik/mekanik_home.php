@@ -73,10 +73,10 @@
                               <td>Total Harga</td>
                               <td><input type="number" min="0" max="99999999" name="thrg" id="thrg"></td>
                          </tr>
-                         <tr>
+                         <!-- <tr>
                               <td>Ongkos Mekanik</td>
                               <td><input type="number" min="0" max="9999999" id="ongkos" name="ongkos"></td>
-                         </tr>
+                         </tr> -->
                     </table>
                     <div align="center">
                          <button class="btn btn-success" type="submit" name="tambahlayanan"><i class="fa fa-plus-circle"></i> Tambah</button>
@@ -127,10 +127,10 @@
                               </td>
                               <div class="error" id="mekanikErr"></div>
                          </tr>
-                         <!-- <tr>
+                         <tr>
                               <td>Ongkos Mekanik</td>
                               <td><input type="number" name="ongkos" id="ongkos" required></td>
-                         </tr> -->
+                         </tr>
                          <tr>
                               <td>Total Harga</td>
                               <td><input type="number" id="total" name="total" readonly></td>
@@ -341,24 +341,6 @@
                          totalharga();
                     }
                })
-          });
-
-          $(document).on("change", "input[id^='ongkos-']", function() {
-               var kode = $(this).attr('id').substr(7, $(this).attr("id").length);
-               var ongkos = $(this).val();
-
-               $.ajax({
-                    url: "do_mekanikupdateongkos.php",
-                    type: "post",
-                    data: {
-                         kode: kode,
-                         ongkos: ongkos
-                    },
-                    success: function() {
-                         update();
-                         totalharga();
-                    }
-               });
           });
 
           $(document).on("click", "a[id^='delete-']", function(e) {

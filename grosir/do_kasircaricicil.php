@@ -20,7 +20,7 @@
                $cicilan = "<a id='cicilan-$i' class='btn btn-info' style='color:white' data-role='bayarcicil' name='" . $data['noktp'] . "'><i class='fa fa-credit-card'></i> Bayar Cicilan</a>";
      ?>
                <tr id=<?php echo $i; ?>>
-                    <td><?php echo $data["tgl_trns"]; ?></td>
+                    <td><?php echo date('d-m-Y', strtotime($data["tgl_trns"])); ?></td>
                     <td><?php echo $data["nama"]; ?></td>
                     <td><?php echo $data["alamat"]; ?></td>
                     <td><?php echo $data["no hp"]; ?></td>

@@ -79,6 +79,18 @@ session_start();
           </div>
      </div>
 </div>
+<div class="container">
+     <h2 align="center">Cetak Laporan Retur</h2>
+     <br>
+     <p>Pilih Tanggal :</p>
+     <form action="do_kasircetakretur.php" method="post" id="cetaklaporan">
+          <input type="text" name="awal" id="awal" required autocomplete="off"> sampai <input type="text" name="akhir" id="akhir" required autocomplete="off"> &nbsp;&nbsp;&nbsp;
+          <button class="btn btn-success" type="submit"><i class="fa fa-eye"></i> Cari</button>
+     </form>
+     <br><br>
+     <div id="tampil_laporan"></div>
+</div>
+
 
 <script>
      $(document).ready(function() {
@@ -100,6 +112,18 @@ session_start();
                     data: "cari=" + cari,
                     success: function(data) {
                          $("#tampil_trans").html(data);
+                    }
+               });
+          });
+
+          $("#cetaklaporan").submit(function(e) {
+               e.preventDefault();
+               $.ajax({
+                    type: $(this).attr("method"),
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function(data) {
+                         $("#tampil_laporan").html(data);
                     }
                });
           });
@@ -154,13 +178,11 @@ session_start();
                     url: $(this).attr("action"),
                     data: $("#retur").serialize(),
                     success: function(data) {
-                         if(data == 1)
-                         {
+                         if (data == 1) {
                               $("#retur").trigger("reset");
                               tampil_barang();
                               totalharga();
-                         }
-                         else {
+                         } else {
                               alert("Gagal Retur! Silahkan coba lagi!");
                          }
                     }

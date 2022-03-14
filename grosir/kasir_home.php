@@ -118,7 +118,7 @@ session_start();
      <h2 align="center">Tampilkan Transaksi</h2>
      <br>
      <form action="do_kasirtampiltrans.php" method="post" id="tampiltransaksi">
-          Pilih Tanggal <input type="text" id="awal" name="awal" autocomplete="off"> &nbsp; sampai &nbsp; <input type="text" id="akhir" name="akhir" autocomplete="off"> &nbsp;
+          Pilih Tanggal <input type="text" id="awal" name="awal" autocomplete="off" required> &nbsp; sampai &nbsp; <input type="text" id="akhir" name="akhir" autocomplete="off" required> &nbsp;
           <button class="btn btn-info" name="tampil"><i class="fa fa-eye"></i> Tampilkan</button>
      </form>
      <br>

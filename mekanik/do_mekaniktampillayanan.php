@@ -27,7 +27,6 @@
                <td><?php echo $data['korting']; ?></td>
                <td><?php echo $data['subtotal']; ?></td>
                <td><?php echo $data['sumber']; ?></td>
-               <td><input type="number" style="width:80px;" id="ongkos-<?php echo $data['kd_temp']; ?>" max="9999999" value="<?php echo $data['ongkos']; ?>"></td>
                <td><?php echo $data['total']; ?></td>
                <td><?php echo $delete; ?></td>
           </tr>

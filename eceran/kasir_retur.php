@@ -78,12 +78,12 @@ session_start();
           </div>
      </div>
 </div>
-<div class="jumbotron">
+<div class="container">
      <h2 align="center">Cetak Laporan Retur</h2>
      <br>
      <p>Pilih Tanggal :</p>
      <form action="do_kasircetakretur.php" method="post" id="cetaklaporan">
-          <input type="text" name="awal" id="awal" required> sampai <input type="text" name="akhir" id="akhir" required> &nbsp;&nbsp;&nbsp;
+          <input type="text" name="awal" id="awal" required autocomplete="off"> sampai <input type="text" name="akhir" id="akhir" required autocomplete="off"> &nbsp;&nbsp;&nbsp;
           <button class="btn btn-success" type="submit"><i class="fa fa-eye"></i> Cari</button>
      </form>
      <br><br>

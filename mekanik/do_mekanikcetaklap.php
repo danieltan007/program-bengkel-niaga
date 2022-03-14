@@ -5,8 +5,8 @@ error_reporting();
 if (empty($_POST['awal']) || empty($_POST['akhir'])) {
      echo "Masukkan Tanggal :";
 } else {
-     $awal = $_POST['awal'];
-     $akhir = $_POST['akhir'];
+     $awal = date('Y-m-d', strtotime($_POST['awal']));
+     $akhir = date('Y-m-d', strtotime($_POST['akhir']));
      $print = "<a class='btn btn-success' href='do_mekanikprint.php?awal=$awal&akhir=$akhir'><i class='fa fa-print'></i> Cetak Laporan</a> ";
 
      $sql = "select * from `laporan penjualan` where tgl_jual between '$awal' and '$akhir' and user = 'kasir 2' ";

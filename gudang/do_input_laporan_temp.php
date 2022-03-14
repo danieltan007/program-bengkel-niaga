@@ -4,8 +4,8 @@ include '../koneksi.php';
 // menyimpan data kedalam variabel
 //$kd_brg           		= $_POST['kd_brg '];
 $nm_brg           		= $_POST['nm_brg'];
-$mrk_brg       			= $_POST['mrk_brg'];
-$ktrg_brg  				= $_POST['ktrg_brg'];
+$mrk_brg       		= $_POST['mrk_brg'];
+$ktrg_brg  			= $_POST['ktrg_brg'];
 $sto_brg         		= $_POST['sto_brg'];
 $supp_brg         		= $_POST['supp_brg'];
 $hrg_brg				= $_POST['hrg_brg'];

@@ -5,7 +5,7 @@
      $awal = date('Y-m-d', strtotime($_POST['awal']));
      $akhir = date('Y-m-d', strtotime($_POST['akhir']));
 
-     $sql = mysqli_query($conn, "select distinct(`tabel retur`.tgl_trans) as tgl from `tabel retur` inner join `riwayat pembelian` on `tabel retur`.`kd_trans` = `riwayat pembelian`.`id_trans` where `tabel retur`.tgl_trans between '$awal' and '$akhir' and `riwayat pembelian`.`tipe` = 'eceran'");
+     $sql = mysqli_query($conn, "select distinct(`tabel retur`.tgl_trans) as tgl from `tabel retur` inner join `riwayat pembelian` on `tabel retur`.`kd_trans` = `riwayat pembelian`.`id_trans` where `tabel retur`.tgl_trans between '$awal' and '$akhir' and `riwayat pembelian`.`tipe` = 'grosir'");
      $no = 1;
      while ($data = mysqli_fetch_array($sql)) {
      ?>
@@ -25,8 +25,8 @@
                               <th>Total Harga</th>
                          </tr>
                          <?php
-               $sql2 = mysqli_query($conn, "SELECT `tabel barang pusat`.`nm_brg`, `tabel barang pusat`.`mrk_brg`, `tabel retur`.`jml_brg`, `tabel retur`.`hrg_brg`, `tabel retur`.`total_hrg` FROM `tabel retur` inner join `detail transaksi` on `detail transaksi`.`id_trans` = `tabel retur`.`kd_trans` inner join `tabel barang pusat` on `tabel barang pusat`.`kd_brg` = `detail transaksi`.`kd_brg` inner join `riwayat pembelian` on `riwayat pembelian`.id_trans = `tabel retur`.kd_trans where `tabel retur`.`tgl_trans` = '$data[tgl]' and `riwayat pembelian`.`tipe` = 'eceran'");
-               $sql3 = mysqli_query($conn, "select sum(total_hrg) as total from `tabel retur` inner join `riwayat pembelian` on `tabel retur`.`kd_trans` = `riwayat pembelian`.`id_trans` where `tabel retur`.tgl_trans = '$data[tgl]' and `riwayat pembelian`.`tipe` = 'eceran'");
+                         $sql2 = mysqli_query($conn, "SELECT `tabel barang pusat`.`nm_brg`, `tabel barang pusat`.`mrk_brg`, `tabel retur`.`jml_brg`, `tabel retur`.`hrg_brg`, `tabel retur`.`total_hrg` FROM `tabel retur` inner join `detail transaksi` on `detail transaksi`.`id_trans` = `tabel retur`.`kd_trans` inner join `tabel barang pusat` on `tabel barang pusat`.`kd_brg` = `detail transaksi`.`kd_brg` inner join `riwayat pembelian` on `riwayat pembelian`.id_trans = `tabel retur`.kd_trans where `tabel retur`.`tgl_trans` = '$data[tgl]' and `riwayat pembelian`.`tipe` = 'grosir'");
+                         $sql3 = mysqli_query($conn, "select sum(total_hrg) as total from `tabel retur` inner join `riwayat pembelian` on `tabel retur`.`kd_trans` = `riwayat pembelian`.`id_trans` where `tabel retur`.tgl_trans = '$data[tgl]' and `riwayat pembelian`.`tipe` = 'grosir'");
                          $data3 = mysqli_fetch_array($sql3);
                          $total = $data3['total'];
 

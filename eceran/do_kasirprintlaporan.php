@@ -1,8 +1,8 @@
 <?php
 include "../koneksi.php";
 
-$awal = $_GET['tglawal'];
-$akhir = $_GET['tglakhir'];
+               $awal = date('Y-m-d', strtotime($_GET['tglawal']));
+               $akhir = date('Y-m-d', strtotime($_GET['tglakhir']));
 $tgl = date('d-m-Y');
 
 $sql = "select * from `detail transaksi` where tgl_trns between '$awal' and '$akhir'";

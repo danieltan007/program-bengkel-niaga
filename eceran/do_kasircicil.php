@@ -31,7 +31,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      <p align="center">Jl Raya Ngabang, Ngabang, Kalimantan Barat</p>
      <br><br>
      Nama Pembeli: <?php echo $nama; ?><br>
-     Tanggal : <?php echo $tgl; ?><br>
+     Tanggal : <?= date('d-m-Y') ?><br>
      Metode Pembayaran: Cicil
      <br>
      <hr>
@@ -99,7 +99,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
                mysqli_query($conn, $sql6);
 
                $sql9 = mysqli_query($conn, "insert into `riwayat pembelian` values ('$kodetrans2', '$kodetrans4', 'eceran')");
-               
+
                $sql4 = "update `tabel barang pusat` set sto_toko = '$sisastok' where kd_brg = '$data[kd_brg]'";
                $cek3 = mysqli_query($conn, $sql4);
           ?>

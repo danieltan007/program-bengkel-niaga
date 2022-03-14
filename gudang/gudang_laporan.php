@@ -46,8 +46,8 @@
      <br><br>
      <form action="do_gudanglapmsk.php" id="laporanmsk" method="post">
           Masukkan tanggal
-          &nbsp; <input type="text" name="awal" id="awal" autocomplete="off"> &nbsp;
-          Sampai &nbsp; <input type="text" id="akhir" name="akhir" autocomplete="off"> &nbsp;&nbsp;
+          &nbsp; <input type="text" name="awal" id="awal" autocomplete="off" required> &nbsp;
+          Sampai &nbsp; <input type="text" id="akhir" name="akhir" autocomplete="off" required> &nbsp;&nbsp;
 
           <button class="btn btn-success" name="cari"><i class="fa fa-eye"></i> Tampilkan</button>
      </form>
@@ -118,12 +118,21 @@
                });
           });
 
-          $('input[id$=awal]').datepicker({
-               dateFormat: 'yy-mm-dd'
+          $("#awal, #akhir").datepicker();
+          $("#awal").datepicker("option", {
+               changeMonth: true,
+               changeYear: true,
+               showAnim: "slideDown",
+               dateFormat: "dd-m-yy",
+               maxDate: "0"
           });
 
-          $('input[id$=akhir]').datepicker({
-               dateFormat: 'yy-mm-dd'
+          $("#akhir").datepicker("option", {
+               changeMonth: true,
+               changeYear: true,
+               showAnim: "slideDown",
+               dateFormat: "dd-m-yy",
+               maxDate: "0",
           });
 
           $(document).ready(function() {

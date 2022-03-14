@@ -3,7 +3,7 @@
      <br><br>
 
      <form action="do_kasircetaklap.php" method="post" id="cetaklaporan">
-          Pilih Tanggal &nbsp; <input type="text" name="awal" id="awal" autocomplete="off"> Sampai <input type="text" id="akhir" name="akhir" autocomplete="off">&nbsp;&nbsp;
+          Pilih Tanggal &nbsp; <input type="text" name="awal" id="awal" required autocomplete="off"> Sampai <input type="text" id="akhir" name="akhir" autocomplete="off" required>&nbsp;&nbsp;
           <button class="btn btn-success" name="cari"><i class="fa fa-eye"></i> Tampilkan</button>
      </form>
      <br>
@@ -11,16 +11,20 @@
 </div>
 
 <script>
-     $(document).ready(function() {
-          $('input[id$=awal]').datepicker({
-               dateFormat: 'yy-mm-dd'
-          });
+     $("#awal, #akhir").datepicker();
+     $("#awal").datepicker("option", {
+          changeMonth: true,
+          changeYear: true,
+          showAnim: "slideDown",
+          dateFormat: "dd-m-yy"
      });
 
-     $(document).ready(function() {
-          $('input[id$=akhir]').datepicker({
-               dateFormat: 'yy-mm-dd'
-          });
+     $("#akhir").datepicker("option", {
+          changeMonth: true,
+          changeYear: true,
+          showAnim: "slideDown",
+          dateFormat: "dd-m-yy",
+          maxDate: "0",
      });
 
      $(document).ready(function() {

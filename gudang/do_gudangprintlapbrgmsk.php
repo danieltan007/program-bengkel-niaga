@@ -18,6 +18,9 @@ Periode: <?php echo $awal; ?> sampai <?php echo $akhir; ?>
           <th>Jumlah Barang</th>
      </tr>
      <?php
+                         $awal = date('Y-m-d', strtotime($awal));
+                         $akhir = date('Y-m-d', strtotime($akhir));
+
      $sql = "select * from `laporan barang masuk` where tgl_dtg between '$awal' and '$akhir' ";
      $cari = mysqli_query($conn, $sql);
 

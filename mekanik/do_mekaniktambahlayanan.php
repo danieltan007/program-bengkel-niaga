@@ -61,8 +61,7 @@ $user = $_SESSION['id_mekanik'];
           $sql4 = "delete from `barang mekanik temp`";
           mysqli_query($conn, $sql4);
      }
-     else if($pilihan == 'pembeli')
-
+     else if($pilihan == 'pembeli') {
 $sql = "select max(kd_temp) as maxkode from `daftar layanan temp` ";
           $cari = mysqli_query($conn, $sql);
           $data = mysqli_fetch_array($cari);
@@ -75,4 +74,4 @@ $sql2 = "insert into `daftar layanan temp` (kd_temp, kd_brg, nm_brg, ongkos, jen
 
           $sql3 = "delete from `barang mekanik temp`";
           mysqli_query($conn, $sql3);
-     }
+}

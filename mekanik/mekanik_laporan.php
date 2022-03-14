@@ -5,7 +5,7 @@
      <br>
      <form action="do_mekanikcetaklap.php" name="cetaklaporan" id="cetaklaporan" method="post">
           Pilih tanggal &nbsp;
-          <input type="text" name="awal" id="awal" autocomplete="off"> &nbsp;&nbsp; sampai &nbsp;&nbsp; <input type="text" autocomplete="off" name="akhir" id="akhir"> &nbsp;&nbsp;
+          <input type="text" name="awal" id="awal" autocomplete="off" required> &nbsp;&nbsp; sampai &nbsp;&nbsp; <input type="text" autocomplete="off" name="akhir" id="akhir" required> &nbsp;&nbsp;
           <button class="btn btn-success" name="tampilkan"><i class="fa fa-eye"></i> Tampilkan</button>
           <br><br>
      </form>
@@ -13,12 +13,20 @@
 </div>
 <script>
      $(document).ready(function() {
-          $('input[id$=awal]').datepicker({
-               dateFormat: 'yy-mm-dd'
+          $("#awal, #akhir").datepicker();
+          $("#awal").datepicker("option", {
+               changeMonth: true,
+               changeYear: true,
+               showAnim: "slideDown",
+               dateFormat: "dd-m-yy"
           });
 
-          $('input[id$=akhir]').datepicker({
-               dateFormat: 'yy-mm-dd'
+          $("#akhir").datepicker("option", {
+               changeMonth: true,
+               changeYear: true,
+               showAnim: "slideDown",
+               dateFormat: "dd-m-yy",
+               maxDate: "0",
           });
 
           $("#cetaklaporan").on("submit", function(e) {
