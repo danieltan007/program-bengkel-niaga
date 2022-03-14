@@ -13,6 +13,7 @@ $total = $_POST['total'];
 $bayar = $_POST['bayar'];
 $sisa = $_POST['kembali'];
 $mekanik = $_POST['mekanik'];
+$ongkos = $_POST['ongkos'];
 
 $tgl = date('Y-m-d');
 
@@ -86,8 +87,9 @@ if (mysqli_num_rows($cari) < 1) { ?>
 
                     $sql6 = "INSERT INTO `laporan penjualan` 
                     (`id_lap_jual`, `id_trns`, `tgl_jual`, `user`, `nm_brg`, `jasa`, `jumlah`, `harga_jual`, `modal_brg`, `profit_brg`, sumber, total_harga, ongkos) VALUES 
-                    ('$kodetrans3', '$kodetrans2', '$tgl', 'kasir 2', '$data[nm_brg]', '$data[jenis]', '$data[jml_brg]', '$jual', '$modal', '$profit', '$data[sumber]', '$data[total]', '$data[ongkos]')";
+                    ('$kodetrans3', '$kodetrans2', '$tgl', 'kasir 2', '$data[nm_brg]', '$data[jenis]', '$data[jml_brg]', '$jual', '$modal', '$profit', '$data[sumber]', '$data[total]', '$ongkos')";
                     mysqli_query($conn, $sql6);
+                    $ongkos = 0;
 
                     $sql4 = "update `tabel barang pusat` set stock_toko = '$sisastok' where kd_brg = '$data[kd_brg]'";
                     mysqli_query($conn, $sql4);
@@ -136,8 +138,9 @@ if (mysqli_num_rows($cari) < 1) { ?>
 
                     $sql6 = "INSERT INTO `laporan penjualan` 
                     (`id_lap_jual`, `id_trns`, `tgl_jual`, `user`, `nm_brg`, `jasa`, `jumlah`, `harga_jual`, `modal_brg`, `profit_brg`, sumber, total_harga, ongkos) VALUES 
-                    ('$kodetrans3', '$kodetrans2', '$tgl', 'kasir 2', '$data[nm_brg]', '$data[jenis]', '$data[jml_brg]', '$data[subtotal]', '0', '$data[ongkos]', '$data[sumber]', '$data[total]', '$data[ongkos]')";
+                    ('$kodetrans3', '$kodetrans2', '$tgl', 'kasir 2', '$data[nm_brg]', '$data[jenis]', '$data[jml_brg]', '$data[subtotal]', '0', '0', '$data[sumber]', '$data[total]', '$ongkos')";
                     mysqli_query($conn, $sql6);
+                    $ongkos = 0;
 
                     //masukkan pekerjaan mekanik
                     $sql9 = "select * from `table mekanik` where id_mekanik = '$mekanik'";
@@ -183,8 +186,9 @@ if (mysqli_num_rows($cari) < 1) { ?>
 
                     $sql6 = "INSERT INTO `laporan penjualan` 
                     (`id_lap_jual`, `id_trns`, `tgl_jual`, `user`, `nm_brg`, `jasa`, `jumlah`, `harga_jual`, `modal_brg`, `profit_brg`, sumber, total_harga, ongkos) VALUES 
-                    ('$kodetrans3', '$kodetrans2', '$tgl', 'kasir 2', '$data[nm_brg]', '$data[jenis]', '$data[jml_brg]', '$data[subtotal]', '0', '0', '$data[sumber]', '$data[total]', '$data[ongkos]')";
+                    ('$kodetrans3', '$kodetrans2', '$tgl', 'kasir 2', '$data[nm_brg]', '$data[jenis]', '$data[jml_brg]', '$data[subtotal]', '0', '0', '$data[sumber]', '$data[total]', '$ongkos')";
                     mysqli_query($conn, $sql6);
+                    $ongkos = 0;
 
                     //masukkan pekerjaan mekanik
                     $sql9 = "select * from `table mekanik` where id_mekanik = '$mekanik'";
