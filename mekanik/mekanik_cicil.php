@@ -67,6 +67,15 @@
      </div>
 </div>
 </div>
+
+<?php
+include "../koneksi.php";
+session_start();
+$id = $_SESSION['id_mekanik'];
+$sql = mysqli_query($conn, "SELECT * FROM login where id = '$id' level = 'mekanik'");
+$data = mysqli_fetch_array($sql);
+$pass = $data['pass'];
+?>
 <script>
      $(document).ready(function() {
           var error_khusus = false;
@@ -84,7 +93,7 @@
                          $("#khusus").css("outline-color", "red");
                          $("#khususErr").css("color", "red");
                          error_khusus = true;
-                    } else if (khusus != "danieltan") {
+                    } else if (khusus != <?= $pass; ?>) {
                          $("#khususErr").html("Password Salah!");
                          $("#khusus").css("outline-color", "red");
                          $("#khususErr").css("color", "red");

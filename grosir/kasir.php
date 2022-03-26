@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SESSION['login grosir'] != "login") {
-     header("location: login_kasir.php");
+     header("location: login_grosir.php");
 }
 ?>
 

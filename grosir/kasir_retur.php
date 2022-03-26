@@ -94,6 +94,22 @@ session_start();
 
 <script>
      $(document).ready(function() {
+          $("#awal, #akhir").datepicker();
+          $("#awal").datepicker("option", {
+               changeMonth: true,
+               changeYear: true,
+               showAnim: "slideDown",
+               dateFormat: "dd-mm-yy"
+          });
+
+          $("#akhir").datepicker("option", {
+               changeMonth: true,
+               changeYear: true,
+               showAnim: "slideDown",
+               dateFormat: "dd-mm-yy",
+               maxDate: "0",
+          });
+
           function tampil_barang() {
                $("#daftar_retur").load("do_kasirtampilbrgretur.php");
           }
@@ -179,7 +195,7 @@ session_start();
                     data: $("#retur").serialize(),
                     success: function(data) {
                          if (data == 1) {
-                              $("#retur").trigger("reset");
+                              alert("Berhasil melakukan retur!");
                               tampil_barang();
                               totalharga();
                          } else {

@@ -42,8 +42,9 @@ while ($data = mysqli_fetch_array($sql)) {
 }
 
 if (mysqli_commit($conn)) {
-     echo 1;
      mysqli_query($conn, "delete from `tabel retur temp` where user = '$user'");
+     echo 1;
 } else {
      echo 2;
+     mysqli_rollback($conn);
 }

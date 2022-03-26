@@ -5,7 +5,7 @@ session_start();
 $id = $_POST['id'];
 $pass = $_POST['pass'];
 
-$sql = "select * from login where id = '$id' and pass = '$pass' and level = 'kasir'";
+$sql = "select * from login where id = '$id' and pass = '$pass' and level = 'ecer'";
 $cari = mysqli_query($conn, $sql);
 
 if ($data = mysqli_fetch_array($cari) < 1) { ?>

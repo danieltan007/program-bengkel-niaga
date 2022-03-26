@@ -7,11 +7,11 @@
           echo "Masukkan Tanggal Transaksi!";
      } else {
      ?> <?php
-          $tglawal = $_POST['awal'];
-          $tglakhir = $_POST['akhir'];
+               $tglawal = date('Y-m-d', strtotime($_POST['awal']));
+               $tglakhir = date('Y-m-d', strtotime($_POST['akhir']));
 
           $print = "<a class='btn btn-info' href='do_kasirprintlaporan.php?tglawal=$tglawal&tglakhir=$tglakhir'><i class='fa fa-print'></i> Print</a> ";
-          $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `tabel transaksi grosir` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir'";
+               $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir'";
           $cek = mysqli_query($conn, $sql);
           $no = 1;
           $children = 1;
@@ -26,14 +26,14 @@
                          </button>
                     </h2>
                     <?php
-                    $sql2 = mysqli_query($conn, "select DISTINCT(`tabel transaksi grosir`.`nama`) from `tabel transaksi grosir` inner join `detail transaksi` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `detail transaksi`.`tgl_trns` = '$tgl_trans'");
+               $sql2 = mysqli_query($conn, "select DISTINCT(`riwayat pembelian`.`nama`) from `riwayat pembelian` inner join `detail transaksi` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `detail transaksi`.`tgl_trns` = '$tgl_trans'");
                     ?>
                     <div id="collapse-<?= $no ?>" class="accordion-collapse collapse show" aria-labelledby="heading-<?= $no ?>" data-bs-parent="#data-trans">
                          <div class="accordion-body">
                               <?php
                               while ($data2 = mysqli_fetch_array($sql2)) {
                                    $nama = $data2['nama'];
-                                   $sql3 = mysqli_query($conn, "select * from `detail transaksi` inner join `tabel transaksi grosir` on `detail transaksi`.`id_trans` = `tabel transaksi grosir`.`id_trans` where `tabel transaksi grosir`.`nama` = '$nama'");
+                                   $sql3 = mysqli_query($conn, "select * from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `riwayat pembelian`.`nama` = '$nama'");
                               ?>
                                    <div class="accordion-item">
                                         <h2 class="accordion-header" id="heading-<?= $no ?>-<?= $children ?>">

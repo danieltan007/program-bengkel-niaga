@@ -45,4 +45,5 @@ if (mysqli_commit($conn)) {
      mysqli_query($conn, "delete from `tabel retur temp` where user = '$user'");
 } else {
      echo 2;
+     mysqli_rollback($conn);
 }

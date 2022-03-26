@@ -75,10 +75,12 @@
 </div>
 
 <?php
-include "../koneksi.php";
-$sql = mysqli_query($conn, "SELECT * FROM login where level = 'kasir'");
-$data = mysqli_fetch_array($sql);
-$pass = $data['pass'];
+     include "../koneksi.php";
+     session_start();
+     $id = $_SESSION['id_ecer'];
+     $sql = mysqli_query($conn, "SELECT * FROM login where id = '$id' level = 'ecer'");
+     $data = mysqli_fetch_array($sql);
+     $pass = $data['pass'];
 ?>
 
 <script>

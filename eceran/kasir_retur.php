@@ -187,16 +187,16 @@ session_start();
           });
 
           $("#retur").submit(function(e) {
-               // e.preventDefault();
+               e.preventDefault();
                $.ajax({
                     type: "post",
                     url: $(this).attr("action"),
                     data: $("#retur").serialize(),
                     success: function(data) {
                          if (data == 1) {
-                              $("#retur").trigger("reset");
                               tampil_barang();
                               totalharga();
+                              alert("Berhasil lakukan retur barang!");
                          } else {
                               alert("Gagal Retur! Silahkan coba lagi!");
                          }

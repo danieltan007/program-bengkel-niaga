@@ -6,7 +6,6 @@
           <th>Korting</th>
           <th>Subtotal</th>
           <th>Sumber</th>
-          <th>Ongkos</th>
           <th>Total</th>
      </tr>
      <?php

@@ -14,6 +14,7 @@ if (mysqli_num_rows($sql2) >= 1) {
      $data2 = mysqli_fetch_array($sql2);
      $kd_temp = $data2['maxkode'];
      $ubah = (int) substr($kd_temp, 5, 3);
+     echo "ubah = $ubah";
      $ubah++;
      $kd_temp = "TEMP-" . sprintf("%03s", $ubah);
 
@@ -22,6 +23,6 @@ if (mysqli_num_rows($sql2) >= 1) {
      $data = mysqli_fetch_array($cari);
 
      $hrg = $data['hrg_jual2'];
-     $sql1 = "insert into `daftar grosir temp` (kd_brg, jml_brg,  st_hrg, t_hrg, user) values ('$kode', '1', '$hrg', '$hrg', '$user')";
+     $sql1 = "insert into `daftar grosir temp` (kd_temp, kd_brg, jml_brg, st_hrg, t_hrg, user) values ('$kd_temp', '$kode', '1', '$hrg', '$hrg', '$user')";
      $input = mysqli_query($conn, $sql1);
 }

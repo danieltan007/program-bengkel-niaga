@@ -71,12 +71,8 @@
                          </tr>
                          <tr id="tokolain5" style="display:none">
                               <td>Total Harga</td>
-                              <td><input type="number" min="0" max="99999999" name="thrg" id="thrg"></td>
+                              <td><input type="number" min="0" max="99999999" name="thrg" id="thrg" value=""></td>
                          </tr>
-                         <!-- <tr>
-                              <td>Ongkos Mekanik</td>
-                              <td><input type="number" min="0" max="9999999" id="ongkos" name="ongkos"></td>
-                         </tr> -->
                     </table>
                     <div align="center">
                          <button class="btn btn-success" type="submit" name="tambahlayanan"><i class="fa fa-plus-circle"></i> Tambah</button>
