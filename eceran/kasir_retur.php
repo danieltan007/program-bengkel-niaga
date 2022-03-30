@@ -64,7 +64,7 @@ session_start();
                <br><br>
                <div id="daftar_retur"></div>
                <br>
-               <form action="do_kasirretur.php" method="post" id="retur">
+               <form action="do_kasirretur.php" method="post" id="retur-barang">
                     <table class="table table-borderless">
                          <tr>
                               <td>Total Harga</td>
@@ -131,6 +131,24 @@ session_start();
                });
           });
 
+          $("#retur-barang").submit(function(e) {
+               e.preventDefault();
+               $.ajax({
+                    type: "post",
+                    url: $(this).attr("action"),
+                    data: $(this).serialize(),
+                    success: function(data) {
+                         if (data == 1) {
+                              tampil_barang();
+                              totalharga();
+                              alert("Berhasil lakukan retur barang!");
+                         } else {
+                              alert("Gagal Retur! Silahkan coba lagi!");
+                         }
+                    }
+               });
+          });
+
           $("#cetaklaporan").submit(function(e) {
                e.preventDefault();
                $.ajax({
@@ -182,24 +200,6 @@ session_start();
                     success: function() {
                          tampil_barang();
                          totalharga();
-                    }
-               });
-          });
-
-          $("#retur").submit(function(e) {
-               e.preventDefault();
-               $.ajax({
-                    type: "post",
-                    url: $(this).attr("action"),
-                    data: $("#retur").serialize(),
-                    success: function(data) {
-                         if (data == 1) {
-                              tampil_barang();
-                              totalharga();
-                              alert("Berhasil lakukan retur barang!");
-                         } else {
-                              alert("Gagal Retur! Silahkan coba lagi!");
-                         }
                     }
                });
           });

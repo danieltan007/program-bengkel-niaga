@@ -72,7 +72,7 @@
 include "../koneksi.php";
 session_start();
 $id = $_SESSION['id_mekanik'];
-$sql = mysqli_query($conn, "SELECT * FROM login where id = '$id' level = 'mekanik'");
+$sql = mysqli_query($conn, "SELECT * FROM login where id = '$id' and level = 'mekanik'");
 $data = mysqli_fetch_array($sql);
 $pass = $data['pass'];
 ?>

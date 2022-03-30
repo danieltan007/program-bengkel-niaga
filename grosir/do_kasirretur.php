@@ -5,6 +5,7 @@ session_start();
 $user = $_SESSION['id_grosir'];
 $total_harga = $_POST['total_harga'];
 $date = date('Y-m-d');
+
 mysqli_autocommit($conn, false);
 $sql = mysqli_query($conn, "select * from `tabel retur temp` where user = '$user'");
 while ($data = mysqli_fetch_array($sql)) {

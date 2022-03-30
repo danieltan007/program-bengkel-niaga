@@ -1,7 +1,7 @@
 <div class="accordion" id="data-trans">
      <?php
      include "../koneksi.php";
-
+     // mysqli_report(MYSQLI_REPORT_ALL);
      if (empty($_POST['awal']) || empty($_POST['akhir'])) {
           echo "Masukkan Tanggal Transaksi!";
      } else {
@@ -9,7 +9,7 @@
                $tglawal = date('Y-m-d', strtotime($_POST['awal']));
                $tglakhir = date('Y-m-d', strtotime($_POST['akhir']));
 
-               $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir' and tipe = 'grosir' ";
+               $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir' and `riwayat pembelian`.tipe = 'grosir' ";
           $cek = mysqli_query($conn, $sql);
           $no = 1;
           $children = 1;
@@ -24,16 +24,16 @@
                          </button>
                     </h2>
                     <?php
-               $sql2 = mysqli_query($conn, "select DISTINCT(`riwayat pembelian`.`nama`) from `riwayat pembelian` inner join `detail transaksi` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `detail transaksi`.`tgl_trns` = '$tgl_trans' and tipe = 'grosir'");
+               $sql2 = mysqli_query($conn, "select DISTINCT(`riwayat pembelian`.`nama`) from `riwayat pembelian` inner join `detail transaksi` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `detail transaksi`.`tgl_trns` = '$tgl_trans' and `riwayat pembelian`.tipe = 'grosir'");
                     ?>
                     <div id="collapse-<?= $no ?>" class="accordion-collapse collapse show" aria-labelledby="heading-<?= $no ?>" data-bs-parent="#data-trans">
                          <div class="accordion-body">
                               <?php
                               while ($data2 = mysqli_fetch_array($sql2)) {
                                    $nama = $data2['nama'];
-                                   $sql3 = mysqli_query($conn, "select * from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `riwayat pembelian`.`nama` = '$nama' and tipe = 'grosir'");
+                                   $sql3 = mysqli_query($conn, "select * from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `riwayat pembelian`.`nama` = '$nama' and `riwayat pembelian`.tipe = 'grosir'");
 
-                                   $sql4 = mysqli_query($conn, "select sum(`detail transaksi`.`total_harga`) as total_harga from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `riwayat pembelian`.`nama` = '$nama' and tipe = 'grosir'");
+                                   $sql4 = mysqli_query($conn, "select sum(`detail transaksi`.`total_harga`) as total_harga from `detail transaksi` inner join `riwayat pembelian` on `detail transaksi`.`id_trans` = `riwayat pembelian`.`id_trans` where `riwayat pembelian`.`nama` = '$nama' and `riwayat pembelian`.tipe = 'grosir'");
                                    $data4 = mysqli_fetch_array($sql4);
                                    $total_belanja = $data4['total_harga'];
                               ?>

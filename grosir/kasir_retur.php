@@ -65,7 +65,7 @@ session_start();
                <br><br>
                <div id="daftar_retur"></div>
                <br>
-               <form action="do_kasirretur.php" method="post" id="retur">
+               <form action="do_kasirretur.php" method="post" id="retur-barang">
                     <table class="table table-borderless">
                          <tr>
                               <td>Total Harga</td>
@@ -187,12 +187,12 @@ session_start();
                });
           });
 
-          $("#retur").submit(function(e) {
+          $("#retur-barang").submit(function(e) {
                e.preventDefault();
                $.ajax({
                     type: "post",
                     url: $(this).attr("action"),
-                    data: $("#retur").serialize(),
+                    data: $(this).serialize(),
                     success: function(data) {
                          if (data == 1) {
                               alert("Berhasil melakukan retur!");
