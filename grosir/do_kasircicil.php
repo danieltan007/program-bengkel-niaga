@@ -31,7 +31,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      <p align="center">Jl Raya Ngabang, Ngabang, Kalimantan Barat</p>
      <br><br>
      Nama Pembeli: <?php echo $nama; ?><br>
-     Tanggal : <?php echo date('d-m-Y', strotime($tgl)); ?><br>
+     Tanggal : <?php echo date('d-m-Y', strtotime($tgl)); ?><br>
      Metode Pembayaran: Cicil
      <br>
      <hr>

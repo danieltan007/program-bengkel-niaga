@@ -155,6 +155,13 @@
           var pilihan;
           var barang;
 
+          $("#ongkos").keyup(function() {
+               var ongkos = parseInt($("#ongkos").val());
+               var total = parseInt($("#total").val());
+               var jumlah = parseInt(ongkos + total);
+               $("#total").val(jumlah);
+          });
+
           $("#pilihan").on("change", function() {
                barang = $("#pilihan").val();
 

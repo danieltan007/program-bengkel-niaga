@@ -86,12 +86,12 @@ $dapat = mysqli_query($conn, $sql1);
                ('$kodetrans3', '$kodetrans2', '$tgl', 'grosir', '$data2[nm_brg]', 'jual barang', '$data[jml_brg]', '$jual', '$modal', '$profit')";
                mysqli_query($conn, $sql6);
 
-               $sql8 = mysqli_query($conn, "insert into `riwayat penjualan` values ('$kodetrans2', '$nama', 'grosir')");
+               $sql8 = mysqli_query($conn, "insert into `riwayat pembelian` values ('$kodetrans2', '$nama', 'grosir')");
 
                $sql4 = "update `tabel barang pusat` set stock_gudang = '$sisastok' where kd_brg = '$data[kd_brg]'";
                mysqli_query($conn, $sql4);
 
-               // echo print_r(mysqli_error_list($conn));
+               echo print_r(mysqli_error_list($conn));
           ?>
                <tr>
                     <td colspan="4"><?php echo $data2['nm_brg']; ?></td>
