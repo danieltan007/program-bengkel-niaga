@@ -16,7 +16,7 @@
                $tglawal = date('Y-m-d', strtotime($_GET['awal']));
                $tglakhir = date('Y-m-d', strtotime($_GET['akhir']));
 
-               $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `riwayat penjualan` on `detail transaksi`.`id_trans` = `riwayat penjualan`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir' and `riwayat transaksi`.tipe = 'grosir'";
+               $sql = "select DISTINCT(`detail transaksi`.`tgl_trns`) from `detail transaksi` inner join `riwayat penjualan` on `detail transaksi`.`id_trans` = `riwayat penjualan`.`id_trans` where `detail transaksi`.`tgl_trns` BETWEEN '$tglawal' and '$tglakhir' and `riwayat pembelian`.tipe = 'grosir'";
           $cek = mysqli_query($conn, $sql);
           $no = 1;
           $children = 1;
@@ -31,7 +31,7 @@
                          </button>
                     </h2>
                     <?php
-               $sql2 = mysqli_query($conn, "select DISTINCT(`riwayat penjualan`.`nama`) from `riwayat penjualan` inner join `detail transaksi` on `detail transaksi`.`id_trans` = `riwayat penjualan`.`id_trans` where `detail transaksi`.`tgl_trns` = '$tgl_trans' and `riwayat transaksi`.tipe = 'grosir'");
+               $sql2 = mysqli_query($conn, "select DISTINCT(`riwayat penjualan`.`nama`) from `riwayat penjualan` inner join `detail transaksi` on `detail transaksi`.`id_trans` = `riwayat penjualan`.`id_trans` where `detail transaksi`.`tgl_trns` = '$tgl_trans' and `riwayat pembelian`.tipe = 'grosir'");
                     ?>
                     <div id="collapse-<?= $no ?>" class="accordion-collapse collapse show" aria-labelledby="heading-<?= $no ?>" data-bs-parent="#data-trans">
                          <div class="accordion-body">
