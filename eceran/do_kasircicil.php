@@ -37,7 +37,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      <hr>
      <table stlye="font-size:8px;" border=0 align="center">
           <?php
-     $sql7 = mysqli_query($conn, "select max(nama) as maxkode from `riwayat pembelian`");
+          $sql7 = mysqli_query($conn, "select max(nama) as maxkode from `riwayat pembelian`");
           $data7 = mysqli_fetch_array($sql7);
           $kodetrans4 = $data7['maxkode'];
           if (preg_match("/[0-9]/", $kodetrans4)) {
@@ -100,7 +100,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
 
                $sql9 = mysqli_query($conn, "insert into `riwayat pembelian` values ('$kodetrans2', '$kodetrans4', 'eceran')");
 
-               $sql4 = "update `tabel barang pusat` set sto_toko = '$sisastok' where kd_brg = '$data[kd_brg]'";
+               $sql4 = "update `tabel barang pusat` set stock_toko = '$sisastok' where kd_brg = '$data[kd_brg]'";
                $cek3 = mysqli_query($conn, $sql4);
           ?>
                <tr>
@@ -142,9 +142,6 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      <!-- deepcode ignore XSS: for commenting -->
      <H4 align="center">Terima Kasih atas Belanjaan Anda</H4>
 <?php
-     $sql2 = "delete from `tabel belanja temp` ";
-     mysqli_query($conn, $sql2);
-
      //buat id trans
      $query = "select max(id_trns) as maxkode from `tabel transaksi`";
      $hasil = mysqli_query($conn, $query);

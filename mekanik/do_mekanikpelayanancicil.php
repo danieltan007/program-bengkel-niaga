@@ -78,7 +78,7 @@ if (mysqli_num_rows($cari) < 1) { ?>
                     //hitung jumlah keuntungan per barang
                     $modal = (int)$data2['hrg_modal'];
                     $kort = (int)$data['korting'] / (int)$data['jml_brg'];
-                    $jual = (int)$data['st_hrg'] - $kort;
+                    $jual = (int)$data['hrg_brg'] - $kort;
                     $profit = $jual - $modal;
 
                     //kode LAP-001 laporan penjualan
@@ -117,7 +117,6 @@ if (mysqli_num_rows($cari) < 1) { ?>
                     (kd_lap, id_mekanik, tgl, nm_mknk, reparasi, id_lap_jual) values 
                     ('$kodetrans10', '$mekanik', '$tgl', '$data9[nm_mekanik]', '$data[jenis]', '$kodetrans3')";
                     mysqli_query($conn, $sql8);
-
                } else if ($data['sumber'] == 'toko lain') {
                     //kode DET-001
                     $query1 = "select max(id_trans) as maxkode from `detail transaksi`";
@@ -221,13 +220,14 @@ if (mysqli_num_rows($cari) < 1) { ?>
                     <td colspan="2"><?php echo $data['jenis']; ?></td>
                     <td colspan="2"><?php echo $data['nm_brg']; ?></td>
                </tr>
-               <Tr>
+               <tr>
                     <td><?php echo "subtotal : " . number_format($data['subtotal']); ?></td>
                     <td><?php echo "jumlah barang : " . $data['jml_brg']; ?></td>
                     <td>-<?php echo "diskon : " . $data['diskon']; ?>%</td>
                     <td><?php echo "total : " . number_format($data['total']); ?></td>
-               </Tr>
-          <?php    }
+               </tr>
+          <?php
+          }
           $sql = "insert into `tabel piutang` (noktp, nama, alamat, `no hp`, tgl_trns, t_hrg, sisa_byr, id_trns) values ('$noktp', '$nama', '$alamat', '$nohp', '$tgl', '$total', '$sisa' ,'$kodetrans2')";
           mysqli_query($conn, $sql);
           ?>
@@ -241,6 +241,7 @@ if (mysqli_num_rows($cari) < 1) { ?>
           </tr>
           <tr>
                <td colspan="2">Sisa Pembayaran</td>
+               <!-- file deepcode ignore XSS: <please specify a reason of ignoring this> -->
                <td colspan="2"><?php echo number_format($sisa); ?></td>
           </tr>
      </table>

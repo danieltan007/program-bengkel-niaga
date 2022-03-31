@@ -155,11 +155,24 @@
           var pilihan;
           var barang;
 
-          $("#ongkos").keyup(function() {
-               var ongkos = parseInt($("#ongkos").val());
-               var total = parseInt($("#total").val());
-               var jumlah = parseInt(ongkos + total);
+          $("#ongkos").change(function() {
+               var ongkos = $("#ongkos").val();
+
+               if (ongkos == 0 || ongkos == "") {
+                    ongkos = 0;
+                    totalharga();
+               }
+               var total = $("#total").val();
+               var jumlah = parseInt(ongkos) + parseInt(total);
                $("#total").val(jumlah);
+          });
+
+          $("#bayar").on("keyup", function() {
+               var harga = $("#total").val();
+               var bayar = $("#bayar").val();
+               var kembalian = parseInt(bayar) - parseInt(harga);
+
+               $("#kembali").val(kembalian);
           });
 
           $("#pilihan").on("change", function() {
@@ -324,13 +337,6 @@
                $("#thrg").val(tharga);
           })
 
-          $("#bayar").on("keyup", function() {
-               var harga = $("#total").val();
-               var bayar = $("#bayar").val();
-               var kembalian = parseInt(bayar) - parseInt(harga);
-
-               $("#kembali").val(kembalian);
-          });
 
           $("#tambahpelayanan").submit(function(e) {
                e.preventDefault();
