@@ -6,6 +6,7 @@ $user = $_SESSION['id_grosir'];
 $total_harga = $_POST['total_harga'];
 $date = date('Y-m-d');
 
+
 mysqli_autocommit($conn, false);
 $sql = mysqli_query($conn, "select * from `tabel retur temp` where user = '$user'");
 while ($data = mysqli_fetch_array($sql)) {
@@ -20,14 +21,15 @@ while ($data = mysqli_fetch_array($sql)) {
      $jml_beli = $data2['jml_beli'];
      $nama_brg = $data2['nm_brg'];
      $kd_brg = $data2['kd_brg'];
-
+     
      if ($jml > $jml_beli) {
           mysqli_rollback($conn);
           exit("
-               <script>
-                    alert('Jumlah Barang " . $nama_brg . " tidak mencukupi!');
+          <script>
+          alert('Jumlah Barang " . $nama_brg .
+          " tidak mencukupi!');
                     window.location.href = 'kasir.php';
-               </script>");
+                    </script>");
      } else {
           $sql2 = mysqli_query($conn, "select max(kd_retur) as maxkode from `tabel retur`");
           $data2 = mysqli_fetch_array($sql2);
@@ -36,14 +38,14 @@ while ($data = mysqli_fetch_array($sql)) {
           $noUrut++;
           $kd_retur = "RTR-" . sprintf("%03s", $noUrut);
 
+          mysqli_query($conn, "delete from `riwayat pembelian` where id_trans = '$kode' ");
           $sql3 = mysqli_query($conn, "insert into `tabel retur` values ('$kd_retur','$date','$kode','$jml','$hrg','$total')");
           $sql4 = mysqli_query($conn, "update `tabel barang pusat` set stock_gudang = stock_gudang + $jml where kd_brg = '$kd_brg'");
      }
 }
-
+mysqli_query($conn, "delete from `tabel retur temp` where user = '$user'");
 if (mysqli_commit($conn)) {
      echo 1;
-     mysqli_query($conn, "delete from `tabel retur temp` where user = '$user'");
 } else {
      echo 2;
      mysqli_rollback($conn);

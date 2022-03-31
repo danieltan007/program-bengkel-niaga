@@ -35,14 +35,16 @@ while ($data = mysqli_fetch_array($sql)) {
           $noUrut++;
           $kd_retur = "RTR-" . sprintf("%03s", $noUrut);
 
+          mysqli_query($conn, "delete from `riwayat pembelian` where id_trans = '$kode' ");
+          
           $query3 = "insert into `tabel retur` values ('$kd_retur','$date','$kode','$jml','$hrg','$total')";
           $sql3 = mysqli_query($conn, $query3);
           $sql4 = mysqli_query($conn, "update `tabel barang pusat` set stock_gudang = stock_gudang + $jml where kd_brg = '$kd_brg'");
      }
 }
 
+mysqli_query($conn, "delete from `tabel retur temp` where user = '$user'");
 if (mysqli_commit($conn)) {
-     mysqli_query($conn, "delete from `tabel retur temp` where user = '$user'");
      echo 1;
 } else {
      echo 2;

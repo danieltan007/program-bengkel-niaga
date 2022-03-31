@@ -9,7 +9,7 @@ else
 {
 	$kode = $_POST['kode'];
 	$bayar = $_POST['byr'];
-	$sisa = $_POST['sisa_byr'];
+	$sisa = $_POST['sisabyr'];
 	$cek = mysqli_query($conn, "SELECT * FROM `tabel piutang` where noktp = '$kode'"); 
 
 	$lunas = $sisa - $bayar;
@@ -22,10 +22,10 @@ else
 	} 
 	else if ($lunas <= 0)
 	{
-		$sql = mysqli_query($conn, "select * form `tabel piutang` where noktp = '$kode'");
+		$sql = mysqli_query($conn, "select * from `tabel piutang` where noktp = '$kode'");
 		$data = mysqli_fetch_array($sql);
 
-		$update = mysqli_query($conn, "update `detail transaksi` set status = 'lunas' where id_trns = '$data[id_trns]' ");
+		$update = mysqli_query($conn, "update `detail transaksi` set status = 'lunas' where id_trans = '$data[id_trns]' ");
 		$delete = mysqli_query($conn, "DELETE FROM `tabel piutang` where noktp = '$kode'");
 
 		echo $lunas;

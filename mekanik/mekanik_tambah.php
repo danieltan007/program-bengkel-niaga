@@ -38,7 +38,9 @@
 
 <?php
 include "../koneksi.php";
-$sql = mysqli_query($conn, "select * from login where level = 'mekanik'");
+                              session_start();
+                              $id = $_SESSION['id_mekanik'];
+                              $sql = mysqli_query($conn, "select * from login where id = '$id' and level = 'mekanik'");
 $data = mysqli_fetch_array($sql);
 $password = $data['pass'];
 ?>

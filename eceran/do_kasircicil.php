@@ -37,7 +37,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      <hr>
      <table stlye="font-size:8px;" border=0 align="center">
           <?php
-          $sql7 = mysqli_query($conn, "select max(nama) as maxkode from `laporan penjualan`");
+     $sql7 = mysqli_query($conn, "select max(nama) as maxkode from `riwayat pembelian`");
           $data7 = mysqli_fetch_array($sql7);
           $kodetrans4 = $data7['maxkode'];
           if (preg_match("/[0-9]/", $kodetrans4)) {
