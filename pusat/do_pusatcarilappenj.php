@@ -7,7 +7,7 @@ if (empty($_POST['awal']) || empty($_POST['akhir'])) {
 } else {
      $awal = date('Y-m-d', strtotime($_POST['awal']));
      $akhir = date('Y-m-d', strtotime($_POST['akhir']));
-     $sql = "select * from `laporan penjualan` where tgl_jual between '$awal' and '$akhir' ";
+     $sql = "select * from `laporan penjualan` where not EXISTS (select id_trns from `riwayat pembelian` where `laporan penjualan`.`id_trns` = `riwayat pembelian`.`id_trans`) and tgl_jual BETWEEN '$awal' and '$akhir'";
      $cari = mysqli_query($conn, $sql);
 
      $print = "<div align='center'><a class='btn btn-info' style='width:200px;' href='do_pusatcetaklap.php?awal=$awal&akhir=$akhir'><i class='fa fa-print'></i> Print</a></div> ";

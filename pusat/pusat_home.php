@@ -2,7 +2,7 @@
 session_start();
 ?>
 <div class="jumbotron">
-     <h2 align="center">Laporan Penjualan Eceran</h2>
+     <h2 align="center">Laporan Penjualan Eceran dan Mekanik</h2>
      <br>
      <form action="do_pusatcarilappenj.php" name="tampillappenj" id="tampillappenj" method="post">
           <table class="table table-borderless">
@@ -44,13 +44,21 @@ session_start();
 <br><br>
 
 <div class="jumbotron">
-
+     <h2 align="center">Total Penghasilan</h2>
+     <br>
+     <form action="do_pusattotalprofit.php" name="total_profit" id="total_profit" method="post">
+          Pilih Tanggal &nbsp;<i class="fa fa-calendar"></i> <input type="text" id="awal4" name="awal4" autocomplete="off"> &nbsp; sampai &nbsp;
+          <i class="fa fa-calendar"></i> <input type="text" id="akhir4" name="akhir4" autocomplete="off"> &nbsp;
+          <button type="submit" class="btn btn-success" name="tampil2" id="tampil2"><i class="fa fa-eye"></i> Tampil</button>
+     </form>
+     <br>
+     <div id="show4"></div>
 </div>
 
 
 <script type="text/javascript">
      $(document).ready(function() {
-          $("#awal, #awal2, #awal3").datepicker({
+          $("#awal, #awal2, #awal3, #awal4").datepicker({
                dateFormat: "dd-mm-yy",
                changeMonth: true,
                changeYear: true,
@@ -58,12 +66,24 @@ session_start();
                maxDate: 0,
           });
 
-          $("#akhir, #akhir2, #akhir3").datepicker({
+          $("#akhir, #akhir2, #akhir3, #akhir4").datepicker({
                dateFormat: "dd-mm-yy",
                changeMonth: true,
                changeYear: true,
                showAnim: "slideDown",
                maxDate: 0,
+          });
+
+          $("#total_profit").on("submit", function(e) {
+               e.preventDefault();
+               $.ajax({
+                    url: $(this).attr('action'),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function(data) {
+                         $("#show4").html(data);
+                    }
+               });
           });
 
           $("#tampillappenj").on("submit", function(e) {
