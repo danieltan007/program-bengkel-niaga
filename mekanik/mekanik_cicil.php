@@ -147,7 +147,7 @@ $pass = $data['pass'];
                               alert("berhasil melakukan pembayaran");
                               $("#modalcicil").modal('toggle');
                               if (data == 0) {
-                                   $("#hasil").load("do_mekanikcariutang.php");
+                                   $("#hasil").load("do_mekaniktampilnama.php");
                               } else {
                                    $('#' + id).children("td[data-target=sisabyr]").text(data);;
                               }
