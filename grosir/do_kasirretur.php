@@ -43,7 +43,6 @@ while ($data = mysqli_fetch_array($sql)) {
           $sql4 = mysqli_query($conn, "update `tabel barang pusat` set stock_gudang = stock_gudang + $jml where kd_brg = '$kd_brg'");
      }
 }
-mysqli_query($conn, "delete from `tabel retur temp` where user = '$user'");
 if (mysqli_commit($conn)) {
      echo 1;
 } else {

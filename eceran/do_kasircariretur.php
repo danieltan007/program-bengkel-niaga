@@ -15,7 +15,7 @@
                     </button>
                </h2>
                <?php
-               $sql2 = mysqli_query($conn, "select `riwayat pembelian`.`id_trans`, `detail transaksi`.`kd_brg`, `detail transaksi`.`nm_brg`, `detail transaksi`.`jml_beli`, `detail transaksi`.`hrg_brg`, `detail transaksi`.`total_harga` from `riwayat pembelian` inner join `detail transaksi` on `riwayat pembelian`.`id_trans` = `detail transaksi`.`id_trans` where `riwayat pembelian`.`nama` = '$data[nama]' and `riwayat pembelian`.`tipe` = 'eceran'");
+               $sql2 = mysqli_query($conn, "select `riwayat pembelian`.`id_trans`, `detail transaksi`.`kd_brg`, `detail transaksi`.`nm_brg`, `detail transaksi`.`jml_beli`, `detail transaksi`.`hrg_brg`, `detail transaksi`.`total_harga` from `riwayat pembelian` inner join `detail transaksi` on `riwayat pembelian`.`id_trans` = `detail transaksi`.`id_trans` where not EXISTS (select kd_retur from `tabel retur` where `riwayat pembelian`.`id_trans` = `tabel retur`.`kd_trans`) and `riwayat pembelian`.`nama` = '$data[nama]' and `riwayat pembelian`.`tipe` = 'eceran'");
                ?>
                <div id="collapse-<?= $no ?>" class="accordion-collapse collapse show" aria-labelledby="heading-<?= $no ?>" data-bs-parent="#data-trans">
                     <div class="accordion-body">
