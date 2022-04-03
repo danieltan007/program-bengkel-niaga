@@ -33,7 +33,7 @@ if (mysqli_num_rows($cari) < 1) { ?>
      Metode Pembayaran: Lunas
      <br>
      <hr>
-     <table stlye="font-size:8px;" border=1 align="center">
+     <table stlye="font-size:8px;" border=1 align="center" cellspacing="2" cellpadding="2">
           <tr>
                <td colspan="2">Jasa</td>
                <td colspan="2">Nama Barang</td>

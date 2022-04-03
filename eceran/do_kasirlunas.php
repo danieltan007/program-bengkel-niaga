@@ -35,7 +35,7 @@ if (mysqli_num_rows($dapat) < 1) { ?>
      <hr>
 
      <body>
-          <table style="font-size:8px;" border=0 align="center">
+          <table style="font-size:8px;" border=0 align="center" cellspacing="2" cellpadding="2">
                <?php
                $sql7 = mysqli_query($conn, "select max(nama) as maxkode from `riwayat pembelian`");
                $data7 = mysqli_fetch_array($sql7);
