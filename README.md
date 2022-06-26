@@ -1,4 +1,3 @@
 # program-bengkel-niaga
+project pertama freelance
 sistem penjualan terpadu
-
-harga 30 jt
